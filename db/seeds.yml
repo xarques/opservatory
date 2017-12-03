@@ -1,0 +1,197 @@
+challenges:
+  - name: 'Create S3 bucket'
+    description: 'You will have to create a readable-only S3 bucket'
+    instructions: |
+      <ol>
+        <li>Create an S3 bucket</li>
+      </ol>
+    schema: |
+      {
+        "properties": {
+          "Resources": {
+            "$id": "/properties/Resources",
+            "description": "Template resources",
+            "type": "object",
+            "patternProperties": {
+              "^[a-zA-Z0-9]+$": {
+                "$id": "/properties/Resources/properties/Bucket",
+                "type": "object",
+                "properties": {
+                  "Type": {
+                    "$id": "/properties/Resources/properties/MyBucket/properties/Type",
+                    "type": "string",
+                    "enum": ["AWS::S3::Bucket"]
+                  }
+                },
+                "required": ["Type"],
+                "additionalProperties": false
+              }
+            },
+            "additionalProperties": false
+          }
+        },
+        "required": ["Resources"],
+        "additionalProperties": false
+      }
+    solution: |
+      {
+        "Resources" : {
+          "MyBucket" : {
+            "Type" : "AWS::S3::Bucket"
+          }
+        }
+      }
+    level: 0
+    duration: 15
+#    photo:
+  - name: "Create a RDS Database"
+    description: "You will have to create an RDS database"
+    instructions: |
+      <ol>
+        <li>Size: 5 Go</li>
+        <li>Type: gp2</li>
+        <li>Instance Type: t2 micro</li>
+        <li>Engine: MySQL</li>
+      </ol>
+    schema: |
+      {
+        "properties": {
+          "Resources": {
+            "type": "object",
+            "patternProperties": {
+              "^[a-zA-Z0-9]+$": {
+                "type": "object",
+                "properties": {
+                  "Type": {
+                    "type": "string",
+                    "enum": ["AWS::RDS::DBInstance"]
+                  },
+                  "Properties": {
+                    "type": "object",
+                    "properties": {
+                      "AllocatedStorage": {
+                        "type": "string",
+                        "enum": ["5"]
+                      },
+                      "StorageType": {
+                        "type": "string",
+                        "enum": ["gp2"]
+                      },
+                      "DBInstanceClass": {
+                        "type": "string",
+                        "enum": ["db.t2.micro"]
+                      },
+                      "DBName": {
+                        "type": "string",
+                        "enum": ["wordpress"]
+                      },
+                      "Engine": {
+                        "type": "string",
+                        "enum": ["MySQL"]
+                      },
+                      "MasterUsername": {
+                        "type": "string",
+                        "enum": ["wordpress"]
+                      },
+                      "MasterUserPassword": {
+                        "type": "string",
+                        "enum": ["w0rdpr355"]
+                      }
+                    },
+                    "required": ["AllocatedStorage","StorageType",
+                                 "DBInstanceClass","DBName","Engine",
+                                 "MasterUsername","MasterUserPassword"],
+                    "additionalProperties": false
+                  }
+                },
+                "required": ["Type","Properties"],
+                "additionalProperties": false
+              }
+            },
+            "additionalProperties": false
+          }
+        },
+        "required": ["Resources"],
+        "additionalProperties": false
+      }
+    solution: |
+      {
+        "Resources" : {
+          "DB" : {
+            "Type" : "AWS::RDS::DBInstance",
+            "Properties" : {
+              "AllocatedStorage" : "5",
+              "StorageType" : "gp2",
+              "DBInstanceClass" : "db.t2.micro",
+              "DBName" : "wordpress",
+              "Engine" : "MySQL",
+              "MasterUsername" : "wordpress",
+              "MasterUserPassword" : "w0rdpr355"
+            }
+          }
+        }
+      }
+    level: 1
+    duration: 30
+#    photo:
+  - name: "Create an EC2 instance"
+    description: "You will have to create an EC2 instance"
+    instructions: |
+      <ol>
+        <li>Image Id: ami-c481fad3</li>
+        <li>Instance Type: t2 micro</li>
+      </ol>
+    schema: |
+      {
+        "properties": {
+          "Resources": {
+            "type": "object",
+            "patternProperties": {
+              "^[a-zA-Z0-9]+$": {
+                "type": "object",
+                "properties": {
+                  "Type": {
+                    "type": "string",
+                    "enum": ["AWS::EC2::Instance"]
+                  },
+                  "Properties": {
+                    "type": "object",
+                    "properties": {
+                      "ImageId": {
+                        "type": "string",
+                        "enum": ["ami-c481fad3"]
+                      },
+                      "InstanceType": {
+                        "type": "string",
+                        "enum": ["t2.micro"]
+                      }
+                    },
+                    "required": ["ImageId","InstanceType"],
+                    "additionalProperties": false
+                  }
+                },
+                "required": ["Type","Properties"],
+                "additionalProperties": false
+              }
+            },
+            "additionalProperties": false
+          }
+        },
+        "required": ["Resources"],
+        "additionalProperties": false
+      }
+    solution: |
+      {
+        "Resources" : {
+          "EC2" : {
+            "Type" : "AWS::EC2::Instance",
+            "Properties" : {
+              "ImageId" : "ami-c481fad3",
+              "InstanceType" : "t2.micro"
+            }
+          }
+        }
+      }
+    level: 1
+    duration: 30
+#    photo:

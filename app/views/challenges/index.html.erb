@@ -1,0 +1,20 @@
+<div class="container">
+  <div class="row">
+    <% @challenges.each do |challenge| %>
+      <div class="col-xs-12 col-sm-4">
+        <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url( <%= image_path '' %>);">
+          <div class="card-category">Popular</div>
+          <div class="card-description">
+            <h2> <%= challenge.name %></h2>
+            <p> <%= challenge.description %></p>
+          </div>
+          <%= link_to '', challenge_path(challenge), class: 'card-link' %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+  <%= link_to 'New challenge', new_challenge_path %>
+</div>
+<br>
+
+

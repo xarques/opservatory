@@ -1,7 +1,16 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+# db/seeds.rb
+require "open-uri"
+require "yaml"
+
+file = "db/seeds.yml"
+sample = YAML.load(open(file).read)
+puts "Cleaning database..."
+Challenge.destroy_all
+
+puts 'Creating challenges...'
+sample["challenges"].each do |challenge|
+  c = Challenge.create!(challenge)
+  puts "  Add Challenge: #{c.name}"
+end
+
+puts "#{Challenge.count} challenges have been successfully created"

@@ -1,0 +1,63 @@
+<div class="container">
+  <div class="challenge">
+    <div class="description">
+      <div class="text-center">
+        <h2>Instructions</h2>
+        <p><%= @challenge %></p>
+        <p><%= @challenge.description %></p>
+      </div>
+      <div>
+        <%= @challenge.instructions.html_safe %>
+      </div>
+    </div>
+
+    <div class="tips">
+      <%= link_to 'Back', challenges_path %>
+      <button type="button" id="validate" class="btn btn-primary" onclick="validate">
+        Validate
+      </button>
+    </div>
+
+    <div class="editor text-center">
+      <h2><%= @challenge.name %></h2>
+      <div id="javascript-editor"></div>
+    </div>
+
+    <div class="validation text-center">
+
+    </div>
+
+    <div class="result">
+
+    </div>
+    <script>
+      const schema = JSON.parse('<%=j raw(@challenge.schema) %>');
+      document.addEventListener('DOMContentLoaded', () => {
+        const javascriptEditor = ace.edit('javascript-editor');
+        javascriptEditor.getSession().setMode('ace/mode/javascript');
+        javascriptEditor.setTheme('ace/theme/monokai');
+        javascriptEditor.setValue('<%=j raw(@challenge.solution) %>');
+        const validate = ajv.compile(schema);
+        document.getElementById('validate').addEventListener('click', () => {
+          const valid = validate(JSON.parse(javascriptEditor.getValue()));
+          if (valid) {
+            document.querySelector(".result").innerHTML = "Valid";
+            console.log('Valid!');
+          }
+          else {
+            document.querySelector(".result").innerHTML = "";
+            validate.errors.forEach((error) => {
+              if (error.params.additionalProperty) {
+                document.querySelector(".result").innerHTML += `Unknown Property ${error.params.additionalProperty}<br>`;
+              } else {
+                document.querySelector(".result").innerHTML += `${error.message}<br>`;
+              }
+            });
+          }
+        });
+      });
+    </script>
+  </div>
+</div>
+
+
