@@ -1,0 +1,17 @@
+users:
+  - email: 'tess@mail.com'
+    password: '123456'
+    # first_name: Tess
+    # last_name: Saffar
+  - email: 'xavier@mail.com'
+    password: '123456'
+    # first_name: Xavier
+    # last_name: Arques
+  - email: 'Yan@mail.com'
+    password: '123456'
+    # first_name: Yan
+    # last_name: De Catheu
+  - email: 'roni@mail.com'
+    password: '123456'
+    # first_name: Roni
+    # last_name: Sharabi
