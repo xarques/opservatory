@@ -13,7 +13,9 @@
       </div>
     <% end %>
   </div>
+  <%= if policy(Challenge).create? %>
   <%= link_to 'New challenge', new_challenge_path %>
+  <%= end %>
 </div>
 <br>
 
