@@ -1,0 +1,90 @@
+name: "Create a RDS Database"
+description: "You will have to create an RDS database"
+instructions: |
+  <ol>
+    <li>Size: 5 Go</li>
+    <li>Type: gp2</li>
+    <li>Instance Type: t2 micro</li>
+    <li>Engine: MySQL</li>
+  </ol>
+schema: |
+  {
+    "properties": {
+      "Resources": {
+        "type": "object",
+        "patternProperties": {
+          "^[a-zA-Z0-9]+$": {
+            "type": "object",
+            "properties": {
+              "Type": {
+                "type": "string",
+                "enum": ["AWS::RDS::DBInstance"]
+              },
+              "Properties": {
+                "type": "object",
+                "properties": {
+                  "AllocatedStorage": {
+                    "type": "string",
+                    "enum": ["5"]
+                  },
+                  "StorageType": {
+                    "type": "string",
+                    "enum": ["gp2"]
+                  },
+                  "DBInstanceClass": {
+                    "type": "string",
+                    "enum": ["db.t2.micro"]
+                  },
+                  "DBName": {
+                    "type": "string",
+                    "enum": ["wordpress"]
+                  },
+                  "Engine": {
+                    "type": "string",
+                    "enum": ["MySQL"]
+                  },
+                  "MasterUsername": {
+                    "type": "string",
+                    "enum": ["wordpress"]
+                  },
+                  "MasterUserPassword": {
+                    "type": "string",
+                    "enum": ["w0rdpr355"]
+                  }
+                },
+                "required": ["AllocatedStorage","StorageType",
+                             "DBInstanceClass","DBName","Engine",
+                             "MasterUsername","MasterUserPassword"],
+                "additionalProperties": false
+              }
+            },
+            "required": ["Type","Properties"],
+            "additionalProperties": false
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "required": ["Resources"],
+    "additionalProperties": false
+  }
+solution: |
+  {
+    "Resources" : {
+      "DB" : {
+        "Type" : "AWS::RDS::DBInstance",
+        "Properties" : {
+          "AllocatedStorage" : "5",
+          "StorageType" : "gp2",
+          "DBInstanceClass" : "db.t2.micro",
+          "DBName" : "wordpress",
+          "Engine" : "MySQL",
+          "MasterUsername" : "wordpress",
+          "MasterUserPassword" : "w0rdpr355"
+        }
+      }
+    }
+  }
+level: 1
+duration: 30
+#    photo:

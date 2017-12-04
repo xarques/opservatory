@@ -1,0 +1,45 @@
+name: "Create S3 bucket"
+description: "You will have to create a readable-only S3 bucket"
+instructions: |
+  <ol>
+    <li>Create an S3 bucket</li>
+  </ol>
+schema: |
+  {
+    "properties": {
+      "Resources": {
+        "$id": "/properties/Resources",
+        "description": "Template resources",
+        "type": "object",
+        "patternProperties": {
+          "^[a-zA-Z0-9]+$": {
+            "$id": "/properties/Resources/properties/Bucket",
+            "type": "object",
+            "properties": {
+              "Type": {
+                "$id": "/properties/Resources/properties/MyBucket/properties/Type",
+                "type": "string",
+                "enum": ["AWS::S3::Bucket"]
+              }
+            },
+            "required": ["Type"],
+            "additionalProperties": false
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "required": ["Resources"],
+    "additionalProperties": false
+  }
+solution: |
+  {
+    "Resources" : {
+      "MyBucket" : {
+        "Type" : "AWS::S3::Bucket"
+      }
+    }
+  }
+level: 0
+duration: 15
+#    photo:
