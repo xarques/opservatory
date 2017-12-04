@@ -98,6 +98,8 @@ GEM
     pry-rails (0.3.6)
       pry (>= 0.10.4)
     puma (3.11.0)
+    pundit (1.1.0)
+      activesupport (>= 3.0.0)
     rack (2.0.3)
     rack-proxy (0.6.2)
       rack
@@ -197,6 +199,7 @@ DEPENDENCIES
   pry-byebug
   pry-rails
   puma
+  pundit
   rails (= 5.1.4)
   redis
   sass-rails
@@ -211,4 +214,4 @@ RUBY VERSION
    ruby 2.3.5p376
 
 BUNDLED WITH
-   1.15.4
+   1.16.0
