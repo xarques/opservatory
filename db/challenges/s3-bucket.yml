@@ -42,4 +42,6 @@ solution: |
   }
 level: 0
 duration: 15
-#    photo:
+status: 1
+photo:
+start_point:
