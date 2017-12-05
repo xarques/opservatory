@@ -1,2 +1,39 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+
+<%= content_for(:navbar_class, "navbar-home") %>
+
+<div class="banner">
+  <div class="banner-content text-center">
+    <h1>Learn infrastructure as code</h1>
+    <p>Practice and test your own infrastructure as code through challenges</p>
+    <%= link_to "Challenge of the day", challenges_path, class: "btn btn-lig btn-primary" %>
+  </div>
+</div>
+
+<div class="container">
+  <%= render 'challenges/index' %>
+</div>
+
+<div class="features-wrapper up">
+  <div class="container features-container"></div>
+    <h2>About us</h2>
+      <h3>Practice</h3>
+        <p>Improve your infrastructure skills through practical challenges</p>
+      <h3>Test</h3>
+        <p>Test your own code in our platform</p>
+      <h3>Deploy</h3>
+        <p>Deploy it directly on your AWS account</p>
+</div>
+
+<div class="team-wrapper up">
+    <div class="container team-container">
+      <h2>Meet the team</h2>
+      <h3>Xavier Arques</h3>
+        <p>Lead Full Stack Dev</p>
+      <h3>Yan De Catheu</h3>
+        <p>Full Stack Dev</p>
+      <h3>Roni Sharabi</h3>
+        <p>Full Stack Dev</p>
+      <h3>Tess Saffar</h3>
+        <p>Full Stack Dev</p>
+    </div>
+</div>

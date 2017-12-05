@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   devise_for :users
+
   resources :challenges do 
     resources :exercises, only: [:create]
     resources :hints, only: [:create]
