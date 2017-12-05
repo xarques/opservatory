@@ -3,9 +3,6 @@ class PagesController < ApplicationController
 
   def home
     @challenges = policy_scope(Challenge)
-
-
   end
-
 
 end

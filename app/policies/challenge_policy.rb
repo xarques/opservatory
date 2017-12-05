@@ -6,6 +6,10 @@ class ChallengePolicy < ApplicationPolicy
   end
 
   def create?
-    user.roles.where(name:"teacher").any?
+    if user
+      user.roles.where(name:"teacher").any?
+    else
+      true
+    end
   end
 end
