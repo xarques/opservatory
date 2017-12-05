@@ -1,0 +1,61 @@
+name: "Create an EC2 instance"
+description: "You will have to create an EC2 instance"
+instructions: |
+  <ol>
+    <li>Image Id: ami-c481fad3</li>
+    <li>Instance Type: t2 micro</li>
+  </ol>
+schema: |
+  {
+    "properties": {
+      "Resources": {
+        "type": "object",
+        "patternProperties": {
+          "^[a-zA-Z0-9]+$": {
+            "type": "object",
+            "properties": {
+              "Type": {
+                "type": "string",
+                "enum": ["AWS::EC2::Instance"]
+              },
+              "Properties": {
+                "type": "object",
+                "properties": {
+                  "ImageId": {
+                    "type": "string",
+                    "enum": ["ami-c481fad3"]
+                  },
+                  "InstanceType": {
+                    "type": "string",
+                    "enum": ["t2.micro"]
+                  }
+                },
+                "required": ["ImageId","InstanceType"],
+                "additionalProperties": false
+              }
+            },
+            "required": ["Type","Properties"],
+            "additionalProperties": false
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "required": ["Resources"],
+    "additionalProperties": false
+  }
+solution: |
+  {
+    "Resources" : {
+      "EC2" : {
+        "Type" : "AWS::EC2::Instance",
+        "Properties" : {
+          "ImageId" : "ami-c481fad3",
+          "InstanceType" : "t2.micro"
+        }
+      }
+    }
+  }
+level: 1
+duration: 30
+#    photo:
