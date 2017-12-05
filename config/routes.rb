@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
   devise_for :users
   resources :challenges
-  root to: "challenges#index"  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  authenticated :user do
+    root to: "challenges#index", as: :authenticated_root
+  end
+
+  root to: "pages#home"
 end
