@@ -52,8 +52,8 @@ puts "Creating exercises..."
 
 users = User.all
 challenge_ids = Challenge.ids
-sample_challenge = Challenge.find(challenge_ids.sample)
 users.each do |user|
+  sample_challenge = Challenge.find(challenge_ids.sample)
   Exercise.create!(status: 0, code: sample_challenge.start_point, user: user, challenge: sample_challenge)
 end
 
