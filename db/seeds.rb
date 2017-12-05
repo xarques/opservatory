@@ -7,6 +7,8 @@ Challenge.destroy_all
 User.destroy_all
 Role.destroy_all
 Exercise.destroy_all
+Hint.destroy_all
+ExerciseHint.destroy_all
 
 # 1 Roles
 puts "Creating roles..."
@@ -55,3 +57,28 @@ puts "creating exercise..."
   end
 
 puts "#{users.count} exercise(s) created"
+
+puts "creating hints..."
+
+  c.each do |challenge_id|
+    for i in (1..3)
+      Hint.create!(name: "Hint n°#{i}",
+                    description: "Hint n°#{i} for challenge_id #{challenge_id} with position #{i}",
+                    position: i,
+                    challenge: Challenge.find(challenge_id))
+    end
+  end
+
+  puts "Hints created"
+
+
+puts "creating exercise hints..."
+
+exercises = Exercise.all
+
+exercises.each do |exercise|
+  hint = exercise.hints.where(position:1)
+  ExerciseHint.create!(exercise: exercise, hint: hint[0])
+end
+
+puts "Exercise Hints created"
