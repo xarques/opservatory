@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171204152311) do
+ActiveRecord::Schema.define(version: 20171205150046) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,6 +25,39 @@ ActiveRecord::Schema.define(version: 20171204152311) do
     t.integer "duration"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "status"
+    t.string "photo"
+    t.string "start_point"
+  end
+
+  create_table "exercise_hints", force: :cascade do |t|
+    t.bigint "hint_id"
+    t.bigint "exercise_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["exercise_id"], name: "index_exercise_hints_on_exercise_id"
+    t.index ["hint_id"], name: "index_exercise_hints_on_hint_id"
+  end
+
+  create_table "exercises", force: :cascade do |t|
+    t.text "code"
+    t.integer "status"
+    t.bigint "challenge_id"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["challenge_id"], name: "index_exercises_on_challenge_id"
+    t.index ["user_id"], name: "index_exercises_on_user_id"
+  end
+
+  create_table "hints", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.integer "position"
+    t.bigint "challenge_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["challenge_id"], name: "index_hints_on_challenge_id"
   end
 
   create_table "roles", force: :cascade do |t|
@@ -59,6 +92,11 @@ ActiveRecord::Schema.define(version: 20171204152311) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "exercise_hints", "exercises"
+  add_foreign_key "exercise_hints", "hints"
+  add_foreign_key "exercises", "challenges"
+  add_foreign_key "exercises", "users"
+  add_foreign_key "hints", "challenges"
   add_foreign_key "user_roles", "roles"
   add_foreign_key "user_roles", "users"
 end
