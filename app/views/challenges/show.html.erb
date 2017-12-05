@@ -3,40 +3,12 @@
     <div class="description">
       <div class="text-center">
         <h2>Instructions</h2>
-        <p><%= @challenge %></p>
+        <h2><%= @challenge.name %></h2>
         <p><%= @challenge.description %></p>
       </div>
       <div>
         <%= @challenge.instructions.html_safe %>
       </div>
     </div>
-
-    <div class="tips">
-      <%= link_to 'Back', challenges_path %>
-      <button type="button" id="validate" class="btn btn-primary">
-        Validate
-      </button>
-    </div>
-
-    <div class="editor text-center">
-      <h2><%= @challenge.name %></h2>
-      <div id="javascript-editor"></div>
-    </div>
-
-    <div class="validation text-center">
-
-    </div>
-
-    <div class="result" id="result">
-
-    </div>
-    <!-- method aceEditor is defined in app/javascript/packs/editor.js -->
-    <%= javascript_pack_tag 'editor' %>
-
-    <script>
-      // methods aceEditor and validateExerciseCallback are defined in app/javascript/packs/editor.js
-      const javascriptEditor = aceEditor("javascript-editor", "<%=j raw(@challenge.solution) %>");
-      validateExerciseCallback('<%=j raw(@challenge.schema) %>', javascriptEditor, "validate", "result");
-    </script>
   </div>
 </div>

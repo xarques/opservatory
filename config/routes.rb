@@ -1,12 +1,14 @@
 Rails.application.routes.draw do
   devise_for :users
 
-  resources :challenges do 
+  resources :challenges do
     resources :exercises, only: [:create]
     resources :hints, only: [:create]
   end
+
+  resources :exercises, only: [:show, :index]
   authenticated :user do
-    root to: "challenges#index", as: :authenticated_root
+    root to: "exercises#index", as: :authenticated_root
   end
 
   root to: "pages#home"

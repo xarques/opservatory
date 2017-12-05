@@ -44,4 +44,12 @@ level: 0
 duration: 15
 status: 1
 photo:
-start_point:
+start_point: |
+  {
+    "Resources" : {
+        "S3": {
+
+        }
+    }
+  }
+
