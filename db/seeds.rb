@@ -6,6 +6,7 @@ puts "Cleaning database..."
 Challenge.destroy_all
 User.destroy_all
 Role.destroy_all
+Exercise.destroy_all
 
 # 1 Roles
 puts "Creating roles..."
@@ -44,3 +45,13 @@ Dir.foreach("db/challenges") do |file|
 end
 
 puts "#{Challenge.count} challenges have been created"
+
+puts "creating exercise..."
+
+  users = User.all
+  c = Challenge.ids
+  users.each do |user|
+    Exercise.create!(status: 0, user: user, challenge: Challenge.find(c.sample))
+  end
+
+puts "#{users.count} exercise(s) created"
