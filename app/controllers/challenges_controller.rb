@@ -1,10 +1,12 @@
 class ChallengesController < ApplicationController
   before_action :set_challenge, only: [:show, :edit, :update, :destroy]
   def new
+    @challenge = Challenge.new
+    authorize @challenge
   end
 
   def index
-    @challenges = Challenge.all
+    @challenges = policy_scope(Challenge)
   end
 
   def delete
@@ -19,6 +21,7 @@ class ChallengesController < ApplicationController
   private
   def set_challenge
     @challenge = Challenge.find(params[:id])
+    authorize @challenge
   end
 
   def challenge_params
