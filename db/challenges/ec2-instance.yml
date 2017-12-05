@@ -58,4 +58,7 @@ solution: |
   }
 level: 1
 duration: 30
-#    photo:
+status: 1
+photo:
+start_point:
+
