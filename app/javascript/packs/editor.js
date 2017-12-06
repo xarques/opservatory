@@ -2,6 +2,7 @@ import * as ace from 'brace';
 import 'brace/mode/javascript';
 import 'brace/theme/monokai';
 import 'brace/theme/twilight';
+import 'brace/theme/chrome';
 import * as Ajv from 'ajv/dist/ajv.min.js';
 
 const ajv = Ajv();
@@ -9,7 +10,8 @@ const ajv = Ajv();
 const aceEditor = ((tagId, content) => {
   const aceEditor = ace.edit(tagId);
   aceEditor.getSession().setMode('ace/mode/javascript');
-  aceEditor.setTheme('ace/theme/monokai');
+  // aceEditor.setTheme('ace/theme/monokai');
+  aceEditor.setTheme('ace/theme/chrome');
   if (content) {
     aceEditor.setValue(content);
   }
