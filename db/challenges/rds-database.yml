@@ -89,4 +89,12 @@ level: 1
 duration: 30
 status: 1
 photo:
-start_point:
+start_point: |
+  {
+    "Resources" : {
+        "RDS": {
+
+        }
+    }
+  }
+
