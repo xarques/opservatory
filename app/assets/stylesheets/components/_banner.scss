@@ -6,17 +6,18 @@
   background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), image-url("background-image.jpg");
   color: white;
   background-size: cover;
-  margin-bottom: 40px;
   h1 {
     font-weight: bold;
     font-size: 45px;
     margin-bottom: 25px;
+
   }
   p {
     opacity: 0.8;
     font-size: 25px;
     font-weight: lighter;
     margin-bottom: 60px;
+    font-family: Spinnaker;
   }
   .btn {
     padding: 20px 50px;
