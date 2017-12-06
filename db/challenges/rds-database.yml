@@ -88,7 +88,7 @@ solution: |
 level: 1
 duration: 30
 status: 1
-photo:
+photo: "Database_AmazonRDS_LARGE.png"
 start_point: |
   {
     "Resources" : {

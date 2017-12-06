@@ -1,4 +1,5 @@
 class Challenge < ApplicationRecord
+  mount_uploader :photo, PhotoUploader
   has_many :exercises, dependent: :destroy
   has_many :users, through: :exercises
   has_many :hints, dependent: :destroy
