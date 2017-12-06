@@ -7,6 +7,16 @@ class ExercisesController < ApplicationController
 
   def index
     @exercises = policy_scope(Exercise).where(user: current_user)
+    @challenges = policy_scope(Challenge).where(
+      "id NOT IN
+        (SELECT challenge_id FROM exercises
+         WHERE user_id = #{current_user.id})")
+    exercises_not_deployed = policy_scope(Exercise).where("user_id = #{current_user.id} AND status IN (0, 1, 2)")
+    if exercises_not_deployed.any?
+      @next_exercise = exercises_not_deployed.first.challenge
+    elsif @challenges.any?
+      @next_challenge = @challenges.first
+    end
   end
 
   def create
@@ -40,6 +50,6 @@ class ExercisesController < ApplicationController
   end
 
   def exercise_params
-    params.require(:exercise).permit(:code, :status)
+    params.require(:exercise).permit(:code, :status, :challenge_id, :user_id)
   end
 end
