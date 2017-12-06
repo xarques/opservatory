@@ -31,7 +31,7 @@
                   <h2> <%= challenge.name %></h2>
                   <p> <%= challenge.description %></p>
                 </div>
-                <%= link_to '', challenge_path(challenge), class: 'card-link' %>
+                <%= link_to '', challenge_exercises_path(challenge, Exercise.new), method: :post, class: 'card-link' %>
               </div>
             </div>
           <% end %>
@@ -58,7 +58,7 @@
             <h2> <%= @next_exercise.name %></h2>
             <p> <%= @next_exercise.description %></p>
           </div>
-          <%= link_to '', challenge_path(@next_exercise), class: 'card-link' %>
+          <%= link_to '', exercise_path(@next_exercise), class: 'card-link' %>
         </div>
       <% elsif @next_challenge  %>
         <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= cl_image_path @next_challenge.photo, height: 300 %>')">
@@ -67,7 +67,7 @@
                   <h2> <%= @next_challenge.name %></h2>
                   <p> <%= @next_challenge.description %></p>
                 </div>
-                <%= link_to '', challenge_path(@next_challenge), class: 'card-link' %>
+                <%= link_to '', challenge_exercises_path(@next_challenge, Exercise.new), method: :post, class: 'card-link' %>
               </div>
       <% end %>
     </div>
