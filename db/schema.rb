@@ -25,7 +25,7 @@ ActiveRecord::Schema.define(version: 20171205150046) do
     t.integer "duration"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "status"
+    t.integer "status", default: 0
     t.string "photo"
     t.string "start_point"
   end

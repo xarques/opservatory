@@ -16,6 +16,13 @@ class ChallengesController < ApplicationController
   end
 
   def create
+    @challenge = Challenge.new(challenge_params)
+    authorize @challenge
+    if @challenge.save
+      redirect_to challenge_path(@challenge)
+    else
+      render :new
+    end
   end
 
   private
@@ -25,6 +32,6 @@ class ChallengesController < ApplicationController
   end
 
   def challenge_params
-    params.require(:challenge).permit(:name, :description)
+    params.require(:challenge).permit(:name, :description, :instructions, :level, :duration, :photo)
   end
 end
