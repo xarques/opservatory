@@ -7,6 +7,7 @@ class ExercisesController < ApplicationController
 
   def index
     @exercises = policy_scope(Exercise).where(user: current_user)
+    @challenges = policy_scope(Challenge)
   end
 
   def create
@@ -39,6 +40,6 @@ class ExercisesController < ApplicationController
   end
 
   def exercise_params
-    params.require(:exercise).permit(:code, :status)
+    params.require(:exercise).permit(:code, :status, :challenge_id, :user_id)
   end
 end
