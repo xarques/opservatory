@@ -41,7 +41,7 @@ ActiveRecord::Schema.define(version: 20171205150046) do
 
   create_table "exercises", force: :cascade do |t|
     t.text "code"
-    t.integer "status"
+    t.integer "status", default: 0
     t.bigint "challenge_id"
     t.bigint "user_id"
     t.datetime "created_at", null: false

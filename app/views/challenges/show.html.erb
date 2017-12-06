@@ -10,5 +10,8 @@
         <%= @challenge.instructions.html_safe %>
       </div>
     </div>
+    <%= link_to challenge_exercises_path(@challenge, Exercise.new), method: :post do %>
+    <button type="button" id="validate" class="btn btn-primary">Start exercise</button>
+    <% end %>
   </div>
 </div>
