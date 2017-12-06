@@ -41,6 +41,7 @@ Dir.foreach("db/challenges") do |file|
   file_path = "db/challenges/#{file}"
   if file_path.end_with?(".yml") && File.file?(file_path)
     challenge = YAML.load(open(file_path).read)
+    challenge['photo'] = Rails.root.join("db/images/#{challenge['photo']}").open
     c = Challenge.create!(challenge)
     puts "  Add Challenge #{file}: #{c.name}"
   end
