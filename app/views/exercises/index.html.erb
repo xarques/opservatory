@@ -2,7 +2,7 @@
   <div class="grid-dashboard">
     <div class="d-exercise">
         <h2>Your courses</h2>
-      <ul class="list-inline">
+      <ul class="list-inline list_ex">
         <% @exercises.each do |exercise| %>
               <li><p><strong><%= link_to exercise.challenge.name, exercise_path(exercise)%></strong></p></li>
               <li><% if exercise.status == 0 %>
