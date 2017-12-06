@@ -59,6 +59,13 @@ solution: |
 level: 1
 duration: 30
 status: 1
-photo:
-start_point:
+photo: "Compute_AmazonEC2_LARGE.png"
+start_point: |
+  {
+    "Resources" : {
+        "EC2": {
+
+        }
+    }
+  }
 

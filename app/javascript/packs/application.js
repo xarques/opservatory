@@ -12,11 +12,12 @@ import 'bootstrap';
 // import 'brace/theme/monokai';
 // import 'brace/theme/twilight';
 // import { displayAceEditor } from '../components/editor';
-import '../components/editor';
-import { ajv } from '../components/editor';
+// import '../components/editor';
+// import { ajv } from '../components/editor';
 //import { compileJSONSchema } from '../components/editor';
 // window.compileJSONSchema = compileJSONSchema;
-window.ajv = ajv;
+// window.ajv = ajv;
+
 
 
 //displayAceEditor();

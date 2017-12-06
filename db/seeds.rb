@@ -41,6 +41,7 @@ Dir.foreach("db/challenges") do |file|
   file_path = "db/challenges/#{file}"
   if file_path.end_with?(".yml") && File.file?(file_path)
     challenge = YAML.load(open(file_path).read)
+    challenge['photo'] = Rails.root.join("db/images/#{challenge['photo']}").open
     c = Challenge.create!(challenge)
     puts "  Add Challenge #{file}: #{c.name}"
   end
@@ -48,31 +49,32 @@ end
 
 puts "#{Challenge.count} challenges have been created"
 
-puts "creating exercise..."
+puts "Creating exercises..."
 
-  users = User.all
-  c = Challenge.ids
-  users.each do |user|
-    Exercise.create!(status: 0, user: user, challenge: Challenge.find(c.sample))
-  end
+users = User.all
+challenge_ids = Challenge.ids
+users.each do |user|
+  sample_challenge = Challenge.find(challenge_ids.sample)
+  Exercise.create!(status: 0, code: sample_challenge.start_point, user: user, challenge: sample_challenge)
+end
 
 puts "#{users.count} exercise(s) created"
 
-puts "creating hints..."
+puts "Creating hints..."
 
-  c.each do |challenge_id|
-    for i in (1..3)
-      Hint.create!(name: "Hint n°#{i}",
-                    description: "Hint n°#{i} for challenge_id #{challenge_id} with position #{i}",
-                    position: i,
-                    challenge: Challenge.find(challenge_id))
-    end
+challenge_ids.each do |challenge_id|
+  for i in (1..3)
+    Hint.create!(name: "Hint n°#{i}",
+                  description: "Hint n°#{i} for challenge_id #{challenge_id} with position #{i}",
+                  position: i,
+                  challenge: Challenge.find(challenge_id))
   end
+end
 
-  puts "Hints created"
+puts "Hints created"
 
 
-puts "creating exercise hints..."
+puts "Creating exercise hints..."
 
 exercises = Exercise.all
 
