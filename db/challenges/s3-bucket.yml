@@ -43,7 +43,7 @@ solution: |
 level: 0
 duration: 15
 status: 1
-photo:
+photo: "Storage_AmazonS3_LARGE.png"
 start_point: |
   {
     "Resources" : {
