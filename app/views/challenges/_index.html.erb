@@ -1,21 +1,22 @@
-<div class="container">
+<div class="container popchallenges-container">
   <div class="row">
-    <% @challenges.each do |challenge| %>
-      <div class="col-xs-12 col-sm-4">
-        <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url( <%= image_path '' %>);">
-          <div class="card-category">Popular</div>
-          <div class="card-description">
-            <h2> <%= challenge.name %></h2>
-            <p> <%= challenge.description %></p>
+    <h3>Try one of our most popular challenges</h3>
+      <% @challenges.each do |challenge| %>
+        <div class="col-xs-12 col-sm-4 ">
+          <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url( <%= image_path '' %>);">
+            <div class="card-category">Popular</div>
+            <div class="card-description">
+              <h2> <%= challenge.name %></h2>
+              <p> <%= challenge.description %></p>
+            </div>
+            <%= link_to '', challenge_path(challenge), class: 'card-link' %>
           </div>
-          <%= link_to '', challenge_path(challenge), class: 'card-link' %>
         </div>
-      </div>
+      <% end %>
+    </div>
+    <% if policy(Challenge).create? %>
+    <%= link_to 'New challenge', new_challenge_path %>
     <% end %>
-  </div>
-  <% if policy(Challenge).create? %>
-  <%= link_to 'New challenge', new_challenge_path %>
-  <% end %>
 </div>
 <br>
 
