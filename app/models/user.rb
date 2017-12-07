@@ -7,4 +7,5 @@ class User < ApplicationRecord
   has_many :roles, through: :user_roles
   has_many :exercises, dependent: :destroy
   has_many :challenges, through: :exercises
+  mount_uploader :photo, PhotoUploader
 end
