@@ -12,15 +12,15 @@
     </div>
 
     <div class="hints">
-      <h5>Hints</h5>
-      <div class="hints-details" id="hints">
       <% if @next_hint.count >= 1 %>
-      <%= link_to "Hint" , exercise_exercise_hints_path(@exercise.id), method: "post", :class =>'btn btn-primary', :id => "button-hint", remote: true %>
+        <%= link_to "Need a hint" , exercise_exercise_hints_path(@exercise.id), method: "post", :class =>'btn btn-primary btn-exercise', :id => "button-hint", remote: true %>
       <% end %>
-       <ul id="list_hints"></ul>
+      <div class="hints-details" id="hints">
+        <ul id="list_hints" class="list-unstyled">
          <% @given_hints.each do |hint|%>
          <li><%= hint.description %></li>
          <% end %>
+        </ul>
       </div>
     </div>
 
@@ -30,17 +30,19 @@
     </div>
 
     <div class="editor-buttons text-center">
-      <button type="button" id="retry" class="btn btn-primary btn-exercise">
-        Retry
-      </button>
-      <%= simple_form_for(@exercise, remote: true, :html => { :onsubmit => 'validate()' }, :method => 'patch' ) do |form| %>
-        <%= form.hidden_field :code %>
-        <%= form.hidden_field :status %>
-        <%= form.button :submit, "Validate", class: "btn btn-primary btn-exercise" %>
-      <% end %>
-      <button type="button" id="skip" class="btn btn-primary btn-exercise">
-        Skip >>
-      </button>
+      <div class="editor-buttons-flex">
+        <button type="button" id="retry" class="btn btn-primary btn-exercise">
+          Retry
+        </button>
+        <%= simple_form_for(@exercise, remote: true, :html => { :onsubmit => 'validate()' }, :method => 'patch' ) do |form| %>
+          <%= form.hidden_field :code %>
+          <%= form.hidden_field :status %>
+          <%= form.button :submit, "Validate", class: "btn btn-primary btn-exercise" %>
+        <% end %>
+        <button type="button" id="skip" class="btn btn-primary btn-exercise">
+          Skip >>
+        </button>
+      </div>
       <%#= link_to 'Back', exercises_path %>
     </div>
 
