@@ -18,13 +18,22 @@
       </button>
     </div>
 
+    <div>
+      <% if @next_hint.count >= 1 %>
+      <%= link_to "Hint" , exercise_exercise_hints_path(@exercise.id), method: "post", :class =>'btn btn-primary', :id => "button-hint", remote: true %>
+      <% end %>
+       <ul id="list_hints"></ul>
+         <% @given_hints.each do |hint|%>
+         <li><%= hint.description %></li>
+         <% end %>
+    </div>
+
     <div class="editor text-center">
       <h2><%= @exercise.challenge.name %></h2>
       <div id="javascript-editor"></div>
     </div>
 
     <div class="validation text-center">
-
     </div>
 
     <div class="result" id="result">
