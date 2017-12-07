@@ -1,6 +1,7 @@
 name: "Create a RDS Database"
 description: "You will have to create an RDS database"
 instructions: |
+  <p>The RDS database must have the following features:</p>
   <ol>
     <li>Size: 5 Go</li>
     <li>Type: gp2</li>
@@ -85,10 +86,16 @@ solution: |
       }
     }
   }
+hints:
+  - description: "The property \"Type\" must be \"AWS::RDS::DBInstance\""
+  - description: "Use property \"AllocatedStorage\" to set the size of the RDS database"
+  - description: "Use property \"StorageType\" to set the type of the RDS database"
+  - description: "Use property \"DBInstanceClass\" to set the class of the RDS database"
+  - description: "Use property \"Engine\" to set the database engine of the RDS database"
 level: 1
 duration: 30
 status: 1
-photo:
+photo: "Database_AmazonRDS_LARGE.png"
 start_point: |
   {
     "Resources" : {

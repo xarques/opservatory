@@ -1,1 +1,86 @@
 // Specific CSS for your home-page
+.popchallenges-container {
+  background-color: white;
+
+  h3 {
+    font-family: Spinnaker;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    text-align: center;
+    }
+  h2{
+    font-family: Spinnaker;
+  }
+
+  p {
+    font-family: Spinnaker;
+    }
+}
+
+.aboutus-container {
+  background-color: white;
+  padding-top: 40px;
+
+  .practice {
+  position: absolute;
+  visibility: inherit;
+  width: 244px;
+  height: 247px;
+  top: 145px;
+  left: 28px;
+  }
+  img {
+    width: 80px;
+    height: 80px;
+    display: center;
+    margin-bottom: 30px;
+  }
+  h3 {
+    margin-bottom: 40px;
+    font-weight: bold;
+    font-family: Spinnaker;
+  }
+  h4 {
+    color: #1A82CB;
+    font-weight: bold;
+    font-family: Spinnaker;
+  }
+  p {
+    margin-bottom: 30px;
+    margin-left: 60px;
+    margin-right: 60px;
+    font-family: Spinnaker;
+  }
+}
+
+.team-container {
+  background-color: white;
+  padding-top: 40px;
+
+  img {
+  width: 110px;
+  height: 110px;
+  margin-bottom: 30px;
+  border-radius: 70px;
+  margin-left: 20px;
+  }
+  h3 {
+    font-weight: bold;
+    font-family: Spinnaker;
+    margin-bottom: 40px;
+    margin-top: 40px;
+
+  }
+  h4 {
+    font-family: Spinnaker;
+    margin-left: 20px;
+    font-size: 18px;
+
+  }
+  p {
+    font-family: Spinnaker;
+    margin-left: 20px;
+    font-size: 15px;
+  }
+}
+

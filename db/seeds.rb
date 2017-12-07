@@ -37,12 +37,28 @@ puts "#{User.count} users have been created"
 # 3 Challenges
 puts 'Creating challenges...'
 
+def addHints(challenge, hints)
+  if hints
+    hints.each_with_index do |hint, index |
+      Hint.create!(description: hint["description"],
+                  position: index + 1,
+                  challenge: challenge)
+      puts "    Add Hint: #{hint["description"]}"
+    end
+  end
+end
+
 Dir.foreach("db/challenges") do |file|
   file_path = "db/challenges/#{file}"
   if file_path.end_with?(".yml") && File.file?(file_path)
     challenge = YAML.load(open(file_path).read)
+    challenge['photo'] = Rails.root.join("db/images/#{challenge['photo']}").open
+    # hints key has to be removed from the challenge hash before creation
+    # because it is not a valid attribute
+    hints = challenge.delete("hints")
     c = Challenge.create!(challenge)
     puts "  Add Challenge #{file}: #{c.name}"
+    addHints(c, hints)
   end
 end
 
@@ -59,27 +75,13 @@ end
 
 puts "#{users.count} exercise(s) created"
 
-puts "Creating hints..."
-
-challenge_ids.each do |challenge_id|
-  for i in (1..3)
-    Hint.create!(name: "Hint n°#{i}",
-                  description: "Hint n°#{i} for challenge_id #{challenge_id} with position #{i}",
-                  position: i,
-                  challenge: Challenge.find(challenge_id))
-  end
-end
-
-puts "Hints created"
-
-
 puts "Creating exercise hints..."
 
 exercises = Exercise.all
 
 exercises.each do |exercise|
   hint = exercise.hints.where(position:1)
-  ExerciseHint.create!(exercise: exercise, hint: hint[0])
+  ExerciseHint.create!(exercise: exercise, hint: hint[0]) if hint.any?
 end
 
 puts "Exercise Hints created"

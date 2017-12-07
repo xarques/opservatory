@@ -2,23 +2,18 @@
   <div class="exercise">
     <div class="description">
       <div class="text-center">
-        <h2>Instructions</h2>
-        <p><%= @exercise.challenge.name %></p>
+        <h2>Description</h2>
         <p><%= @exercise.challenge.description %></p>
       </div>
       <div>
+        <h3>Instructions</h3>
         <%= @exercise.challenge.instructions.html_safe %>
       </div>
     </div>
 
-    <div class="tips">
-      <%= link_to 'Back', exercises_path %>
-      <button type="button" id="validate" class="btn btn-primary" onclick="validate">
-        Validate
-      </button>
-    </div>
-
-    <div>
+    <div class="hints">
+      <h5>Hints</h5>
+      <div class="hints-details" id="hints">
       <% if @next_hint.count >= 1 %>
       <%= link_to "Hint" , exercise_exercise_hints_path(@exercise.id), method: "post", :class =>'btn btn-primary', :id => "button-hint", remote: true %>
       <% end %>
@@ -26,6 +21,7 @@
          <% @given_hints.each do |hint|%>
          <li><%= hint.description %></li>
          <% end %>
+      </div>
     </div>
 
     <div class="editor text-center">
@@ -33,10 +29,24 @@
       <div id="javascript-editor"></div>
     </div>
 
-    <div class="validation text-center">
+    <div class="editor-buttons text-center">
+      <button type="button" id="retry" class="btn btn-primary">
+        Retry
+      </button>
+      <button type="button" id="validate" class="btn btn-primary">
+        Validate
+      </button>
+      <button type="button" id="skip" class="btn btn-primary">
+        Skip >>
+      </button>
+      <%#= link_to 'Back', exercises_path %>
     </div>
 
-    <div class="result" id="result">
+    <div class="result" >
+      <h5>Results</h5>
+      <div class="result-details" id="result">
+
+      </div>
 
     </div>
     <!-- method aceEditor is defined in app/javascript/packs/editor.js -->
