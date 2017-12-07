@@ -1,9 +1,7 @@
-name: "Create S3 bucket"
-description: "You will have to create a readable-only S3 bucket"
+name: "Create a S3 bucket"
+description: "You will have to create a S3 bucket"
 instructions: |
-  <ol>
-    <li>Create an S3 bucket</li>
-  </ol>
+  <p>The S3 bucket must be created with the minimum of required parameters</p>
 schema: |
   {
     "properties": {
@@ -40,6 +38,8 @@ solution: |
       }
     }
   }
+hints:
+  - description: "The property \"Type\" must be \"AWS::S3::Bucket\""
 level: 0
 duration: 15
 status: 1
