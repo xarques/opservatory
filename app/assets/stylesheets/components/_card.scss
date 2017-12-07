@@ -5,6 +5,7 @@
   background-position: center;
   color: white;
   position: relative;
+  border-radius: 10px;
 }
 .card-user {
   position: absolute;
@@ -42,6 +43,7 @@
   z-index: 2;
   background: black;
   opacity: 0;
+
 }
 .card-link:hover {
   opacity: 0.1;

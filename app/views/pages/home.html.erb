@@ -2,7 +2,7 @@
 <%= content_for(:navbar_class, "navbar-home") %>
 
 <div class="banner">
-  <div class="banner-content text-center">
+  <div class=" container banner-content text-center">
     <h1>Learn infrastructure as code</h1>
     <p>Practice and test your own infrastructure as code through challenges</p>
     <%= link_to "Become an OPServer", exercises_path, class: "btn btn-lig btn-primary" %>
@@ -13,21 +13,21 @@
   <%= render 'challenges/index' %>
 </div>
 
-<div class="aboutus-container">
+<div class=" container aboutus-container">
   <div class="row text-center">
-      <h3>About us</h3>
+      <h3>ABOUT US</h3>
       <div class="col-xs-12 col-sm-4 col-md-4 text-center">
-        <%= image_tag "pencil.jpg", id: "logo" %>
+        <%= image_tag "pencil.png", id: "logo" %>
         <h4>PRACTICE</h4>
           <p>Improve your skills through challenges</p>
       </div>
       <div class="col-xs-12 col-sm-4 col-md-4 text-center">
-        <%= image_tag "test.jpg", id: "logo" %>
+        <%= image_tag "validate.png", id: "logo" %>
         <h4>TEST</h4>
           <p>Test your own code on our platform</p>
       </div>
       <div class="col-xs-12 col-sm-4 col-md-4 text-center">
-      <%= image_tag "amazon.jpg", id: "logo" %>
+      <%= image_tag "touch.png", id: "logo" %>
       <h4>DEPLOY</h4>
         <p>Deploy it directly on your AWS account</p>
       </div>
@@ -35,31 +35,27 @@
   </div>
 </div>
 
-<div class="team-container">
+<div class="container team-container">
     <div class="row text-center">
-      <h3>Meet the team</h3>
+      <h3>MEET THE TEAM</h3>
       <div class="col-xs-12 col-sm-3 text-center">
         <%= image_tag "xavier.jpg", id: "logo" %>
-        <h4>Xavier</h4>
-        <h4>Arques</h4>
+        <h4>Xavier Arques</h4>
           <p>Lead Dev</p>
       </div>
       <div class="col-xs-12 col-sm-3 text-center">
         <%= image_tag "yan.jpg", id: "logo" %>
-        <h4>Yan</h4>
-        <h4>De Catheu</h4>
+        <h4>Yan De Catheu</h4>
           <p>Dev</p>
       </div>
       <div class="col-xs-12 col-sm-3 text-center">
         <%= image_tag "roni.png", id: "logo" %>
-        <h4>Roni</h4>
-        <h4>Sharabi</h4>
+        <h4>Roni Sharabi</h4>
           <p>Dev</p>
       </div>
       <div class="col-xs-12 col-sm-3 text-center">
          <%= image_tag "tess.png", id: "logo" %>
-        <h4>Tess</h4>
-        <h4>Saffar</h4>
+        <h4>Tess Saffar</h4>
           <p>Dev</p>
       </div>
     </div>

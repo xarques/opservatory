@@ -1,10 +1,10 @@
 <div class="popchallenges-container ">
   <div class="row">
-    <h3>Try our most popular challenges</h3>
+    <h3>TRY OUR CHALLENGES</h3>
       <% @challenges.each do |challenge| %>
         <div class="col-xs-12 col-sm-4 ">
           <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= cl_image_path challenge.photo, height: 300 %>')">
-            <!-- <div class="card-category">Popular</div> -->
+            <div class="card-category">Popular</div>
             <div class="card-description">
               <h2> <%= challenge.name %></h2>
               <p> <%= challenge.description %></p>
