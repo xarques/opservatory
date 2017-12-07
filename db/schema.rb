@@ -25,7 +25,7 @@ ActiveRecord::Schema.define(version: 20171207112549) do
     t.integer "duration"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "status"
+    t.integer "status", default: 0
     t.string "photo"
     t.string "start_point"
   end
@@ -41,7 +41,7 @@ ActiveRecord::Schema.define(version: 20171207112549) do
 
   create_table "exercises", force: :cascade do |t|
     t.text "code"
-    t.integer "status"
+    t.integer "status", default: 0
     t.bigint "challenge_id"
     t.bigint "user_id"
     t.datetime "created_at", null: false
