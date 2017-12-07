@@ -1,0 +1,11 @@
+function addHint(hintHTML) {
+  const hints = document.getElementById('list_hints');
+  hints.insertAdjacentHTML('beforeend', hintHTML);
+};
+
+<% if @next_hint.count >= 1 %>
+  addHint('<li><%= j @next_hint_first.description %></li>');
+<% end %>
+<% if @next_hint.count == 1 %>
+  document.getElementById("button-hint").classList.add("hidden");
+<% end %>
