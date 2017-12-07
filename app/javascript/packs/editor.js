@@ -19,26 +19,33 @@ const aceEditor = ((tagId, content) => {
 });
 
 const validateExerciseCallback = ((schema, editor, sourceTagId, targetTagId) => {
-  const validate = ajv.compile(JSON.parse(schema));
   document.getElementById(sourceTagId).addEventListener('click', () => {
-    const valid = validate(JSON.parse(editor.getValue()));
-    const targetDiv = document.getElementById(targetTagId);
-    if (valid) {
-      targetDiv.innerHTML = "Valid";
-      console.log('Valid!');
-    }
-    else {
-      targetDiv.innerHTML = "";
-      validate.errors.forEach((error) => {
-        if (error.params.additionalProperty) {
-          targetDiv.innerHTML += `Unknown Property ${error.params.additionalProperty}<br>`;
-        } else {
-          targetDiv.innerHTML += `${error.message}<br>`;
-        }
-      });
-    }
+    validateExercise(schema, editor.getValue(), targetTagId)
   });
+});
+
+const validateExercise = ((schema, code, targetTagId) => {
+  document.getElementById("exercise_code").value = code;
+  const validate = ajv.compile(JSON.parse(schema));
+  const valid = validate(JSON.parse(code));
+  const targetDiv = document.getElementById(targetTagId);
+  if (valid) {
+    targetDiv.innerHTML = "Valid";
+    console.log('Valid!');
+  }
+  else {
+    targetDiv.innerHTML = "";
+    validate.errors.forEach((error) => {
+      if (error.params.additionalProperty) {
+        targetDiv.innerHTML += `Unknown Property ${error.params.additionalProperty}<br>`;
+      } else {
+        targetDiv.innerHTML += `${error.message}<br>`;
+      }
+    });
+  }
+  return valid;
 });
 
 window.aceEditor = aceEditor;
 window.validateExerciseCallback = validateExerciseCallback;
+window.validateExercise = validateExercise;

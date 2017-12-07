@@ -33,9 +33,11 @@
       <button type="button" id="retry" class="btn btn-primary btn-exercise">
         Retry
       </button>
-      <button type="button" id="validate" class="btn btn-primary btn-exercise">
-        Validate
-      </button>
+      <%= simple_form_for(@exercise, remote: true, :html => { :onsubmit => 'validate()' }, :method => 'patch' ) do |form| %>
+        <%= form.hidden_field :code %>
+        <%= form.hidden_field :status %>
+        <%= form.button :submit, "Validate", class: "btn btn-primary btn-exercise" %>
+      <% end %>
       <button type="button" id="skip" class="btn btn-primary btn-exercise">
         Skip >>
       </button>
@@ -53,9 +55,12 @@
     <%= javascript_pack_tag 'editor' %>
 
     <script>
+      const validate = (() => {
+        validateExercise('<%=j raw(@exercise.challenge.schema) %>', javascriptEditor.getValue(), "result");
+      });
       // methods aceEditor and validateExerciseCallback are defined in app/javascript/packs/editor.js
       const javascriptEditor = aceEditor("javascript-editor", "<%=j raw(@exercise.code) %>");
-      validateExerciseCallback('<%=j raw(@exercise.challenge.schema) %>', javascriptEditor, "validate", "result");
+      // validateExerciseCallback('<%#=j raw(@exercise.challenge.schema) %>', javascriptEditor, "validate", "result");
     </script>
   </div>
 </div>
