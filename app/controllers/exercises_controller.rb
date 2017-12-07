@@ -1,5 +1,6 @@
 class ExercisesController < ApplicationController
   before_action :set_exercise, only: [:show, :edit, :update, :destroy]
+
   def new
     @exercise = Exercise.new
     authorize @exercise
@@ -17,6 +18,12 @@ class ExercisesController < ApplicationController
     elsif @challenges.any?
       @next_challenge = @challenges.first
     end
+  end
+
+
+  def show
+    @given_hints = @exercise.given_hints
+    @next_hint = @exercise.next_hint
   end
 
   def create
