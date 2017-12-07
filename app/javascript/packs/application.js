@@ -23,4 +23,5 @@ import 'bootstrap';
 
 
 //displayAceEditor();
-
+import { organizeCarousel } from '../components/carousel';
+organizeCarousel();
