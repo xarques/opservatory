@@ -24,22 +24,22 @@
     </div>
 
     <div class="editor-buttons text-center">
-      <button type="button" id="retry" class="btn btn-primary">
+      <button type="button" id="retry" class="btn btn-primary btn-exercise">
         Retry
       </button>
       <%= simple_form_for(@exercise, remote: true, :html => { :onsubmit => 'validate()' }, :method => 'patch' ) do |form| %>
         <%= form.hidden_field :code %>
         <%= form.hidden_field :status %>
-        <%= form.button :submit, "Validate", class: "btn btn-primary" %>
+        <%= form.button :submit, "Validate", class: "btn btn-primary btn-exercise" %>
       <% end %>
-      <button type="button" id="skip" class="btn btn-primary">
+      <button type="button" id="skip" class="btn btn-primary btn-exercise">
         Skip >>
       </button>
       <%#= link_to 'Back', exercises_path %>
     </div>
 
     <div class="result" >
-      <h5>Results</h5>
+      <h5>Results:</h5>
       <div class="result-details" id="result">
 
       </div>
