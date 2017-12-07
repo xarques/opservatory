@@ -27,7 +27,7 @@
             <div class="item <%= 'active' if @challenges.index(challenge) == 0 %>">
               <div class="col-md-4">
                 <div class="card carousel_card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= cl_image_path challenge.photo, height: 300 %>')">
-                  <div class="card-category">Popular</div>
+                  <div class="card-category"></div>
                   <div class="card-description">
                     <h2> <%= challenge.name %></h2>
                     <p> <%= challenge.description %></p>
@@ -54,17 +54,17 @@
     <div class="next_challenge">
       <h2>Next challenge</h2>
       <% if @next_exercise %>
-        <div class="card next_exercise_card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= cl_image_path @next_exercise.photo, height: 300 %>')">
-          <div class="card-category">Popular</div>
+        <div class="card next_exercise_card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= cl_image_path @next_exercise.challenge.photo, height: 300 %>')">
+          <div class="card-category"></div>
           <div class="card-description">
-            <h2> <%= @next_exercise.name %></h2>
-            <p> <%= @next_exercise.description %></p>
+            <h2> <%= @next_exercise.challenge.name %></h2>
+            <p> <%= @next_exercise.challenge.description %></p>
           </div>
           <%= link_to '', exercise_path(@next_exercise), class: 'card-link' %>
         </div>
       <% elsif @next_challenge  %>
         <div class="card next_exercise_card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= cl_image_path @next_challenge.photo, height: 300 %>')">
-                <div class="card-category">Popular</div>
+                <div class="card-category"></div>
                 <div class="card-description">
                   <h2> <%= @next_challenge.name %></h2>
                   <p> <%= @next_challenge.description %></p>

@@ -14,7 +14,7 @@ class ExercisesController < ApplicationController
          WHERE user_id = #{current_user.id})")
     exercises_not_deployed = policy_scope(Exercise).where("user_id = #{current_user.id} AND status IN (0, 1, 2)")
     if exercises_not_deployed.any?
-      @next_exercise = exercises_not_deployed.first.challenge
+      @next_exercise = exercises_not_deployed.first
     elsif @challenges.any?
       @next_challenge = @challenges.first
     end
