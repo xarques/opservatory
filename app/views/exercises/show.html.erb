@@ -27,24 +27,24 @@
     <div class="editor text-center">
       <h2><%= @exercise.challenge.name %></h2>
       <div id="javascript-editor"></div>
+      <div class="editor-buttons text-center">
+        <div class="editor-buttons-flex">
+          <button type="button" id="retry" class="btn btn-primary btn-exercise">
+            Retry
+          </button>
+          <%= simple_form_for(@exercise, remote: true, :html => { :onsubmit => 'validate()' }, :method => 'patch' ) do |form| %>
+            <%= form.hidden_field :code %>
+            <%= form.hidden_field :status %>
+            <%= form.button :submit, "Validate", class: "btn btn-primary btn-exercise" %>
+          <% end %>
+          <button type="button" id="skip" class="btn btn-primary btn-exercise">
+            Skip >>
+          </button>
+        </div>
+      <%#= link_to 'Back', exercises_path %>
+      </div>
     </div>
 
-    <div class="editor-buttons text-center">
-      <div class="editor-buttons-flex">
-        <button type="button" id="retry" class="btn btn-primary btn-exercise">
-          Retry
-        </button>
-        <%= simple_form_for(@exercise, remote: true, :html => { :onsubmit => 'validate()' }, :method => 'patch' ) do |form| %>
-          <%= form.hidden_field :code %>
-          <%= form.hidden_field :status %>
-          <%= form.button :submit, "Validate", class: "btn btn-primary btn-exercise" %>
-        <% end %>
-        <button type="button" id="skip" class="btn btn-primary btn-exercise">
-          Skip >>
-        </button>
-      </div>
-      <%#= link_to 'Back', exercises_path %>
-    </div>
 
     <div class="result" >
       <h5>Results:</h5>
