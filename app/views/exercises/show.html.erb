@@ -12,9 +12,12 @@
     </div>
 
     <div class="hints">
-      <% if @next_hint.count >= 1 %>
-        <%= link_to "Need a hint" , exercise_exercise_hints_path(@exercise.id), method: "post", :class =>'btn btn-primary btn-exercise', :id => "button-hint", remote: true %>
+      <% if @next_hint.count == 0 %>
+        <% disabled_class = "btn btn-primary btn-exercise disabled" %>
+      <% else %>
+        <% disabled_class = "btn btn-primary btn-exercise" %>
       <% end %>
+      <%= link_to "Need a hint" , exercise_exercise_hints_path(@exercise.id), method: "post", :class => disabled_class, :id => "button-hint", remote: true %>
       <div class="hints-details" id="hints">
         <ul id="list_hints" class="list-unstyled">
          <% @given_hints.each do |hint|%>

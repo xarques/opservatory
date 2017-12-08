@@ -7,5 +7,5 @@ function addHint(hintHTML) {
   addHint('<li><%= j @next_hint_first.description %></li>');
 <% end %>
 <% if @next_hint.count == 1 %>
-  document.getElementById("button-hint").classList.add("hidden");
+  document.getElementById("button-hint").classList.add("disabled");
 <% end %>
