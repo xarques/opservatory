@@ -1,5 +1,5 @@
 name: "Create an EC2 instance"
-description: "You will have to create an EC2 instance"
+description: "You will create an EC2 instance"
 instructions: |
   <p>The EC2 instance must have the following features:</p>
   <ol>

@@ -1,5 +1,5 @@
 name: "Create a Database Migration resource"
-description: "You will have to create a Database Migration resource"
+description: "You will create a Database Migration resource"
 level: 1
 duration: 30
 status: 1
