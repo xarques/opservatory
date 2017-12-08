@@ -49,6 +49,7 @@ class ExercisesController < ApplicationController
     @exercise.given_hints.destroy_all
     @exercise.code = @exercise.challenge.start_point
     @exercise.status = 0;
+    @exercise.save
     redirect_to exercise_path(@exercise)
   end
 
