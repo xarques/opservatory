@@ -12,6 +12,7 @@
 .description {
   grid-row: 1 / span 1;
   grid-column: 1 / span 1;
+  overflow-y: auto;
 }
 
 .hints {
@@ -26,6 +27,7 @@
   padding: 5px;
   height: 90%;
   margin: 10px;
+  overflow-y: auto;
 }
 
 .editor {
