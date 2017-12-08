@@ -1,0 +1,14 @@
+name: "Create a Database Migration resource"
+description: "You will have to create a Database Migration resource"
+level: 1
+duration: 30
+status: 1
+photo: "Database_AWSDMS_LARGE.png"
+start_point: |
+  {
+    "Resources" : {
+        "DMS": {
+
+        }
+    }
+  }

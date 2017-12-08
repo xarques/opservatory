@@ -1,0 +1,14 @@
+name: "Create an Elastic Container Registry"
+description: "You will have to create an Elastic Container Registry"
+level: 1
+duration: 30
+status: 1
+photo: "Compute_AmazonECR_LARGE.png"
+start_point: |
+  {
+    "Resources" : {
+        "ECR": {
+
+        }
+    }
+  }
