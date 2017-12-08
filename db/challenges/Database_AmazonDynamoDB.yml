@@ -1,0 +1,14 @@
+name: "Create a DynamoDB database"
+description: "You will have to create a DynamoDB database"
+level: 1
+duration: 30
+status: 1
+photo: "Database_AmazonDynamoDB_LARGE.png"
+start_point: |
+  {
+    "Resources" : {
+        "DynamoDB": {
+
+        }
+    }
+  }
