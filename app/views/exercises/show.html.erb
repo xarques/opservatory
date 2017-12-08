@@ -7,7 +7,7 @@
       </div>
       <div>
         <h3>Instructions</h3>
-        <%= @exercise.challenge.instructions.html_safe %>
+        <%= @exercise.challenge.instructions.html_safe if @exercise.challenge.instructions %>
       </div>
     </div>
 
@@ -51,8 +51,10 @@
       </div>
 
     </div>
-    <!-- method aceEditor is defined in app/javascript/packs/editor.js -->
-    <%= javascript_pack_tag 'editor' %>
+    <%# content_for :after_js do %>
+      <!-- method aceEditor is defined in app/javascript/packs/editor.js -->
+      <%= javascript_pack_tag 'editor' %>
+    <%# end %>
 
     <script>
       // methods aceEditor and validateExerciseCallback are defined in app/javascript/packs/editor.js

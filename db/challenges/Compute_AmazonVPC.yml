@@ -1,0 +1,14 @@
+name: "Create a Virtual Private Cloud"
+description: "You will have to create a Virtual Private Cloud"
+level: 1
+duration: 30
+status: 1
+photo: "Compute_AmazonVPC_LARGE.png"
+start_point: |
+  {
+    "Resources" : {
+        "": {
+
+        }
+    }
+  }

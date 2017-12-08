@@ -1,0 +1,14 @@
+name: "Create step Functions"
+description: "You will have to create step Functions"
+level: 1
+duration: 30
+status: 1
+photo: "ApplicationServices_AWSStepFunctions_LARGE.png"
+start_point: |
+  {
+    "Resources" : {
+        "StepFunctions": {
+
+        }
+    }
+  }
