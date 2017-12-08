@@ -48,7 +48,7 @@ class ExercisesController < ApplicationController
   def retry
     @exercise.given_hints.destroy_all
     @exercise.code = @exercise.challenge.start_point
-    @exercise.status = 0;
+    @exercise.status = 0
     @exercise.save
     redirect_to exercise_path(@exercise)
   end
