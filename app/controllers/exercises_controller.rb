@@ -1,5 +1,5 @@
 class ExercisesController < ApplicationController
-  before_action :set_exercise, only: [:show, :edit, :update, :destroy]
+  before_action :set_exercise, only: [:show, :edit, :update, :destroy, :retry]
 
   def new
     @exercise = Exercise.new
@@ -42,6 +42,13 @@ class ExercisesController < ApplicationController
 
   def update
     @exercise.update(exercise_params)
+    redirect_to exercise_path(@exercise)
+  end
+
+  def retry
+    @exercise.given_hints.destroy_all
+    @exercise.code = @exercise.challenge.start_point
+    @exercise.status = 0;
     redirect_to exercise_path(@exercise)
   end
 
