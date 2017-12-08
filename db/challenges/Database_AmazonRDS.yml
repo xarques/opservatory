@@ -1,5 +1,5 @@
 name: "Create a RDS Database"
-description: "You will have to create a RDS database"
+description: "You will create a RDS database"
 instructions: |
   <p>The RDS database must have the following features:</p>
   <ol>

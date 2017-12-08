@@ -1,5 +1,5 @@
 name: "Create a DynamoDB database"
-description: "You will have to create a DynamoDB database"
+description: "You will create a DynamoDB database"
 level: 1
 duration: 30
 status: 1
