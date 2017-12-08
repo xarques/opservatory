@@ -12,4 +12,9 @@ class ExercisePolicy < ApplicationPolicy
   def update?
     user == record.user
   end
+
+  def retry?
+    true
+    # user == record.user
+  end
 end

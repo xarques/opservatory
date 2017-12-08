@@ -12,16 +12,19 @@
     </div>
 
     <div class="hints">
-      <% if @next_hint.count >= 1 %>
-        <%= link_to "Need a hint" , exercise_exercise_hints_path(@exercise.id), method: "post", :class =>'btn btn-primary btn-exercise', :id => "button-hint", remote: true %>
-      <% end %>
+      <h5>Hints</h5>
       <div class="hints-details" id="hints">
-        <ul id="list_hints" class="list-unstyled">
+      <% if @next_hint.count >= 1 %>
+      <%= link_to "Hint" , exercise_exercise_hints_path(@exercise.id), method: "post", :class =>'btn btn-primary', :id => "button-hint", remote: true %>
+      <% end %>
+       <ul id="list_hints"></ul>
          <% @given_hints.each do |hint|%>
          <li><%= hint.description %></li>
-         <% end %>
-        </ul>
+         <% end %></%>
       </div>
+    </div>
+
+    <div>
     </div>
 
     <div class="editor text-center">
@@ -29,25 +32,20 @@
       <div id="javascript-editor"></div>
     </div>
 
+
     <div class="editor-buttons text-center">
-      <div class="editor-buttons-flex">
-        <button type="button" id="retry" class="btn btn-primary btn-exercise">
-          Retry
-        </button>
-        <%= simple_form_for(@exercise, remote: true, :html => { :onsubmit => 'validate()' }, :method => 'patch' ) do |form| %>
-          <%= form.hidden_field :code %>
-          <%= form.hidden_field :status %>
-          <%= form.button :submit, "Validate", class: "btn btn-primary btn-exercise" %>
-        <% end %>
-        <button type="button" id="skip" class="btn btn-primary btn-exercise">
-          Skip >>
-        </button>
-      </div>
+      <%= link_to "Retry", retry_exercise_path(@exercise), method: "patch", :class =>"btn btn-primary", :id =>"retry", :type =>"button" %>
+      <button type="button" id="validate" class="btn btn-primary">
+        Validate
+      </button>
+      <button type="button" id="skip" class="btn btn-primary">
+        Skip >>
+      </button>
       <%#= link_to 'Back', exercises_path %>
     </div>
 
     <div class="result" >
-      <h5>Results:</h5>
+      <h5>Results</h5>
       <div class="result-details" id="result">
 
       </div>
@@ -57,12 +55,9 @@
     <%= javascript_pack_tag 'editor' %>
 
     <script>
-      const validate = (() => {
-        validateExercise('<%=j raw(@exercise.challenge.schema) %>', javascriptEditor.getValue(), "result");
-      });
       // methods aceEditor and validateExerciseCallback are defined in app/javascript/packs/editor.js
       const javascriptEditor = aceEditor("javascript-editor", "<%=j raw(@exercise.code) %>");
-      // validateExerciseCallback('<%#=j raw(@exercise.challenge.schema) %>', javascriptEditor, "validate", "result");
+      validateExerciseCallback('<%=j raw(@exercise.challenge.schema) %>', javascriptEditor, "validate", "result");
     </script>
   </div>
 </div>
