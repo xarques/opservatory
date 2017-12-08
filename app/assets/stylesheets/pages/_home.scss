@@ -1,13 +1,11 @@
 // Specific CSS for your home-page
 .popchallenges-container {
-  background-color: white;
   color: $black;
   padding-bottom: 40px;
   margin-top: 40px;
   margin-left: 50px;
   margin-right: 50px;
   border-radius: 10px;
-  background-image: url(background_index.png);
 
 
   h3 {
@@ -28,11 +26,10 @@
 }
 
 .aboutus-container {
-  background-color: white;
   margin-top: 40px;
   color: white;
   border-radius: 10px;
-  background-image: url(background_index.png);
+
 
   .practice {
   position: absolute;
@@ -65,11 +62,9 @@
 }
 
 .team-container {
-  background-color: white;
   color: white;
   margin-bottom: 80px;
   border-radius: 10px;
-  background-image: url(background_index.png);
 
   img {
   width: 110px;

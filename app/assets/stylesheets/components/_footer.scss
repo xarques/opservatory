@@ -1,13 +1,14 @@
 
 
 .footer {
-  background: #252549;
+  background: #0d151c;
   display: flex;
   align-items: center;
   justify-content: space-between;
   height: 100px;
   padding: 0px 50px;
-  color: rgba(0,0,0,0.3);
+  color: gray;
+  opacity: 0.8;
 }
 
 .footer-links {
@@ -27,8 +28,8 @@
 }
 .footer-info {
   color: white;
-  background-color: #252549;
-  opacity: 0.6;
+  background-color: #0d151c;
+  opacity: 0.8;
   text-align: center;
 }
 
