@@ -7,7 +7,7 @@
       </div>
       <div>
         <h3>Instructions</h3>
-        <%= @exercise.challenge.instructions.html_safe %>
+        <%= @exercise.challenge.instructions.html_safe if @exercise.challenge.instructions %>
       </div>
     </div>
 
@@ -29,9 +29,7 @@
       <div id="javascript-editor"></div>
       <div class="editor-buttons text-center">
         <div class="editor-buttons-flex">
-          <button type="button" id="retry" class="btn btn-primary btn-exercise">
-            Retry
-          </button>
+          <%= link_to "Retry", retry_exercise_path(@exercise), method: "patch", :class =>"btn btn-primary btn-exercise", :id =>"retry", :type =>"button" %>
           <%= simple_form_for(@exercise, remote: true, :html => { :onsubmit => 'validate()' }, :method => 'patch' ) do |form| %>
             <%= form.hidden_field :code %>
             <%= form.hidden_field :status %>
@@ -68,3 +66,8 @@
     </script>
   </div>
 </div>
+
+
+
+
+
