@@ -7,7 +7,7 @@
       </div>
       <div>
         <h3>Instructions</h3>
-        <%= @exercise.challenge.instructions.html_safe %>
+        <%= @exercise.challenge.instructions.html_safe if @exercise.challenge.instructions %>
       </div>
     </div>
 
