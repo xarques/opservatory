@@ -53,8 +53,10 @@
       </div>
 
     </div>
-    <!-- method aceEditor is defined in app/javascript/packs/editor.js -->
-    <%= javascript_pack_tag 'editor' %>
+    <%# content_for :after_js do %>
+      <!-- method aceEditor is defined in app/javascript/packs/editor.js -->
+      <%= javascript_pack_tag 'editor' %>
+    <%# end %>
 
     <script>
       const validate = (() => {
