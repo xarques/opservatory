@@ -3,17 +3,25 @@ label {
  }
 
  .sign-up {
-  background-color:  #0d151c;
-  border-radius: 10px;
-  margin-top: 30px;
+  background-color: #0d151c;
+  border-radius: 5px;
+  margin-top: 70px;
   box-shadow: 0px 0px 3px 0px rgba(199,199,199,1);
   padding: 10px;
 }
 
  .sign-in {
   background-color:  #0d151c;
-  border-radius: 10px;
-  margin-top: 30px;
-  box-shadow: 0px 0px 3px 0px rgba(199,199,199,1);
+  border-radius: 3px;
+  margin-top: 70px;
+  box-shadow: 0px 0px 2px 0px rgba(199,199,199,1);
+  padding: 10px;
+}
+
+.sign-up-inside {
+  padding: 10px;
+}
+
+.sign-in-inside {
   padding: 10px;
 }
