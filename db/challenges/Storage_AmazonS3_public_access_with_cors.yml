@@ -1,0 +1,144 @@
+name: "Create a public S3 bucket"
+description: "You will create a public S3 bucket accesible from a Web application"
+instructions: |
+  <p></p>
+  <p>The S3 bucket must have the following features:</p>
+  <ol>
+    <li>The bucket name must start with "opservatory-s3-"</li>
+    <li>The bucket must have a Public Read Write Access</li>
+    <li>The bucket must enable Cross-Origin Resource Sharing (CORS) for:
+    <ul>
+      <li>methods POST, GET, PUT, DELETE and HEAD</li>
+      <li>any header</li>
+      <li>any origin</li>
+    </ul>
+  </ol>
+schema: |
+  {
+    "properties": {
+      "Resources": {
+        "description": "Template resources",
+        "type": "object",
+        "patternProperties": {
+          "^[a-zA-Z0-9-]+$": {
+            "type": "object",
+            "properties": {
+              "Type": {
+                "type": "string",
+                "enum": ["AWS::S3::Bucket"]
+              },
+              "Properties": {
+                "type": "object",
+                "properties": {
+                  "BucketName": {
+                    "type": "string",
+                    "pattern": "^opservatory-s3-[a-zA-Z0-9-]+$"
+                  },
+                  "AccessControl": {
+                    "type": "string",
+                    "enum": ["PublicReadWrite"]
+                  },
+                  "CorsConfiguration": {
+                    "type": "object",
+                    "properties": {
+                      "CorsRules": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "AllowedHeaders" : {
+                              "type": "array",
+                              "items": {
+                                "type": "string",
+                                "enum": ["*"]
+                              }
+                            },
+                            "AllowedMethods" : {
+                              "type": "array",
+                              "items": {
+                                "type": "string",
+                                "enum": ["POST", "GET", "PUT", "DELETE", "HEAD"]
+                              }
+                            },
+                            "AllowedOrigins" : {
+                              "type": "array",
+                              "items": {
+                                "type": "string",
+                                "enum": ["*"]
+                              }
+                            }
+                          },
+                          "required": ["AllowedHeaders", "AllowedMethods", "AllowedOrigins"],
+                          "additionalProperties": false
+                        }
+                      }
+                    },
+                    "required": ["CorsRules"],
+                    "additionalProperties": false
+                  }
+                },
+                "required": ["AccessControl", "CorsConfiguration"],
+                "additionalProperties": false
+              }
+            },
+            "required": ["Type"],
+            "additionalProperties": false
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "required": ["Resources"],
+    "additionalProperties": false
+  }
+solution: |
+  {
+    "Resources" : {
+      "public-s3" : {
+        "Type" : "AWS::S3::Bucket",
+        "Properties" : {
+          "BucketName" : "opservatory-s3-public-bucket",
+          "AccessControl" : "PublicReadWrite",
+          "CorsConfiguration" : {
+            "CorsRules" : [
+              {
+                "AllowedHeaders" : [ "*" ],
+                "AllowedMethods" : [ "POST", "GET", "PUT", "DELETE", "HEAD" ],
+                "AllowedOrigins" : [ "*" ]
+              }
+            ]
+          }
+        }
+      }
+    }
+  }
+hints:
+  - description: "Use property \"Type\" to set the type of the resource"
+  - description: "The property \"Type\" must be \"AWS::S3::Bucket\""
+  - description: "Use property \"BucketName\" to set the unique name of the bucket"
+  - description: "The property \"BucketName\" must start with \"opservatory-s3-public-\" and be unique"
+  - description: "Use property \"AccessControl\" to define the access control of the bucket"
+  - description: "The property \"AccessControl\" must be \"PublicReadWrite\""
+  - description: "Use property \"CorsConfiguration\" to configure the CORS"
+  - description: "The property \"CorsConfiguration\" must contain an object \"CorsRules\""
+  - description: "Use property \"CorsRules\" to configure the CORS rules"
+  - description: "The property \"CorsRules\" must contain an array of objects"
+  - description: "Use property \"AllowedHeaders\" to set the allowed HTTP headers"
+  - description: "The property \"AllowedHeaders\" must be \"*\""
+  - description: "Use property \"AllowedMethods\" to set the allowed HTTP methods"
+  - description: "The property \"AllowedHeaders\" must be \"[ \"POST\", \"GET\", \"PUT\", \"DELETE\", \"HEAD\" ]"
+  - description: "Use property \"AllowedOrigins\" to set the allowed origin URLs"
+  - description: "The property \"AllowedOrigins\" must be \"*\""
+level: 0
+duration: 15
+status: 1
+photo: "Storage_AmazonS3_LARGE.png"
+start_point: |
+  {
+    "Resources" : {
+      "public-s3" : {
+
+      }
+    }
+  }
+
