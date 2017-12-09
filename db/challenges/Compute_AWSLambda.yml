@@ -1,0 +1,14 @@
+name: "Create Lambda functions"
+description: "You will create Lambda functions"
+level: 1
+duration: 30
+status: 1
+photo: "Compute_AWSLambda_LARGE.png"
+start_point: |
+  {
+    "Resources" : {
+        "Lambda": {
+
+        }
+    }
+  }

@@ -1,0 +1,14 @@
+name: "Create a Simple Workflow"
+description: "You will create a Simple Workflow"
+level: 1
+duration: 30
+status: 1
+photo: "ApplicationServices_AmazonSWF_LARGE.png"
+start_point: |
+  {
+    "Resources" : {
+        "SWF": {
+
+        }
+    }
+  }

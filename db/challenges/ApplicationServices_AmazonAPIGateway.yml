@@ -1,0 +1,14 @@
+name: "Create an API Gateway"
+description: "You will create an API Gateway"
+level: 1
+duration: 30
+status: 1
+photo: "ApplicationServices_AmazonAPIGateway_LARGE.png"
+start_point: |
+  {
+    "Resources" : {
+        "APIGateway": {
+
+        }
+    }
+  }

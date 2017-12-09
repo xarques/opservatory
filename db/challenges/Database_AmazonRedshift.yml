@@ -1,0 +1,14 @@
+name: "Create a Redshift resource"
+description: "You will create a Redshift resource"
+level: 1
+duration: 30
+status: 1
+photo: "Database_AmazonRedshift_LARGE.png"
+start_point: |
+  {
+    "Resources" : {
+        "Redshift": {
+
+        }
+    }
+  }

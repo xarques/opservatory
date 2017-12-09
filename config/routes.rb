@@ -8,6 +8,9 @@ Rails.application.routes.draw do
 
   resources :exercises, only: [:show, :index, :update] do
     resources :exercise_hints, only: [:create]
+    member do
+      patch 'retry', to: "exercises#retry"
+    end
   end
 
   authenticated :user do

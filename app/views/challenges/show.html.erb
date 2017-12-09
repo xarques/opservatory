@@ -1,17 +1,16 @@
 <div class="container">
-  <div class="challenge">
-    <div class="description">
-      <div class="text-center">
-        <h2>Instructions</h2>
-        <h2><%= @challenge.name %></h2>
-        <p><%= @challenge.description %></p>
+  <div class="challenge-show">
+      <div class="challenge-name">
+        <%= cl_image_tag @challenge.photo, height: 100, width: 350, :crop=>"fit", class:'brice' %>
+        <h3><%= @challenge.name %></h3>
+        <%= link_to challenge_exercises_path(@challenge, Exercise.new), method: :post do %>
+          <button type="button" id="validate" class="btn btn-primary btn-exercise">Start exercise</button>
+        <% end %>
       </div>
-      <div>
-        <%= @challenge.instructions.html_safe %>
+      <div class="challenge-description">
+        <h2><%= @challenge.description %></h2>
+        <h4>Instructions:</h4>
+        <%= @challenge.instructions.html_safe if @challenge.instructions %>
       </div>
-    </div>
-    <%= link_to challenge_exercises_path(@challenge, Exercise.new), method: :post do %>
-    <button type="button" id="validate" class="btn btn-primary">Start exercise</button>
-    <% end %>
   </div>
 </div>
