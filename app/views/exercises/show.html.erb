@@ -1,12 +1,16 @@
 <div class="container">
+  <div>
+    <h4><%= @exercise.challenge.name %></h4>
+  </div>
   <div class="exercise">
     <div class="description">
-      <div class="text-center">
-        <h2>Description</h2>
+      <div id="exercise-app" class="exercise-app"> </div>
+      <div class="">
+        <h5><strong>The Goal</strong></h45>
         <p><%= @exercise.challenge.description %></p>
       </div>
       <div>
-        <h3>Instructions</h3>
+        <h5><strong>Rules</strong></h5>
         <%= @exercise.challenge.instructions.html_safe if @exercise.challenge.instructions %>
       </div>
     </div>
@@ -28,7 +32,6 @@
     </div>
 
     <div class="editor text-center">
-      <h2><%= @exercise.challenge.name %></h2>
       <div id="javascript-editor"></div>
       <div class="editor-buttons text-center">
         <div class="editor-buttons-flex">
@@ -37,6 +40,16 @@
             <%= form.hidden_field :code %>
             <%= form.hidden_field :status %>
             <%= form.button :submit, "Validate", class: "btn btn-primary btn-exercise" %>
+          <% end %>
+          <% if @exercise.challenge.deployable %>
+            <% if @exercise.status == 1 || @exercise.status == 3 %>
+              <% disabled = "btn btn-primary btn-exercise" %>
+            <% else %>
+              <% disabled = "btn btn-primary btn-exercise disabled" %>
+            <% end %>
+            <button type="button" id="deploy" class="<%= disabled %>" onclick="deploy()">
+              Deploy
+            </button>
           <% end %>
           <button type="button" id="skip" class="btn btn-primary btn-exercise">
             Skip >>
@@ -63,14 +76,15 @@
       const validate = (() => {
         validateExercise('<%=j raw(@exercise.challenge.schema) %>', javascriptEditor.getValue(), "result");
       });
+      const deploy = (() => {
+        deployExercise('<%=j raw(@exercise.challenge.schema) %>', javascriptEditor.getValue(), "result");
+      });
       // methods aceEditor and validateExerciseCallback are defined in app/javascript/packs/editor.js
       const javascriptEditor = aceEditor("javascript-editor", "<%=j raw(@exercise.code) %>");
       // validateExerciseCallback('<%#=j raw(@exercise.challenge.schema) %>', javascriptEditor, "validate", "result");
+      <% if @exercise.challenge.deployable && (@exercise.status == 3 || @exercise.status == 1 )%>
+        setBucketName(getBucketName(javascriptEditor.getValue()));
+      <% end %>
     </script>
   </div>
 </div>
-
-
-
-
-

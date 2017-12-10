@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171207133441) do
+ActiveRecord::Schema.define(version: 20171210210716) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,6 +28,7 @@ ActiveRecord::Schema.define(version: 20171207133441) do
     t.integer "status", default: 0
     t.string "photo"
     t.string "start_point"
+    t.boolean "deployable", default: false
   end
 
   create_table "exercise_hints", force: :cascade do |t|

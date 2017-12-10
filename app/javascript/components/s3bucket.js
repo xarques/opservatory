@@ -1,8 +1,11 @@
 import 'aws-sdk';
 
-var albumBucketName = 'opservatory-s3-challenge';
+//var albumBucketName = 'opservatory-s3-challenge';
+//var albumBucketName = 'opservatory-s3-public-bucket-7';
+var albumBucketName = '';
 var bucketRegion = 'eu-west-1';
 var IdentityPoolId = 'eu-west-1:c260132a-6eef-461f-8471-f2735e710e2c';
+// var IdentityPoolId = ENV[AWS_IDENTITY_POOL_ID];
 
 AWS.config.update({
   region: bucketRegion,
@@ -11,15 +14,29 @@ AWS.config.update({
   })
 });
 
-var s3 = new AWS.S3({
-  apiVersion: '2006-03-01',
-  params: {Bucket: albumBucketName}
-});
+var s3;
+if (albumBucketName !== '') {
+  setBucketName(albumBucketName);
+}
+
+function setBucketName(bucketName) {
+  albumBucketName = bucketName;
+  s3 = new AWS.S3({
+    apiVersion: '2006-03-01',
+    params: {Bucket: albumBucketName}
+  });
+  listAlbums();
+}
 
 function listAlbums() {
+  if (!s3) {
+    var htmlTemplate = ["<p>No bucket has been created</p>"];
+    document.getElementById('exercise-app').innerHTML = getHtml(htmlTemplate);
+  }
   s3.listObjects({Delimiter: '/'}, function(err, data) {
     if (err) {
-      return alert('There was an error listing your albums: ' + err.message);
+      //return alert('There was an error listing your albums: ' + err.message);
+      var htmlTemplate = [`<p>Bucket ${albumBucketName} doesn't exist. Please deploy your code first</p>`];
     } else {
       var albums = data.CommonPrefixes.map(function(commonPrefix) {
         var prefix = commonPrefix.Prefix;
@@ -35,23 +52,20 @@ function listAlbums() {
         ]);
       });
       var message = albums.length ?
-        getHtml([
-          '<p>Click on an album name to view it.</p>',
-          '<p>Click on the X to delete the album.</p>'
-        ]) :
-        '<p>You do not have any albums. Please Create album.';
+        '' :
+        '<p>Create your first album</p>';
       var htmlTemplate = [
-        '<h2>Albums</h2>',
+        '<h5>Albums</h5>',
         message,
         '<ul>',
           getHtml(albums),
         '</ul>',
-        '<button onclick="createAlbum(prompt(\'Enter Album Name:\'))" class="btn btn-primary">',
+        '<button onclick="createAlbum(prompt(\'Enter Album Name:\'))" class="btn btn-primary btn-exercise">',
           'Create New Album',
         '</button>'
       ]
-      document.getElementById('app').innerHTML = getHtml(htmlTemplate);
     }
+    document.getElementById('exercise-app').innerHTML = getHtml(htmlTemplate);
   });
 }
 
@@ -76,7 +90,7 @@ function createAlbum(albumName) {
       if (err) {
         return alert('There was an error creating your album: ' + err.message);
       }
-      alert('Successfully created album.');
+      //alert('Successfully created album.');
       viewAlbum(albumName);
     });
   });
@@ -114,26 +128,26 @@ function viewAlbum(albumName) {
         ]);
       }
     });
-    var message = photos.length ?
+    var message = photos.length > 1?
       '<p>Click on the X to delete the photo</p>' :
-      '<p>You do not have any photos in this album. Please add photos.</p>';
+      '<p>Please add photos</p>';
     var htmlTemplate = [
-      '<h2>',
+      '<h5>',
         'Album: ' + albumName,
-      '</h2>',
+      '</h5>',
       message,
       '<div>',
         getHtml(photos),
       '</div>',
       '<input id="photoupload" type="file" accept="image/*">',
-      '<button id="addphoto" onclick="addPhoto(\'' + albumName +'\')" class="btn btn-primary">',
+      '<button id="addphoto" onclick="addPhoto(\'' + albumName +'\')" class="btn btn-primary btn-exercise">',
         'Add Photo',
       '</button>',
-      '<button onclick="listAlbums()" class="btn btn-primary">',
+      '<button onclick="listAlbums()" class="btn btn-primary btn-exercise">',
         'Back To Albums',
       '</button>',
     ]
-    document.getElementById('app').innerHTML = getHtml(htmlTemplate);
+    document.getElementById('exercise-app').innerHTML = getHtml(htmlTemplate);
   });
 }
 
@@ -155,7 +169,7 @@ function addPhoto(albumName) {
     if (err) {
       return alert('There was an error uploading your photo: ', err.message);
     }
-    alert('Successfully uploaded photo.');
+    // alert('Successfully uploaded photo.');
     viewAlbum(albumName);
   });
 }
@@ -165,7 +179,7 @@ function deletePhoto(albumName, photoKey) {
     if (err) {
       return alert('There was an error deleting your photo: ', err.message);
     }
-    alert('Successfully deleted photo.');
+    // alert('Successfully deleted photo.');
     viewAlbum(albumName);
   });
 }
@@ -185,7 +199,7 @@ function deleteAlbum(albumName) {
       if (err) {
         return alert('There was an error deleting your album: ', err.message);
       }
-      alert('Successfully deleted album.');
+      // alert('Successfully deleted album.');
       listAlbums();
     });
   });
@@ -194,11 +208,12 @@ function deleteAlbum(albumName) {
 function getHtml(template) {
   return template.join('\n');
 }
-listAlbums();
 
-window.deleteAlbum = deleteAlbum;
-window.deletePhoto = deletePhoto;
-window.addPhoto = addPhoto;
-window.viewAlbum = viewAlbum;
-window.createAlbum = createAlbum;
-window.listAlbums = listAlbums;
+export {deleteAlbum, deletePhoto, addPhoto, viewAlbum, createAlbum, listAlbums, setBucketName};
+// window.deleteAlbum = deleteAlbum;
+// window.deletePhoto = deletePhoto;
+// window.addPhoto = addPhoto;
+// window.viewAlbum = viewAlbum;
+// window.createAlbum = createAlbum;
+// window.listAlbums = listAlbums;
+// window.setBucketName = setBucketName;

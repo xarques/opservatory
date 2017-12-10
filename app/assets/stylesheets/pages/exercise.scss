@@ -9,6 +9,11 @@
   box-shadow: 0px 0px 1px 0px rgba(247,247,247,1);
   opacity: 0.7;
 }
+
+.exercise-app {
+  background-color: gray;
+  border-radius: 3px;
+}
 .description {
   grid-row: 1 / span 1;
   grid-column: 1 / span 1;
@@ -66,16 +71,17 @@
 .btn-exercise {
   margin-top: 5px;
   color: white;
-  padding: 10px 50px;
+  padding: 5px 20px;
   border-radius: 2px;
   border: none;
   font-weight: bold;
+  font-size: 14px;
   background: #00bde1;
   transition: background 0.3s ease;
 }
 .editor-buttons-flex{
   .btn-exercise{
-    padding: 10px 65px;
+    padding: 5px 20px;
     margin: 8px;
   }
   input {

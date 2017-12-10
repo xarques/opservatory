@@ -1,7 +1,8 @@
 name: "Create a public S3 bucket"
-description: "You will create a public S3 bucket accesible from a Web application"
+description: |
+  Your code must allow a browser-based application for creating photo albums in an Amazon S3 bucket into which you can upload photos.
+  The application lets you delete photos and albums that you add
 instructions: |
-  <p></p>
   <p>The S3 bucket must have the following features:</p>
   <ol>
     <li>The bucket name must start with "opservatory-s3-"</li>
@@ -20,7 +21,7 @@ schema: |
         "description": "Template resources",
         "type": "object",
         "patternProperties": {
-          "^[a-zA-Z0-9-]+$": {
+          "^[a-zA-Z0-9]+$": {
             "type": "object",
             "properties": {
               "Type": {
@@ -94,7 +95,7 @@ schema: |
 solution: |
   {
     "Resources" : {
-      "public-s3" : {
+      "publicS3" : {
         "Type" : "AWS::S3::Bucket",
         "Properties" : {
           "BucketName" : "opservatory-s3-public-bucket",
@@ -136,9 +137,10 @@ photo: "Storage_AmazonS3_LARGE.png"
 start_point: |
   {
     "Resources" : {
-      "public-s3" : {
+      "publicS3" : {
 
       }
     }
   }
+deployable: true
 

@@ -12,7 +12,7 @@ schema: |
         "description": "Template resources",
         "type": "object",
         "patternProperties": {
-          "^[a-zA-Z0-9-]+$": {
+          "^[a-zA-Z0-9]+$": {
             "type": "object",
             "properties": {
               "Type": {
@@ -43,7 +43,7 @@ schema: |
 solution: |
   {
     "Resources" : {
-      "private-s3" : {
+      "privateS3" : {
         "Type" : "AWS::S3::Bucket",
         "Properties" : {
           "AccessControl" : "Private"
@@ -63,7 +63,7 @@ photo: "Storage_AmazonS3_LARGE.png"
 start_point: |
   {
     "Resources" : {
-      "private-s3": {
+      "privateS3": {
 
       }
     }
