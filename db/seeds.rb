@@ -68,7 +68,7 @@ puts "Creating exercises..."
 
 users = User.all
 challenge_ids = Challenge.ids
-challenges = Challenge.where("name in ('Create an EC2 instance','Create a RDS Database','Create a S3 bucket')")
+challenges = Challenge.where("name in ('Create a public S3 bucket', 'Create a private S3 bucket', 'Create an EC2 instance','Create a RDS Database','Create a S3 bucket')")
 users.each do |user|
   # sample_challenge = Challenge.find(challenge_ids.sample)
   sample_challenge = challenges.sample
