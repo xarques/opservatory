@@ -20,6 +20,9 @@ gem 'pundit'
 gem 'cloudinary'
 gem 'carrierwave', '~> 1.2'
 
+gem 'pg_search'
+gem 'searchkick', '~> 2.3'
+
 group :development, :test do
   gem 'pry-byebug'
   gem 'pry-rails'

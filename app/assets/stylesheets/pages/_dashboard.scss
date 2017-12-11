@@ -1,7 +1,7 @@
 .grid-dashboard {
   display: grid;
-  grid-template-columns: 30% 60%;
-  grid-template-rows: 50% 50%;
+  grid-template-columns: 30% 70%;
+  grid-template-rows: 30% 70%;
   color: white;
   > div {
     padding: 20px;
@@ -17,7 +17,7 @@
 }
 .challenges_choices {
   grid-row: 2 / span 1;
-  grid-column: 2 / span 1;
+  grid-column: 1 / span 2;
 }
 
 .list_ex {
