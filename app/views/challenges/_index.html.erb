@@ -1,18 +1,33 @@
 <div class="popchallenges-container ">
   <div class="row">
     <h3>TRY OUR CHALLENGES</h3>
-      <% @challenges.each do |challenge| %>
-        <div class="col-xs-12 col-sm-4 ">
-          <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= cl_image_path challenge.photo, height: 300 %>')">
-            <div class="card-category"></div>
-            <div class="card-description">
-              <h2> <%= challenge.name %></h2>
-              <p> <%= challenge.description %></p>
+      <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+          <% @challenges.each do |challenge| %>
+            <div class="item <%= 'active' if @challenges.index(challenge) == 0 %>">
+              <div class="col-md-4">
+                <div class="card carousel_card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= cl_image_path challenge.photo, height: 200, width: 300, crop: :pad %>')">
+                  <div class="card-category"></div>
+                  <div class="card-description">
+                    <h2> <%= challenge.name %></h2>
+                    <p> <%= challenge.description %></p>
+                  </div>
+                  <%= link_to '', challenge_path(challenge), class: 'card-link' %>
+                </div>
+              </div>
             </div>
-            <%= link_to '', challenge_path(challenge), class: 'card-link' %>
-          </div>
+          <% end %>
         </div>
-      <% end %>
+
+        <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+          <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </a>
+      </div>
     </div>
     <% if policy(Challenge).create? %>
     <% end %>

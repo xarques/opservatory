@@ -1,0 +1,32 @@
+var list = document.getElementById("list_hints");
+list.innerHTML = '';
+var btn = document.getElementById("button-hint")
+btn.classList.remove("disabled");
+
+document.getElementById("exercise_status").value = <%= @exercise.status %>
+document.getElementById("exercise_code").value = '<%= j @exercise.code %>'
+javascriptEditor.setValue('<%= j raw(@exercise.code) %>');
+
+function deleteClockStatus() {
+clock = document.getElementById("clock-status");
+clock.innerText = '';
+};
+
+function updateClockStatus(item) {
+clock = document.getElementById("clock-status");
+clock.insertAdjacentHTML('beforeend', item)
+};
+
+function updateHintBtn() {
+  var btn = document.getElementById("button-hint")
+  btn.classList.remove("disabled")};
+
+function updateSolutionBtn() {
+var btn = document.getElementById("button-solution")
+btn.classList.add("disabled")
+};
+
+deleteClockStatus();
+updateClockStatus(`<%= j render "exercise_status", exercise: @exercise %>`);
+updateHintBtn();
+updateSolutionBtn();

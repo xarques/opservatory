@@ -1,7 +1,7 @@
 <div class="container">
   <div>
-    <h4><%= @exercise.challenge.name %></h4>
-  </div>
+    <h4><%= @exercise.challenge.name %> <span id="clock-status"><%= render 'exercise_status', exercise: @exercise %></span></h4>
+    </div>
   <div class="exercise">
     <div class="description">
       <div id="exercise-app" class="exercise-app"> </div>
@@ -17,11 +17,14 @@
 
     <div class="hints">
       <% if @next_hint.count == 0 %>
-        <% disabled_class = "btn btn-primary btn-exercise disabled" %>
+        <% disabled_class_hint = "btn btn-primary btn-exercise disabled" %>
+        <% disabled_class_solution = "btn btn-primary btn-exercise" %>
       <% else %>
-        <% disabled_class = "btn btn-primary btn-exercise" %>
+        <% disabled_class_hint = "btn btn-primary btn-exercise" %>
+        <% disabled_class_solution = "btn btn-primary btn-exercise disabled" %>
       <% end %>
-      <%= link_to "Need a hint" , exercise_exercise_hints_path(@exercise.id), method: "post", :class => disabled_class, :id => "button-hint", remote: true %>
+      <%= link_to "Need a hint" , exercise_exercise_hints_path(@exercise.id), method: "post", :class => disabled_class_hint, :id => "button-hint", remote: true %>
+      <%= link_to "Solution" , reveal_solution_exercise_path(@exercise.id), method: "patch", :class => disabled_class_solution, :id => "button-solution", remote: true %>
       <div class="hints-details" id="hints">
         <ul id="list_hints" class="list-unstyled">
          <% @given_hints.each do |hint|%>
@@ -35,7 +38,7 @@
       <div id="javascript-editor"></div>
       <div class="editor-buttons text-center">
         <div class="editor-buttons-flex">
-          <%= link_to "Retry", retry_exercise_path(@exercise), method: "patch", :class =>"btn btn-primary btn-exercise", :id =>"retry", :type =>"button" %>
+          <%= link_to "Retry", retry_exercise_path(@exercise), method: "patch", :class =>"btn btn-primary btn-exercise", :id =>"retry", :type =>"button", remote: true %>
           <%= simple_form_for(@exercise, remote: true, :html => { :onsubmit => 'validate()' }, :method => 'patch' ) do |form| %>
             <%= form.hidden_field :code %>
             <%= form.hidden_field :status %>

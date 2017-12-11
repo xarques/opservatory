@@ -5,56 +5,33 @@
       <ul class="list-inline list_ex">
         <% @exercises.each do |exercise| %>
               <li><p><strong><%= link_to exercise.challenge.name, exercise_path(exercise)%></strong></p></li>
-              <li><% if exercise.status == 0 %>
-                <i style="color: #e6b800" class="fa fa-clock-o" aria-hidden="true"></i>
-                  <% elsif exercise.status == 1 %>
-                <i style="color: green" class="fa fa-check-circle-o" aria-hidden="true"></i>
-                  <% elsif exercise.status == 2 %>
-                <i style="color: red" class="fa fa-times-circle-o" aria-hidden="true"></i>
-                  <% elsif exercise.status == 3 %>
-                <i style="color: gray" class="fa fa-cloud" aria-hidden="true"></i>
-                <% end %>
-              </li>
+              <li> <%= render 'exercise_status', exercise: exercise %> </li>
         <% end %>
       </ul>
     </div>
 
     <div class="challenges_choices">
       <h2>More challenges</h2>
-      <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-        <div class="carousel-inner">
-          <% @challenges.each do |challenge| %>
-            <div class="item <%= 'active' if @challenges.index(challenge) == 0 %>">
-              <div class="col-md-4">
-                <div class="card carousel_card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= cl_image_path challenge.photo, height: 300 %>')">
-                  <div class="card-category"></div>
-                  <div class="card-description">
-                    <h2> <%= challenge.name %></h2>
-                    <p> <%= challenge.description %></p>
-                  </div>
-                  <%= link_to '', challenge_exercises_path(challenge, Exercise.new), method: :post, class: 'card-link' %>
-                </div>
-              </div>
-            </div>
-          <% end %>
-        </div>
+      <div class="more_challenges">
+        <%= form_tag exercises_path, method: :get, remote: true do %>
+          <%= text_field_tag :query,
+            params[:query],
+            class: "form-control",
+            placeholder: "Find a challenge"
+          %>
+          <%= button_tag "hello", id:'button_search', class:'hidden' %>
+        <% end %>
+      </div>
 
-        <!-- Controls -->
-        <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
-          <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-          <span class="sr-only">Previous</span>
-        </a>
-        <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
-          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-          <span class="sr-only">Next</span>
-        </a>
+      <div id="challenges_choices_cards" class="row">
+          <%= render 'exercises/card_exercises' %>
       </div>
     </div>
 
     <div class="next_challenge">
       <h2>Next challenge</h2>
       <% if @next_exercise %>
-        <div class="card next_exercise_card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= cl_image_path @next_exercise.challenge.photo, height: 300 %>')">
+        <div class="card next_exercise_card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= cl_image_path @next_exercise.challenge.photo, height: 200, width: 300, crop: :pad %>')">
           <div class="card-category"></div>
           <div class="card-description">
             <h2> <%= @next_exercise.challenge.name %></h2>
@@ -63,7 +40,7 @@
           <%= link_to '', exercise_path(@next_exercise), class: 'card-link' %>
         </div>
       <% elsif @next_challenge  %>
-        <div class="card next_exercise_card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= cl_image_path @next_challenge.photo, height: 300 %>')">
+        <div class="card next_exercise_card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= cl_image_path @next_challenge.photo, height: 200, width: 300, crop: :pad %>')">
                 <div class="card-category"></div>
                 <div class="card-description">
                   <h2> <%= @next_challenge.name %></h2>
@@ -75,3 +52,14 @@
     </div>
   </div>
 </div>
+
+<script>
+  const searchChallenges = (event) => {
+    var input = document.getElementById("button_search");
+    input.click();
+    console.log(event.currentTarget.value);
+    // fetch(exercises_url, {credentials: "same-origin"})
+  }
+  const input = document.getElementById("query");
+  input.addEventListener("keyup", searchChallenges);
+</script>
