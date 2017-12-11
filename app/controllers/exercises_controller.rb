@@ -41,7 +41,10 @@ class ExercisesController < ApplicationController
 
   def update
     @exercise.update(exercise_params)
-    redirect_to exercise_path(@exercise)
+    respond_to do |format|
+      format.html {redirect_to exercise_path(@exercise)}
+      format.js
+    end
   end
 
   def retry
