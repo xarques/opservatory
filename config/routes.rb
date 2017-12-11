@@ -10,6 +10,7 @@ Rails.application.routes.draw do
     resources :exercise_hints, only: [:create]
     member do
       patch 'retry', to: "exercises#retry"
+      patch 'reveal_solution', to:"exercises#reveal_solution"
     end
   end
 
