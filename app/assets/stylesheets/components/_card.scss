@@ -1,13 +1,15 @@
 .card {
   height: 175px;
   text-shadow: 0 1px 3px rgba(0,0,0,0.6);
-  background-size: cover !important;
+  background-image: cover !important;
   background-position: center;
   color: white;
   position: relative;
   border-radius: 2px;
   box-shadow: 0px 0px 3px 0px rgba(230,230,230,1);
+  background-repeat: no-repeat;
   margin-bottom: 30px;
+
 }
 .card-user {
   position: absolute;
@@ -53,3 +55,16 @@
   opacity: 0.1;
 }
 
+.carousel_card {
+  border-radius: 3px;
+  box-shadow: 0px 0px 2px 0px rgba(230,230,230,1);
+  height: 250px;
+  margin: 10px;
+}
+
+.next_exercise_card{
+  border-radius: 3px;
+  box-shadow: 0px 0px 2px 0px rgba(230,230,230,1);
+  height: 250px;
+  margin: 10px;
+}
