@@ -1,0 +1,12 @@
+function deleteClockStatus() {
+clock = document.getElementById("clock-status");
+clock.innerText = '';
+};
+
+function updateClockStatus(item) {
+clock = document.getElementById("clock-status");
+clock.insertAdjacentHTML('beforeend', item)
+};
+
+deleteClockStatus();
+updateClockStatus(`<%= j render "exercise_status", exercise: @exercise %>`);

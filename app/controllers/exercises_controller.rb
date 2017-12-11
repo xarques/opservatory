@@ -7,11 +7,22 @@ class ExercisesController < ApplicationController
   end
 
   def index
+
     @exercises = policy_scope(Exercise).where(user: current_user)
     @challenges = policy_scope(Challenge).where(
-      "id NOT IN
+       "id NOT IN
         (SELECT challenge_id FROM exercises
          WHERE user_id = #{current_user.id})")
+    if params[:query].present?
+      @challenges = @challenges.search_by_name_and_description(params[:query])
+      respond_to do |format|
+        format.html
+        format.js
+      end
+    else
+      @challenges
+    end
+
     exercises_not_deployed = policy_scope(Exercise).where("user_id = #{current_user.id} AND status IN (0, 1, 2)")
     if exercises_not_deployed.any?
       @next_exercise = exercises_not_deployed.first
@@ -41,7 +52,10 @@ class ExercisesController < ApplicationController
 
   def update
     @exercise.update(exercise_params)
-    redirect_to exercise_path(@exercise)
+    respond_to do |format|
+      format.html {redirect_to exercise_path(@exercise)}
+      format.js
+    end
   end
 
   def retry
@@ -53,7 +67,7 @@ class ExercisesController < ApplicationController
     respond_to do |format|
       format.html {redirect_to exercise_path(@exercise)}
       format.js
-      end
+    end
   end
 
   def destroy

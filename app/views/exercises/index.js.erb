@@ -1,0 +1,6 @@
+function refreshCards(innerHTML) {
+  const newCardDiv = document.getElementById('challenges_choices_cards');
+  newCardDiv.innerHTML = innerHTML;
+}
+
+refreshCards('<%= j render "exercises/card_exercises", challenges: @challenges %>')
