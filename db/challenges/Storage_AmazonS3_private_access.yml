@@ -1,0 +1,71 @@
+name: "Create a private S3 bucket"
+description: "You will create a private S3 bucket"
+instructions: |
+  <p>The S3 bucket must have the following features:</p>
+  <ol>
+    <li>Access Control: Private Read Write Access</li>
+  </ol>
+schema: |
+  {
+    "properties": {
+      "Resources": {
+        "description": "Template resources",
+        "type": "object",
+        "patternProperties": {
+          "^[a-zA-Z0-9]+$": {
+            "type": "object",
+            "properties": {
+              "Type": {
+                "type": "string",
+                "enum": ["AWS::S3::Bucket"]
+              },
+              "Properties": {
+                "type": "object",
+                "properties": {
+                  "AccessControl": {
+                    "type": "string",
+                    "enum": ["Private]
+                  }
+                },
+                "additionalProperties": false
+              }
+            },
+            "required": ["Type"],
+            "additionalProperties": false
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "required": ["Resources"],
+    "additionalProperties": false
+  }
+solution: |
+  {
+    "Resources" : {
+      "privateS3" : {
+        "Type" : "AWS::S3::Bucket",
+        "Properties" : {
+          "AccessControl" : "Private"
+        }
+      }
+    }
+  }
+hints:
+  - description: "Use property \"Type\" to set the type of the resource"
+  - description: "The property \"Type\" must be \"AWS::S3::Bucket\""
+  - description: "Use property \"AccessControl\" to define the access control of the bucket"
+  - description: "The property \"AccessControl\" must be \"PublicReadWrite\""
+level: 0
+duration: 15
+status: 1
+photo: "Storage_AmazonS3_LARGE.png"
+start_point: |
+  {
+    "Resources" : {
+      "privateS3": {
+
+      }
+    }
+  }
+

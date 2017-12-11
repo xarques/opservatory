@@ -8,6 +8,8 @@
   border-radius: 2px;
   box-shadow: 0px 0px 3px 0px rgba(230,230,230,1);
   background-repeat: no-repeat;
+  margin-bottom: 30px;
+
 }
 .card-user {
   position: absolute;
@@ -27,9 +29,11 @@
   position: absolute;
   bottom: 10px;
   left: 10px;
+
 }
 .card-description h2 {
   font-size: 24px;
+  position: left;
 }
 .card-description p {
   font-size: 14px;
@@ -55,4 +59,5 @@
   border-radius: 3px;
   box-shadow: 0px 0px 2px 0px rgba(230,230,230,1);
   height: 250px;
+  margin: 10px;
 }

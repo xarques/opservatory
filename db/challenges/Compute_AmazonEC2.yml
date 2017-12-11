@@ -1,5 +1,5 @@
 name: "Create an EC2 instance"
-description: "You will have to create an EC2 instance"
+description: "You will create an EC2 instance"
 instructions: |
   <p>The EC2 instance must have the following features:</p>
   <ol>
@@ -58,9 +58,12 @@ solution: |
     }
   }
 hints:
+  - description: "Use property \"Type\" to set the type of the resource"
   - description: "The property \"Type\" must be \"AWS::EC2::Instance\""
   - description: "Use property \"ImageId\" to set the image Id of the EC2 instance"
+  - description: "The property \"ImageId\" must be \"ami-c481fad3\""
   - description: "Use property \"InstanceType\" to set the type of the EC2 instance"
+  - description: "The property \"InstanceType\" must be \"t2.micro\""
 level: 1
 duration: 30
 status: 1

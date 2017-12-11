@@ -10,7 +10,7 @@
       <div class="challenge-description">
         <h2><%= @challenge.description %></h2>
         <h4>Instructions:</h4>
-        <%= @challenge.instructions.html_safe %>
+        <%= @challenge.instructions.html_safe? if @challenge.instructions %>
       </div>
   </div>
 </div>

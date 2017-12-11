@@ -1,5 +1,5 @@
 name: "Create a RDS Database"
-description: "You will have to create a RDS database"
+description: "You will create a RDS database"
 instructions: |
   <p>The RDS database must have the following features:</p>
   <ol>
@@ -81,17 +81,22 @@ solution: |
           "DBName" : "wordpress",
           "Engine" : "MySQL",
           "MasterUsername" : "wordpress",
-          "MasterUserPassword" : "w0rdpr355"
+          "MasterUserPassword" : "W0rdpr3ss"
         }
       }
     }
   }
 hints:
+  - description: "Use property \"Type\" to set the type of the resource"
   - description: "The property \"Type\" must be \"AWS::RDS::DBInstance\""
   - description: "Use property \"AllocatedStorage\" to set the size of the RDS database"
+  - description: "The property \"AllocatedStorage\" must be \"5\""
   - description: "Use property \"StorageType\" to set the type of the RDS database"
+  - description: "The property \"StorageType\" must be \"gp2\""
   - description: "Use property \"DBInstanceClass\" to set the class of the RDS database"
+  - description: "The property \"DBInstanceClass\" must be \"db.t2.micro\""
   - description: "Use property \"Engine\" to set the database engine of the RDS database"
+  - description: "The property \"Engine\" must be \"MySQL\""
 level: 1
 duration: 30
 status: 1
