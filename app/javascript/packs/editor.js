@@ -49,9 +49,21 @@ const validateExerciseCallback = ((schema, editor, sourceTagId, targetTagId) => 
 const validateExercise = ((schema, code, targetTagId) => {
   document.getElementById("exercise_code").value = code;
   const validate = ajv.compile(JSON.parse(schema));
-  const valid = validate(JSON.parse(code));
-  const targetDiv = document.getElementById(targetTagId);
+  let valid = false;
   const deployButton = document.getElementById("deploy");
+  const targetDiv = document.getElementById(targetTagId);
+  try {
+   valid = validate(JSON.parse(code));
+  }
+  catch (exception) { // non-standard
+    // Set the status to unvalid
+    document.getElementById("exercise_status").value = 2;
+    if (deployButton) {
+      deployButton.classList.add("disabled");
+    }
+    targetDiv.innerHTML = "Code is not valid";
+    return true;
+  }
   if (valid) {
     targetDiv.innerHTML = "Your code is valid";
     // Set the status to valid
@@ -76,7 +88,7 @@ const validateExercise = ((schema, code, targetTagId) => {
       }
     });
   }
-  return valid;
+  return true;
 });
 
 const getBucketName = ((code) => {
