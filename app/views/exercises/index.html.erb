@@ -5,16 +5,7 @@
       <ul class="list-inline list_ex">
         <% @exercises.each do |exercise| %>
               <li><p><strong><%= link_to exercise.challenge.name, exercise_path(exercise)%></strong></p></li>
-              <li><% if exercise.status == 0 %>
-                <i style="color: #e6b800" class="fa fa-clock-o" aria-hidden="true"></i>
-                  <% elsif exercise.status == 1 %>
-                <i style="color: green" class="fa fa-check-circle-o" aria-hidden="true"></i>
-                  <% elsif exercise.status == 2 %>
-                <i style="color: red" class="fa fa-times-circle-o" aria-hidden="true"></i>
-                  <% elsif exercise.status == 3 %>
-                <i style="color: gray" class="fa fa-cloud" aria-hidden="true"></i>
-                <% end %>
-              </li>
+              <li> <%= render 'exercise_status', exercise: exercise %> </li>
         <% end %>
       </ul>
     </div>
