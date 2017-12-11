@@ -35,7 +35,7 @@
       <div id="javascript-editor"></div>
       <div class="editor-buttons text-center">
         <div class="editor-buttons-flex">
-          <%= link_to "Retry", retry_exercise_path(@exercise), method: "patch", :class =>"btn btn-primary btn-exercise", :id =>"retry", :type =>"button", remote: true %>
+          <%= link_to "Retry", retry_exercise_path(@exercise), method: "patch", :class =>"btn btn-primary btn-exercise", :id =>"retry", :type =>"button", remote: true, :onclick => 'retry()' %>
           <%= simple_form_for(@exercise, remote: true, :html => { :onsubmit => 'validate()' }, :method => 'patch' ) do |form| %>
             <%= form.hidden_field :code %>
             <%= form.hidden_field :status %>
@@ -59,13 +59,11 @@
       </div>
     </div>
 
-
     <div class="result" >
       <h5>Results:</h5>
       <div class="result-details" id="result">
 
       </div>
-
     </div>
     <%# content_for :after_js do %>
       <!-- method aceEditor is defined in app/javascript/packs/editor.js -->
@@ -73,6 +71,19 @@
     <%# end %>
 
     <script>
+      const retry = (() => {
+        swal({
+          title: 'Do you want to retry this exercise ?',
+          text: "The code and the tips will be reinitialized",
+          type: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Yes, reset it!'
+        }).then((result) => {
+          return true;
+        });
+      });
       const validate = (() => {
         validateExercise('<%=j raw(@exercise.challenge.schema) %>', javascriptEditor.getValue(), "result");
       });

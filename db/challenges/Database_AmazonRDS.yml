@@ -50,7 +50,7 @@ schema: |
                   },
                   "MasterUserPassword": {
                     "type": "string",
-                    "enum": ["w0rdpr355"]
+                    "enum": ["W0rdpr3ss"]
                   }
                 },
                 "required": ["AllocatedStorage","StorageType",

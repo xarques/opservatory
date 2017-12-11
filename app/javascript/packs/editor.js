@@ -5,6 +5,7 @@ import 'brace/theme/twilight';
 import 'brace/theme/chrome';
 import * as Ajv from 'ajv/dist/ajv.min.js';
 import 'aws-sdk';
+import swal from 'sweetalert2';
 import {deleteAlbum, deletePhoto, addPhoto, viewAlbum, createAlbum, listAlbums, setBucketName} from '../components/s3bucket';
 
 const ajv = Ajv();
@@ -104,57 +105,97 @@ const getStackName = ((code) => {
 // Deploy the stack using a lambda function
 const deployExercise = ((schema, code, targetTagId) => {
   let deployed = false;
-  if (!validateExercise(schema, code, targetTagId)) {
-    return false;
-  }
-  const targetDiv = document.getElementById(targetTagId);
-  const resourceName = Object.keys(JSON.parse(code).Resources)[0];
-  const bucketName = getBucketName(code);
-  const stackName = getStackName(code);
-  const bodyContent = {
-    StackName: stackName,
-    TemplateBody: code
-  }
-
-  const body = {
-    body: JSON.stringify(bodyContent)
-  }
-
-  const stringifiedBody = JSON.stringify(body);
-
-  const params = {
-    FunctionName: 'cloudformation-api-dev-create', /* required */
-    // ClientContext: '',
-    // InvocationType: Event,
-    // LogType: None,
-    Payload: stringifiedBody /* Strings will be Base-64 encoded on your behalf */
-    // Qualifier: 'STRING_VALUE'
-  };
-  lambda.invoke(params, function(err, data) {
-    if (err) {
-      console.log(err, err.stack); // an error occurred
-      if (data.Payload.body) {
-        targetDiv.innerHTML = data.Payload.body;
-      } else {
-        targetDiv.innerHTML = `Stack ${stackName} can't been deployed. Error: ${err}`;
+  swal({
+    title: 'Do you want to deploy this exercise ?',
+    text: "Your Cloud Provider account may be charged",
+    type: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Yes, deploy it!'
+  }).then((result) => {
+    if (result.value) {
+      if (!validateExercise(schema, code, targetTagId)) {
+        return false;
       }
-    } else {
-      const p = JSON.parse(data.Payload);
-      if (p.statusCode === "200") {
-        deployed = true;
-        document.getElementById("exercise_status").value = 3;
-        targetDiv.innerHTML = `Stack ${stackName} is under deployment`;
-        // Wait bucket creation before displaying the buxket content
-        setTimeout(function(){
-          setBucketName(bucketName);
-          targetDiv.innerHTML = `Stack ${stackName} has been deployed`;
-        }, 15000);
-      } else {
-        targetDiv.innerHTML = p.body;
+      const targetDiv = document.getElementById(targetTagId);
+      const resourceName = Object.keys(JSON.parse(code).Resources)[0];
+      const bucketName = getBucketName(code);
+      const stackName = getStackName(code);
+      const bodyContent = {
+        StackName: stackName,
+        TemplateBody: code
       }
-      console.log(data);           // successful response
+
+      const body = {
+        body: JSON.stringify(bodyContent)
+      }
+
+      const stringifiedBody = JSON.stringify(body);
+
+      const params = {
+        FunctionName: 'cloudformation-api-dev-create', /* required */
+        // ClientContext: '',
+        // InvocationType: Event,
+        // LogType: None,
+        Payload: stringifiedBody /* Strings will be Base-64 encoded on your behalf */
+        // Qualifier: 'STRING_VALUE'
+      };
+      lambda.invoke(params, function(err, data) {
+        if (err) {
+          console.log(err, err.stack); // an error occurred
+          if (data.Payload.body) {
+            targetDiv.innerHTML = data.Payload.body;
+          } else {
+            targetDiv.innerHTML = `Stack ${stackName} can't been deployed. Error: ${err}`;
+          }
+          swal(
+            'Oops...',
+            targetDiv.innerHTML,
+            'error'
+          );
+        } else {
+          const p = JSON.parse(data.Payload);
+          if (p.statusCode === "200") {
+            deployed = true;
+            document.getElementById("exercise_status").value = 3;
+            targetDiv.innerHTML = `Stack ${stackName} is under deployment`;
+            swal({
+              title: `Stack ${stackName} is under deployment`,
+              //text: 'I will close in 5 seconds.',
+              timer: 15000,
+              onOpen: () => {
+                swal.showLoading()
+              }
+            }).then((result) => {
+              if (result.dismiss === 'timer') {
+                setBucketName(bucketName);
+                targetDiv.innerHTML = `Stack ${stackName} has been deployed`;
+                swal(
+                  'Deployed!',
+                  `Stack ${stackName} has been deployed`,
+                  'success'
+                );
+              }
+            });
+            // Wait bucket creation before displaying the buxket content
+            // setTimeout(function(){
+            //   setBucketName(bucketName);
+            //   targetDiv.innerHTML = `Stack ${stackName} has been deployed`;
+            // }, 15000);
+          } else {
+            targetDiv.innerHTML = p.body;
+            swal(
+              'Oops...',
+              targetDiv.innerHTML,
+              'error'
+            );
+          }
+          console.log(data);           // successful response
+        }
+        return deployed;
+      });
     }
-    return deployed;
   });
 });
 
