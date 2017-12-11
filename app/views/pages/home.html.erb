@@ -1,62 +1,65 @@
 
 <%= content_for(:navbar_class, "navbar-home") %>
 
+<div class="banner banner-fixed">
+</div>
 <div class="banner">
-  <div class=" container banner-content text-center">
-    <h1>Learn infrastructure as code</h1>
+  <div class=" banner-content text-center">
+    <h1>LEARN INFRASTRUCTURE AS CODE</h1>
     <p>Practice and test your own infrastructure as code through challenges</p>
     <%= link_to "Become an OPServer", exercises_path, class: "btn btn-lig btn-primary" %>
   </div>
 </div>
 
-<div class="popchallenges-container">
-  <%= render 'challenges/index' %>
-</div>
 
-<div class=" container aboutus-container">
-  <div class="row text-center">
-      <h3>ABOUT US</h3>
-      <div class="col-xs-12 col-sm-4 col-md-4 text-center">
-        <%= image_tag "pencil.png", id: "logo" %>
-        <h4>PRACTICE</h4>
-          <p>Improve your skills through challenges</p>
-      </div>
-      <div class="col-xs-12 col-sm-4 col-md-4 text-center">
-        <%= image_tag "validate.png", id: "logo" %>
-        <h4>TEST</h4>
-          <p>Test your own code on our platform</p>
-      </div>
-      <div class="col-xs-12 col-sm-4 col-md-4 text-center">
-      <%= image_tag "touch.png", id: "logo" %>
-      <h4>DEPLOY</h4>
-        <p>Deploy it directly on your AWS account</p>
-      </div>
-    </div>
+  <div class="popchallenges-container">
+    <%= render 'challenges/index' %>
   </div>
-</div>
 
-<div class="container team-container">
+  <div class="aboutus-container">
     <div class="row text-center">
-      <h3>MEET THE TEAM</h3>
-      <div class="col-xs-12 col-sm-3 text-center">
-        <%= image_tag "xavier.jpg", id: "logo" %>
-        <h4>Xavier Arques</h4>
-          <p>Lead Dev</p>
-      </div>
-      <div class="col-xs-12 col-sm-3 text-center">
-        <%= image_tag "yan.jpg", id: "logo" %>
-        <h4>Yan De Catheu</h4>
-          <p>Dev</p>
-      </div>
-      <div class="col-xs-12 col-sm-3 text-center">
-        <%= image_tag "roni.png", id: "logo" %>
-        <h4>Roni Sharabi</h4>
-          <p>Dev</p>
-      </div>
-      <div class="col-xs-12 col-sm-3 text-center">
-         <%= image_tag "tess.png", id: "logo" %>
-        <h4>Tess Saffar</h4>
-          <p>Dev</p>
+        <h3>ABOUT US</h3>
+        <div class="col-xs-12 col-sm-4 col-md-4 text-center">
+          <%= image_tag "pencil.jpg", id: "logo" %>
+          <h4>PRACTICE</h4>
+            <p>Improve your skills through challenges</p>
+        </div>
+        <div class="col-xs-12 col-sm-4 col-md-4 text-center">
+          <%= image_tag "test.jpg", id: "logo" %>
+          <h4>TEST</h4>
+            <p>Test your own code on our platform</p>
+        </div>
+        <div class="col-xs-12 col-sm-4 col-md-4 text-center">
+        <%= image_tag "amazon.jpg", id: "logo" %>
+        <h4>DEPLOY</h4>
+          <p>Deploy it directly on your AWS account</p>
+        </div>
       </div>
     </div>
-</div>
+
+
+  <div class=" team-container">
+      <div class="row text-center">
+        <h3>MEET THE TEAM</h3>
+        <div class="col-xs-12 col-sm-3 text-center">
+          <%= image_tag "xavier.jpg", id: "logo" %>
+          <h4>Xavier Arques</h4>
+            <p>Lead Dev</p>
+        </div>
+        <div class="col-xs-12 col-sm-3 text-center">
+          <%= image_tag "yan.jpg", id: "logo" %>
+          <h4>Yan De Catheu</h4>
+            <p>Dev</p>
+        </div>
+        <div class="col-xs-12 col-sm-3 text-center">
+          <%= image_tag "roni.png", id: "logo" %>
+          <h4>Roni Sharabi</h4>
+            <p>Dev</p>
+        </div>
+        <div class="col-xs-12 col-sm-3 text-center">
+           <%= image_tag "tess.png", id: "logo" %>
+          <h4>Tess Saffar</h4>
+            <p>Dev</p>
+        </div>
+      </div>
+  </div>

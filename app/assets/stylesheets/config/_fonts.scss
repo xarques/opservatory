@@ -1,10 +1,10 @@
 // Import Google fonts
-@import url("https://fonts.googleapis.com/css?family=Open+Sans:400,300,700|Exo+2:400,100,300,700,500|Spinnaker");
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:400,300,700|Exo+2:400,100,300,700,500|Spinnaker|Archivo+Black|Tenor+Sans|Lato:300");
 
 
 // Define fonts for body and headers
-$body-font: "Spinnaker", "Open Sans", "Helvetica", "sans-serif";
-$headers-font: "Exo 2", "Helvetica", "serif";
+$body-font: "Archivo Black", "Lato","Spinnaker", "Open Sans", "Helvetica", "sans-serif";
+$headers-font: "Tenor Sans", "Exo 2", "Helvetica", "serif";
 
 
 // To use a font file (.woff) uncomment following lines
