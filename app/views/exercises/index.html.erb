@@ -11,26 +11,27 @@
     </div>
 
     <div class="challenges_choices">
-
-      <%= form_tag exercises_path, method: :get, remote: true do %>
-        <%= text_field_tag :query,
-          params[:query],
-          class: "form-control",
-          placeholder: "Find a challenge"
-        %>
-        <%= button_tag "hello", id:'button_search', class:'hidden' %>
-      <% end %>
-
       <h2>More challenges</h2>
-        <div id="challenges_choices_cards" class="row">
-            <%= render 'exercises/card_exercises' %>
-        </div>
+      <div class="more_challenges">
+        <%= form_tag exercises_path, method: :get, remote: true do %>
+          <%= text_field_tag :query,
+            params[:query],
+            class: "form-control",
+            placeholder: "Find a challenge"
+          %>
+          <%= button_tag "hello", id:'button_search', class:'hidden' %>
+        <% end %>
+      </div>
+
+      <div id="challenges_choices_cards" class="row">
+          <%= render 'exercises/card_exercises' %>
+      </div>
     </div>
 
     <div class="next_challenge">
       <h2>Next challenge</h2>
       <% if @next_exercise %>
-        <div class="card next_exercise_card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= cl_image_path @next_exercise.challenge.photo, height: 300 %>')">
+        <div class="card next_exercise_card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= cl_image_path @next_exercise.challenge.photo, height: 200, width: 300, crop: :pad %>')">
           <div class="card-category"></div>
           <div class="card-description">
             <h2> <%= @next_exercise.challenge.name %></h2>
@@ -39,7 +40,7 @@
           <%= link_to '', exercise_path(@next_exercise), class: 'card-link' %>
         </div>
       <% elsif @next_challenge  %>
-        <div class="card next_exercise_card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= cl_image_path @next_challenge.photo, height: 300 %>')">
+        <div class="card next_exercise_card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= cl_image_path @next_challenge.photo, height: 200, width: 300, crop: :pad %>')">
                 <div class="card-category"></div>
                 <div class="card-description">
                   <h2> <%= @next_challenge.name %></h2>
