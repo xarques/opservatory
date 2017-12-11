@@ -49,19 +49,11 @@ class ExercisesController < ApplicationController
     @exercise.code = @exercise.challenge.start_point
     @exercise.status = 0
     @next_hint = @exercise.next_hint
-    if @exercise.save
-      respond_to do |format|
-        format.html {redirect_to exercise_path(@exercise)}
-        format.js
+    @exercise.save
+    respond_to do |format|
+      format.html {redirect_to exercise_path(@exercise)}
+      format.js
       end
-    else
-      respond_to do |format|
-        format.html {redirect_to exercise_path(@exercise)}
-        format.js
-      end
-    end
-
-
   end
 
   def destroy
