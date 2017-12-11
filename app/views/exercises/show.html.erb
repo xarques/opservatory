@@ -1,7 +1,7 @@
 <div class="container">
   <div>
-    <h4><%= @exercise.challenge.name %></h4>
-  </div>
+    <h4><%= @exercise.challenge.name %> <span id="clock-status"><%= render 'exercise_status', exercise: @exercise %></span></h4>
+    </div>
   <div class="exercise">
     <div class="description">
       <div id="exercise-app" class="exercise-app"> </div>
