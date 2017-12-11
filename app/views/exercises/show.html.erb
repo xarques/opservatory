@@ -12,9 +12,12 @@
     </div>
 
     <div class="hints">
-      <% if @next_hint.count >= 1 %>
-        <%= link_to "Need a hint" , exercise_exercise_hints_path(@exercise.id), method: "post", :class =>'btn btn-primary btn-exercise', :id => "button-hint", remote: true %>
-      <% end %>
+    <%# if @next_hint.count != 0 %>
+      <%= link_to "Need a hint" , exercise_exercise_hints_path(@exercise.id), method: "post", :class =>'btn btn-primary btn-exercise', :id => "button-hint", remote: true %>
+      <%# end %>
+    <%# if @next_hint.count == 0 %>
+       <!-- <button type="submit" class="btn btn-primary disable">Need a hint</button>
+ -->    <%# end %>
       <div class="hints-details" id="hints">
         <ul id="list_hints" class="list-unstyled">
          <% @given_hints.each do |hint|%>
@@ -29,10 +32,10 @@
       <div id="javascript-editor"></div>
       <div class="editor-buttons text-center">
         <div class="editor-buttons-flex">
-          <%= link_to "Retry", retry_exercise_path(@exercise), method: "patch", :class =>"btn btn-primary btn-exercise", :id =>"retry", :type =>"button" %>
+          <%= link_to "Retry", retry_exercise_path(@exercise), method: "patch", :class =>"btn btn-primary btn-exercise", :id =>"retry", :type =>"button", remote: true %>
           <%= simple_form_for(@exercise, remote: true, :html => { :onsubmit => 'validate()' }, :method => 'patch' ) do |form| %>
-            <%= form.hidden_field :code %>
-            <%= form.hidden_field :status %>
+            <%= form.hidden_field :code, :id => "code-form" %>
+            <%= form.hidden_field :status, :id => "status-form" %>
             <%= form.button :submit, "Validate", class: "btn btn-primary btn-exercise" %>
           <% end %>
           <button type="button" id="skip" class="btn btn-primary btn-exercise">

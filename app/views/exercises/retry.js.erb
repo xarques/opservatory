@@ -1,0 +1,15 @@
+var list = document.getElementById("list_hints");
+list.innerHTML = '';
+var btn = document.getElementById("button-hint")
+btn.classList.remove("disable");
+btn.classList.add("btn-exercise");
+
+
+console.log(<%= @exercise.status %>);
+console.log('<%= j @exercise.code %>');
+
+code2 = '<%= j @exercise.code %>'
+// document.getElementById("status-form").value = <%= @exercise.status %>
+// document.getElementById("code-form").value = '<%= j @exercise.code %>'
+
+//<%= form[:code] = code2 =>

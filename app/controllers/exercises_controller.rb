@@ -20,7 +20,6 @@ class ExercisesController < ApplicationController
     end
   end
 
-
   def show
     @given_hints = @exercise.given_hints
     @next_hint = @exercise.next_hint
@@ -49,8 +48,20 @@ class ExercisesController < ApplicationController
     @exercise.given_hints.destroy_all
     @exercise.code = @exercise.challenge.start_point
     @exercise.status = 0
-    @exercise.save
-    redirect_to exercise_path(@exercise)
+    @next_hint = @exercise.next_hint
+    if @exercise.save
+      respond_to do |format|
+        format.html {redirect_to exercise_path(@exercise)}
+        format.js
+      end
+    else
+      respond_to do |format|
+        format.html {redirect_to exercise_path(@exercise)}
+        format.js
+      end
+    end
+
+
   end
 
   def destroy
