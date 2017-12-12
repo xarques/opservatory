@@ -6,7 +6,7 @@
         <!-- [...] -->
         <%= f.input :name%>
         <%= f.input :description %>
-        <%= f.input :instructions %>
+        <%= f.hidden_field :instructions %>
         <%= f.input :level, collection: [0, 1, 2, 3] %>
         <%= f.input :duration %>
         <%= f.hidden_field :start_point %>
@@ -25,6 +25,9 @@
     <div class="editor-challenge-new">
       <ul class="nav nav-tabs" id="myTab" role="tablist">
         <li class="nav-item active">
+          <a class="nav-link " id="instructions-tab" data-toggle="tab" href="#instructions" role="tab" aria-controls="instructions" aria-selected="true">Instructions</a>
+        </li>
+        <li class="nav-item">
           <a class="nav-link " id="start-point-tab" data-toggle="tab" href="#start-point" role="tab" aria-controls="start-point" aria-selected="true">Start point</a>
         </li>
         <li class="nav-item">
@@ -35,7 +38,10 @@
         </li>
       </ul>
       <div class="tab-content" id="myTabContent">
-        <div class="tab-pane fade active editor-pane" id="start-point" role="tabpanel" aria-labelledby="start-point-tab">
+        <div class="tab-pane fade active editor-pane" id="instructions" role="tabpanel" aria-labelledby="instructions-tab">
+          <div id="javascript-editor-instructions"></div>
+        </div>
+        <div class="tab-pane fade editor-pane" id="start-point" role="tabpanel" aria-labelledby="start-point-tab">
           <div id="javascript-editor-start-point"></div>
         </div>
         <div class="tab-pane fade editor-pane" id="solution" role="tabpanel" aria-labelledby="solution-tab">
