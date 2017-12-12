@@ -1,3 +1,10 @@
+.title-container {
+  h4 {
+    color: #ff3D00;
+    margin-top: 50px;
+    font-family: Archivo Black;
+  }
+}
 .exercise {
   margin-top: 30px;
   display: grid;
@@ -8,6 +15,15 @@
   background-color: #0d151c;
   box-shadow: 0px 0px 1px 0px rgba(247,247,247,1);
   opacity: 0.7;
+  h5 {
+    font-family: Archivo Black;
+    color: #ff3D00;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+  p {
+    font-family: Tenor Sans;
+  }
 }
 
 .exercise-app {
@@ -25,6 +41,7 @@
   grid-row: 2 / span 2;
   grid-column: 1 / span 1;
   margin: 10px;
+
 }
 
 .hints-details {
@@ -35,6 +52,11 @@
   overflow-y: auto;
   border-radius: 3px;
   margin-left: -2px;
+
+}
+
+#list_hints li {
+  padding-bottom: 11px;
 }
 
 .editor {
@@ -77,7 +99,7 @@
   border: none;
   font-weight: bold;
   font-size: 14px;
-  background: #00bde1;
+  background: #2a7bf7;
   transition: background 0.3s ease;
 }
 .editor-buttons-flex{
