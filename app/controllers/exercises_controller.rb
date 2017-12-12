@@ -37,16 +37,24 @@ class ExercisesController < ApplicationController
   end
 
   def create
-    @exercise = Exercise.new
-    @exercise.user = current_user
-    @exercise.challenge = Challenge.find(params[:challenge_id])
-    @exercise.code = @exercise.challenge.start_point
-    # @exercise.status = 0;
-    authorize @exercise
-    if @exercise.save
+    exercises = policy_scope(Exercise).where("user_id = ? AND challenge_id = ?",
+      current_user.id, Challenge.find(params[:challenge_id]).id)
+    if exercises.any?
+      @exercise = exercises.first
+      authorize @exercise
       redirect_to exercise_path(@exercise)
     else
-      redirect_to exercises_path
+      @exercise = Exercise.new
+      @exercise.user = current_user
+      @exercise.challenge = Challenge.find(params[:challenge_id])
+      @exercise.code = @exercise.challenge.start_point
+      # @exercise.status = 0;
+      authorize @exercise
+      if @exercise.save
+        redirect_to exercise_path(@exercise)
+      else
+        redirect_to exercises_path
+      end
     end
   end
 
