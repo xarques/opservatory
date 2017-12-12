@@ -6,7 +6,7 @@
           <% @challenges.each do |challenge| %>
             <div class="item <%= 'active' if @challenges.index(challenge) == 0 %>">
               <div class="col-md-4">
-                <div class="card carousel_card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= cl_image_path challenge.photo, height: 200, width: 300, crop: :pad %>')">
+                <div class="card carousel_card" style="background-image: url('<%= cl_image_path challenge.photo, height: 200, width: 300, crop: :pad %>')">
                   <div class="card-category"></div>
                   <div class="card-description">
                     <h2> <%= challenge.name %></h2>

@@ -1,17 +1,17 @@
-<div class="container">
+<div class="container title-container">
   <div>
-    <h4><%= @exercise.challenge.name %> <span id="clock-status"><%= render 'exercise_status', exercise: @exercise %></span></h4>
+    <h4><%= @exercise.challenge.name.upcase %> <span id="clock-status"><%= render 'exercise_status', exercise: @exercise %></span></h4>
     </div>
   <div class="exercise">
     <div class="description">
       <div id="exercise-app" class="exercise-app"> </div>
       <div class="">
-        <h5><strong>The Goal</strong></h45>
+        <h5>THE GOAL</h5>
         <p><%= @exercise.challenge.description %></p>
       </div>
       <div>
-        <h5><strong>Rules</strong></h5>
-        <%= @exercise.challenge.instructions.html_safe if @exercise.challenge.instructions %>
+        <h5><strong>THE RULES</strong></h5>
+        <p><%= @exercise.challenge.instructions.html_safe if @exercise.challenge.instructions %></p>
       </div>
     </div>
 
@@ -66,7 +66,7 @@
     </div>
 
     <div class="result" >
-      <h5>Results:</h5>
+      <h5>THE RESULT</h5>
       <div class="result-details" id="result">
 
       </div>
