@@ -4,6 +4,7 @@ import 'brace/mode/html';
 import 'brace/theme/monokai';
 import 'brace/theme/twilight';
 import 'brace/theme/chrome';
+import 'brace/theme/vibrant_ink'
 import * as Ajv from 'ajv/dist/ajv.min.js';
 import 'aws-sdk';
 import swal from 'sweetalert2';
@@ -40,7 +41,7 @@ const configureAceEditor = ((tagId, content, mode) => {
   } else {
     aceEditor.getSession().setMode('ace/mode/javascript');
   }
-  aceEditor.setTheme('ace/theme/chrome');
+  aceEditor.setTheme('ace/theme/vibrant_ink');
   if (content && content !== "") {
     aceEditor.setValue(content);
   }
