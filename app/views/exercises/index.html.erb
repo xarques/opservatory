@@ -1,7 +1,7 @@
 <div class="container">
   <div class="grid-dashboard">
     <div class="d-exercise">
-        <h2>Your courses</h2>
+        <h2 class="notcard">Your courses</h2>
       <ul class="list-inline list_ex">
         <% @exercises.each do |exercise| %>
               <li><p><strong><%= link_to exercise.challenge.name, exercise_path(exercise)%></strong></p></li>
@@ -11,7 +11,7 @@
     </div>
 
     <div class="challenges_choices">
-      <h2>More challenges</h2>
+      <h2 class="notcard">More challenges</h2>
       <div class="more_challenges">
         <%= form_tag exercises_path, method: :get, remote: true do %>
           <%= text_field_tag :query,
@@ -29,7 +29,7 @@
     </div>
 
     <div class="next_challenge">
-      <h2>Next challenge</h2>
+      <h2 class="notcard">Next challenge</h2>
       <% if @next_exercise %>
         <div class="card next_exercise_card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= cl_image_path @next_exercise.challenge.photo, height: 200, width: 300, crop: :pad %>')">
           <div class="card-category"></div>

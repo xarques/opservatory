@@ -9,10 +9,26 @@
   align-items: center;
   justify-content: space-between;
 
+
+  .logo-obs {
+    color: #2a7bf7;
+    margin-top: 18px;
+    font-family: Archivo Black;
+    text-align: center;
+  }
+  .begname {
+    color: #2a7bf7;
+    font-family: Archivo Black;
+    font-size: 24px;
+    margin-top: 20px;
+
+
+  }
+
   .name {
-    float: right;
-    color: #00bde1;
-    margin-top: 17px;
+    // float: right;
+    color: #2a7bf7;
+    // margin-top: 17px;
   }
 }
 
@@ -31,6 +47,10 @@
 .navbar-wagon-brand img {
   height: 25px;
   margin-top: 14px;
+}
+
+.navbar-wagon-brand:hover {
+  text-decoration: none;
 }
 
 /* User Avatar */

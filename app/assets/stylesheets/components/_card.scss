@@ -8,6 +8,8 @@
   box-shadow: 0px 0px 3px 0px rgba(230,230,230,1);
   background-repeat: no-repeat;
   margin-bottom: 30px;
+  background-color: #212121;
+
 
 }
 .card-user {
@@ -33,6 +35,7 @@
 .card-description h2 {
   font-size: 24px;
   position: left;
+  font-family: Open Sans;
 }
 .card-description p {
   font-size: 14px;
@@ -46,8 +49,9 @@
   right: 0;
   width: 100%;
   z-index: 2;
-  background: black;
+  // background: black;
   opacity: 0;
+
 
 }
 .card-link:hover {

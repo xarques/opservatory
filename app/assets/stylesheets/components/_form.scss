@@ -8,6 +8,7 @@ label {
   margin-top: 70px;
   box-shadow: 0px 0px 3px 0px rgba(199,199,199,1);
   padding: 10px;
+  color: #2a7bf7;
 }
 
  .sign-in {
@@ -16,6 +17,17 @@ label {
   margin-top: 70px;
   box-shadow: 0px 0px 2px 0px rgba(199,199,199,1);
   padding: 10px;
+  h2 {
+    color: white;
+    text-align: center;
+  }
+  .form-actions {
+    color: #2a7bf7;
+    text-align: center;
+    padding-bottom: 20px;
+    padding-top: 10px;
+  }
+
 }
 
 .sign-up-inside {
