@@ -14,6 +14,7 @@ class ChallengesController < ApplicationController
   end
 
   def update
+    @challenge.update(challenge_params)
   end
 
   def create
@@ -33,6 +34,6 @@ class ChallengesController < ApplicationController
   end
 
   def challenge_params
-    params.require(:challenge).permit(:name, :description, :instructions, :level, :duration, :photo)
+    params.require(:challenge).permit(:name, :description, :instructions, :level, :duration, :photo, :start_point, :solution, :schema, :photo_cache)
   end
 end

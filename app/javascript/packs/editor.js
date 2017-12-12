@@ -1,5 +1,6 @@
 import * as ace from 'brace';
 import 'brace/mode/javascript';
+import 'brace/mode/html';
 import 'brace/theme/monokai';
 import 'brace/theme/twilight';
 import 'brace/theme/chrome';
@@ -33,16 +34,44 @@ const swalConfirmButtonColor = '#3085d6';
 const swalCancelButtonColor = '#d33';
 
 // const cloudformation = new AWS.CloudFormation();
-
-const aceEditor = ((tagId, content) => {
+const configureAceEditor = ((tagId, content, mode) => {
   const aceEditor = ace.edit(tagId);
-  aceEditor.getSession().setMode('ace/mode/javascript');
-  // aceEditor.setTheme('ace/theme/monokai');
+  if (mode) {
+    aceEditor.getSession().setMode(`ace/mode/${mode}`);
+  } else {
+    aceEditor.getSession().setMode('ace/mode/javascript');
+  }
   aceEditor.setTheme('ace/theme/vibrant_ink');
-  if (content) {
+  if (content && content !== "") {
     aceEditor.setValue(content);
   }
   return aceEditor;
+});
+
+const aceEditor = ((tagId, content) => {
+  return configureAceEditor(tagId, content);
+});
+
+let aceEditorInstructions;
+let aceEditorStartPoint;
+let aceEditorSolution;
+let aceEditorSchema;
+
+const aceEditorChallenge = (() => {
+  if (document.getElementById("javascript-editor-start-point")) {
+    aceEditorInstructions = configureAceEditor("javascript-editor-instructions", "", "html");
+    aceEditorStartPoint = configureAceEditor("javascript-editor-start-point");
+    aceEditorSolution = configureAceEditor("javascript-editor-solution");
+    aceEditorSchema = configureAceEditor("javascript-editor-schema");
+  }
+});
+
+const saveChallenge = (() => {
+  document.getElementById("challenge_instructions").value = aceEditorInstructions.getValue();
+  document.getElementById("challenge_start_point").value = aceEditorStartPoint.getValue();
+  document.getElementById("challenge_solution").value = aceEditorSolution.getValue();
+  document.getElementById("challenge_schema").value = aceEditorSchema.getValue();
+  document.getElementById("new_challenge").submit();
 });
 
 const retryExercise = (() => {
@@ -245,9 +274,31 @@ const deployExercise = ((schema, code, targetTagId) => {
 
 // swal is asynchron
 // it returns a promise so the following callback ends before exiting the sweet alert
-document.getElementById("retry-button").addEventListener('click', () => {
-  retryExercise();
+
+const addListener = ((tagId, event, callbackFunction) => {
+  const element = document.getElementById(tagId);
+  if (element) {
+    element.addEventListener(event, callbackFunction);
+  }
 });
+
+// const retryButtonElement = document.getElementById("retry-button");
+// if (retryButtonElement) {
+//   retryButtonElement.addEventListener('click', () => {
+//     retryExercise();
+//   });
+// }
+addListener("retry-button", "click", retryExercise);
+addListener("save-challenge-button", "click", saveChallenge);
+
+// const challengeFormElement = document.getElementById("save-challenge-button");
+// if (challengeFormElement) {
+//   challengeFormElement.addEventListener('click', () => {
+//     return saveChallenge();
+//   });
+// }
+
+aceEditorChallenge();
 
 window.aceEditor = aceEditor;
 window.validateExerciseCallback = validateExerciseCallback;
@@ -262,3 +313,4 @@ window.createAlbum = createAlbum;
 window.listAlbums = listAlbums;
 window.getBucketName =getBucketName;
 window.setBucketName =setBucketName;
+//window.beforeChallengeSave = beforeChallengeSave;

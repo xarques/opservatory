@@ -1,70 +1,39 @@
-.challenge {
+.challenge-new {
   display: grid;
-  grid-template-columns: 50% 50%;
-  grid-template-rows: 70% 10% 20%;
+  grid-template-columns: 49% 2% 49%;
+  grid-template-rows: 80% 20%;
   height: calc(100vh - 70px);
-  padding: 30px;
+  padding: 20px;
 }
-.description {
+
+.description-challenge-new {
   grid-row: 1 / span 1;
   grid-column: 1 / span 1;
+  overflow-y: auto;
 }
 
-.tips {
-  grid-row: 2 / span 2;
-  grid-column: 1 / span 1;
-}
-
-.editor {
-  grid-row: 1 / span 1;
-  grid-column: 2 / span 1;
-}
-
-.c-new-validation {
+.hints-challenge-new {
   grid-row: 2 / span 1;
-  grid-column: 2 / span 1;
-  margin-top: 20px;
-}
-
-.c-new-result {
-  grid-row: 3 / span 1;
-  grid-column: 2 / span 1;
-}
-
-.c-new-btn-photo {
-  background-color: #F2AF58;
-  color: white;
-  padding: 10px 100px;
-  border-radius: 10px;
-  opacity: 0.9;
-  border-color: none;
-}
-.c-new-btn-photo:hover {
-  opacity: 0.5;
-  background: light-gray;
-  text-decoration: none;
-  color: white;
-}
-.c-new-grid {
-  display: grid;
-  grid-template-columns: 60% 40%;
-  grid-template-rows: 50% 50%;
-
-  > div {
-    padding: 20px;
-  }
-}
-.c-new-new-form {
-  grid-row: 1 / span 2;
   grid-column: 1 / span 1;
 }
 
-.c-new-select {
-  background-color: light-gray;
-  color: black;
-  height: 30px;
-  width: 300px;
-  border-radius: 10px;
-  opacity: 0.9;
-  border-color: none;
+.editor-challenge-new {
+  grid-row: 1 / span 1;
+  grid-column: 3 / span 1;
 }
+
+.buttons-challenge-new {
+  grid-row: 2 / span 1;
+  grid-column: 3 / span 1;
+}
+
+.nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus {
+  background-color: $white;
+}
+
+.editor-pane {
+  // display: flex;
+  // flex-direction: column;
+  //height:300px;
+}
+
