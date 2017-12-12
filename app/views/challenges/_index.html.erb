@@ -1,7 +1,7 @@
 <div class="popchallenges-container ">
   <div class="row">
     <h3>TRY OUR CHALLENGES</h3>
-      <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+      <div id="carousel-example-generic" class="carousel slide multi-item-carousel" data-ride="carousel">
         <div class="carousel-inner">
           <% @challenges.each do |challenge| %>
             <div class="item <%= 'active' if @challenges.index(challenge) == 0 %>">
@@ -29,6 +29,5 @@
         </a>
       </div>
     </div>
-    <% if policy(Challenge).create? %>
-    <% end %>
+  </div>
 </div>

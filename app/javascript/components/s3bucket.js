@@ -1,4 +1,5 @@
 import 'aws-sdk';
+import swal from 'sweetalert2';
 
 //var albumBucketName = 'opservatory-s3-challenge';
 //var albumBucketName = 'opservatory-s3-public-bucket-7';

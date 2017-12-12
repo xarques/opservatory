@@ -38,7 +38,10 @@
       <div id="javascript-editor"></div>
       <div class="editor-buttons text-center">
         <div class="editor-buttons-flex">
-          <%= link_to "Retry", retry_exercise_path(@exercise), method: "patch", :class =>"btn btn-primary btn-exercise", :id =>"retry", :type =>"button", remote: true %>
+          <button type="button" id="retry-button" class="btn btn-primary btn-exercise">
+            Retry
+          </button>
+          <%= link_to "Retry", retry_exercise_path(@exercise), method: "patch", :class =>"btn btn-primary btn-exercise", :id =>"retry", :type =>"button", :class =>"hidden", remote: true %>
           <%= simple_form_for(@exercise, remote: true, :html => { :onsubmit => 'validate()' }, :method => 'patch' ) do |form| %>
             <%= form.hidden_field :code %>
             <%= form.hidden_field :status %>
@@ -62,13 +65,11 @@
       </div>
     </div>
 
-
     <div class="result" >
       <h5>Results:</h5>
       <div class="result-details" id="result">
 
       </div>
-
     </div>
     <%# content_for :after_js do %>
       <!-- method aceEditor is defined in app/javascript/packs/editor.js -->
