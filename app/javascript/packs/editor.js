@@ -28,6 +28,9 @@ AWS.config.apiVersions = {
 
 const lambda = new AWS.Lambda();
 
+const swalConfirmButtonColor = '#3085d6';
+const swalCancelButtonColor = '#d33';
+
 // const cloudformation = new AWS.CloudFormation();
 
 const aceEditor = ((tagId, content) => {
@@ -41,9 +44,26 @@ const aceEditor = ((tagId, content) => {
   return aceEditor;
 });
 
+const retryExercise = (() => {
+  swal({
+    title: 'Do you want to retry this exercise ?',
+    text: "The code and the tips will be reinitialized",
+    type: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: swalConfirmButtonColor,
+    cancelButtonColor: swalCancelButtonColor,
+    confirmButtonText: 'Yes, reset it!'
+  })
+  .then((result) => {
+    if (result.value) {
+      document.getElementById("retry").click();
+    }
+  });
+});
+
 const validateExerciseCallback = ((schema, editor, sourceTagId, targetTagId) => {
   document.getElementById(sourceTagId).addEventListener('click', () => {
-    validateExercise(schema, editor.getValue(), targetTagId)
+    validateExercise(schema, editor.getValue(), targetTagId);
   });
 });
 
@@ -110,8 +130,8 @@ const deployExercise = ((schema, code, targetTagId) => {
     text: "Your Cloud Provider account may be charged",
     type: 'warning',
     showCancelButton: true,
-    confirmButtonColor: '#3085d6',
-    cancelButtonColor: '#d33',
+    confirmButtonColor: swalConfirmButtonColor,
+    cancelButtonColor: swalCancelButtonColor,
     confirmButtonText: 'Yes, deploy it!'
   }).then((result) => {
     if (result.value) {
@@ -220,8 +240,17 @@ const deployExercise = ((schema, code, targetTagId) => {
 
 // });
 
+// Callbacks
+
+// swal is asynchron
+// it returns a promise so the following callback ends before exiting the sweet alert
+document.getElementById("retry-button").addEventListener('click', () => {
+  retryExercise();
+});
+
 window.aceEditor = aceEditor;
 window.validateExerciseCallback = validateExerciseCallback;
+//window.retryExercise = retryExercise;
 window.validateExercise = validateExercise;
 window.deployExercise = deployExercise;
 window.deleteAlbum = deleteAlbum;

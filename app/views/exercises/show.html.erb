@@ -17,11 +17,14 @@
 
     <div class="hints">
       <% if @next_hint.count == 0 %>
-        <% disabled_class = "btn btn-primary btn-exercise disabled" %>
+        <% disabled_class_hint = "btn btn-primary btn-exercise disabled" %>
+        <% disabled_class_solution = "btn btn-primary btn-exercise" %>
       <% else %>
-        <% disabled_class = "btn btn-primary btn-exercise" %>
+        <% disabled_class_hint = "btn btn-primary btn-exercise" %>
+        <% disabled_class_solution = "btn btn-primary btn-exercise disabled" %>
       <% end %>
-      <%= link_to "Need a hint" , exercise_exercise_hints_path(@exercise.id), method: "post", :class => disabled_class, :id => "button-hint", remote: true %>
+      <%= link_to "Need a hint" , exercise_exercise_hints_path(@exercise.id), method: "post", :class => disabled_class_hint, :id => "button-hint", remote: true %>
+      <%= link_to "Solution" , reveal_solution_exercise_path(@exercise.id), method: "patch", :class => disabled_class_solution, :id => "button-solution", remote: true %>
       <div class="hints-details" id="hints">
         <ul id="list_hints" class="list-unstyled">
          <% @given_hints.each do |hint|%>
@@ -35,7 +38,10 @@
       <div id="javascript-editor"></div>
       <div class="editor-buttons text-center">
         <div class="editor-buttons-flex">
-          <%= link_to "Retry", retry_exercise_path(@exercise), method: "patch", :class =>"btn btn-primary btn-exercise", :id =>"retry", :type =>"button", remote: true, :onclick => 'retry()' %>
+          <button type="button" id="retry-button" class="btn btn-primary btn-exercise">
+            Retry
+          </button>
+          <%= link_to "Retry", retry_exercise_path(@exercise), method: "patch", :class =>"btn btn-primary btn-exercise", :id =>"retry", :type =>"button", :class =>"hidden", remote: true %>
           <%= simple_form_for(@exercise, remote: true, :html => { :onsubmit => 'validate()' }, :method => 'patch' ) do |form| %>
             <%= form.hidden_field :code %>
             <%= form.hidden_field :status %>
@@ -71,19 +77,6 @@
     <%# end %>
 
     <script>
-      const retry = (() => {
-        swal({
-          title: 'Do you want to retry this exercise ?',
-          text: "The code and the tips will be reinitialized",
-          type: 'warning',
-          showCancelButton: true,
-          confirmButtonColor: '#3085d6',
-          cancelButtonColor: '#d33',
-          confirmButtonText: 'Yes, reset it!'
-        }).then((result) => {
-          return true;
-        });
-      });
       const validate = (() => {
         validateExercise('<%=j raw(@exercise.challenge.schema) %>', javascriptEditor.getValue(), "result");
       });

@@ -16,4 +16,8 @@ class ExercisePolicy < ApplicationPolicy
   def retry?
     user == record.user
   end
+
+  def reveal_solution?
+    user == record.user
+  end
 end

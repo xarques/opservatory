@@ -3,13 +3,23 @@ function addHint(hintHTML) {
   hints.insertAdjacentHTML('beforeend', hintHTML);
 };
 
+function updateHintBtn() {
+  var btn = document.getElementById("button-hint")
+  btn.classList.add("disabled")};
+
+function updateSolutionBtn() {
+var btn = document.getElementById("button-solution")
+btn.classList.remove("disabled")
+};
+
 var counter = <%= @next_hint.count %>;
 addHint(`<li><%= j @next_hint_first.description %></li>`);
 
 if (counter === 1) {
- document.getElementById("button-hint").classList.add("disabled");
+ updateHintBtn();
+ updateSolutionBtn();
 };
 
 
-// // console.log(counter)
+// console.log(counter)
 // console.log(<%= @next_hint.count %>);

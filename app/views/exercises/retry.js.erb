@@ -17,5 +17,16 @@ clock = document.getElementById("clock-status");
 clock.insertAdjacentHTML('beforeend', item)
 };
 
+function updateHintBtn() {
+  var btn = document.getElementById("button-hint")
+  btn.classList.remove("disabled")};
+
+function updateSolutionBtn() {
+var btn = document.getElementById("button-solution")
+btn.classList.add("disabled")
+};
+
 deleteClockStatus();
 updateClockStatus(`<%= j render "exercise_status", exercise: @exercise %>`);
+updateHintBtn();
+updateSolutionBtn();
