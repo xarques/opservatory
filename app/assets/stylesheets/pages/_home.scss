@@ -5,17 +5,18 @@
 .popchallenges-container {
   color: black;
   padding-bottom: 30px;
-  margin-top: 120px;
+  margin-top: 100px;
   border-radius: 3px;
   background-color: white;
   h3 {
-    font-family: Archivo Black;
+    font-family:Archivo Black;
+    color: #2a7bf7;
     margin-top: 60px;
     margin-bottom: 60px;
 
     text-align: center;
     font-weight: bold;
-    color: white;
+
   }
   h2{
     font-family: Open Sans;
@@ -29,7 +30,7 @@
 .aboutus-container {
   color: black;
   border-radius: 3px;
-  margin-top: 120px;
+  margin-top: 200px;
   background-color: white;
 
 
@@ -48,13 +49,17 @@
   }
   h3 {
     font-weight: bold;
-    font-family:Tenor Sans;
+
     margin-top: 60px;
     margin-bottom: 60px;
+    font-family:Archivo Black;
+    color: #2a7bf7;
   }
   h4 {
     font-family: Archivo Black;
+    color: #2a7bf7;
   }
+
   p {
     // font-family: Spinnaker;
     margin-bottom: 60px;
@@ -66,7 +71,7 @@
   color: black;
   border-radius: 3px;
   background-color: white;
-  margin-top: 120px;
+  margin-top: 200px;
 
   img {
   width: 110px;
@@ -78,12 +83,15 @@
     font-weight: bold;
     margin-top: 60px;
     margin-bottom: 60px;
+    font-family:Archivo Black;
+    color: #2a7bf7;
 
   }
   h4 {
     font-family: Archivo Black;
     font-size: 18px;
     font-weight: bold;
+    color: #2a7bf7;
 
 
   }
