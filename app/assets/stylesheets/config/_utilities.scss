@@ -1,9 +1,10 @@
 body {
-  background-image: image-url("background_index.png");
+  background-color: black;
 }
 
 .content-wrapper {
   min-height: calc(100vh - 70px - 100px);
   padding: 0 0 100px 0;
   margin: 0;
+  background-color: transparent;
 }

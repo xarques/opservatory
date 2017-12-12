@@ -3,25 +3,35 @@
   display: flex;
   justify-content: space-around;
   align-items: center;
-  background-image: linear-gradient(rgba(0,0,0.2,0.5), rgba(0,0,0.2,0.5)), image-url("background-image.jpg");
+  background: linear-gradient(rgba(0,0,0.2,0.5), rgba(0,0,0.2,0.5)), url('https://tctechcrunch2011.files.wordpress.com/2016/02/cleandatabase.jpg') no-repeat center top fixed;
   color: white;
   background-size: cover;
   h1 {
     font-weight: bold;
-    font-size: 45px;
+    font-size: 35px;
     margin-bottom: 25px;
-    font-family: Spinnaker;
+    font-family: Archivo Black;
+
 
   }
   p {
-    opacity: 0.8;
-    font-size: 25px;
+    // opacity: 0.8;
+    font-size: 28px;
     font-weight: lighter;
-    margin-bottom: 60px;
+    margin-bottom: 30px;
     font-family: Spinnaker;
+
   }
   .btn {
-    padding: 20px 50px;
-    border-radius: 6px;
+    padding: 20px 15px;
+    border-radius: 2px;
+    font-family: Tenor Sans;
+    font-size: 15px;
   }
+}
+
+.banner-fixed {
+  width: 100%;
+  position: fixed;
+  z-index: -1;
 }
