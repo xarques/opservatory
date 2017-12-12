@@ -1,34 +1,58 @@
 <div class="container">
   <h1>Create a challenge</h1>
-  <div class="c-new-grid">
-    <div class="f-new">
-      <ul class="c-new-new-form">
-        <%= simple_form_for(@challenge) do |f| %>
-          <!-- [...] -->
-          <%= f.input :name%>
-          <%= f.input :description %>
-          <%= f.input :instructions %>
-          <%= f.input :level, collection: [0, 1, 2, 3] %>
-          <%= f.input :duration %>
-          <%#= f.label :category  %>
-          <%#= select_tag 'category', options_for_select(@alibis.collect{|alibi| alibi.category}.uniq), :include_blank => 'All' %>
-          <%= f.input :photo %>
-          <%= f.input :photo_cache, as: :hidden %>
-          <%= f.submit class: "c-new-btn-photo" %>
-          <!-- [...] -->
-        <% end %>
-      </ul>
+  <div class="challenge-new">
+    <div class="description-challenge-new">
+      <%= simple_form_for(@challenge) do |f| %>
+        <!-- [...] -->
+        <%= f.input :name%>
+        <%= f.input :description %>
+        <%= f.input :instructions %>
+        <%= f.input :level, collection: [0, 1, 2, 3] %>
+        <%= f.input :duration %>
+        <%= f.hidden_field :start_point %>
+        <%= f.hidden_field :solution %>
+        <%= f.hidden_field :schema %>
+        <%= f.input :photo %>
+        <%= f.input :photo_cache, as: :hidden %>
+        <%#= f.button :submit, "Validate", class: "btn btn-primary btn-exercise" %>
+        <%#= f.submit  %>
+        <!-- [...] -->
+      <% end %>
     </div>
 <!--     <div class="text-center">
       <%#= image_tag "create.jpg", height: 400, width: 350, :crop=>"fit", class:'brice' %>
     </div> -->
-  </div>
-  <!-- method aceEditor is defined in app/javascript/packs/editor.js -->
-  <%= javascript_pack_tag 'editor' %>
+    <div class="editor-challenge-new">
+      <ul class="nav nav-tabs" id="myTab" role="tablist">
+        <li class="nav-item active">
+          <a class="nav-link " id="start-point-tab" data-toggle="tab" href="#start-point" role="tab" aria-controls="start-point" aria-selected="true">Start point</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id="solution-tab" data-toggle="tab" href="#solution" role="tab" aria-controls="solution" aria-selected="false">Solution</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id="schema-tab" data-toggle="tab" href="#schema" role="tab" aria-controls="schema" aria-selected="false">Schema</a>
+        </li>
+      </ul>
+      <div class="tab-content" id="myTabContent">
+        <div class="tab-pane fade active editor-pane" id="start-point" role="tabpanel" aria-labelledby="start-point-tab">
+          <div id="javascript-editor-start-point"></div>
+        </div>
+        <div class="tab-pane fade editor-pane" id="solution" role="tabpanel" aria-labelledby="solution-tab">
+          <div id="javascript-editor-solution"></div>
+        </div>
+        <div class="tab-pane fade editor-pane" id="schema" role="tabpanel" aria-labelledby="schema-tab">
+          <div id="javascript-editor-schema"></div>
+        </div>
+      </div>
+    </div>
 
-  <script>
-    // methods aceEditor and validateExerciseCallback are defined in app/javascript/packs/editor.js
-    const javascriptEditor = aceEditor("javascript-editor", "");
-    // validateExerciseCallback('<%#=j raw(@exercise.challenge.schema) %>', javascriptEditor, "validate", "result");
-  </script>
+    <div class="buttons-challenge-new">
+      <button type="button" id="save-challenge-button" class="btn btn-primary btn-exercise">
+        Save
+      </button>
+    </div>
+  </div>
+    <!-- method aceEditor is defined in app/javascript/packs/editor.js -->
+    <%= javascript_pack_tag 'editor' %>
 </div>

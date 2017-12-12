@@ -4,7 +4,9 @@
     </div>
   <div class="exercise">
     <div class="description">
-      <div id="exercise-app" class="exercise-app"> </div>
+      <% if @exercise.challenge.deployable %>
+        <div id="exercise-app" class="exercise-app"> </div>
+      <% end %>
       <div class="">
         <h5>THE GOAL</h5>
         <p><%= @exercise.challenge.description %></p>
@@ -49,11 +51,11 @@
           <% end %>
           <% if @exercise.challenge.deployable %>
             <% if @exercise.status == 1 || @exercise.status == 3 %>
-              <% disabled = "btn btn-primary btn-exercise" %>
+              <% disabled = "" %>
             <% else %>
-              <% disabled = "btn btn-primary btn-exercise disabled" %>
+              <% disabled = "disabled" %>
             <% end %>
-            <button type="button" id="deploy" class="<%= disabled %>" onclick="deploy()">
+            <button type="button" id="deploy" class="btn btn-primary btn-exercise" <%= disabled %> onclick="deploy()">
               Deploy
             </button>
           <% end %>
