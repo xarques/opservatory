@@ -4,14 +4,16 @@
 }
 .popchallenges-container {
   color: black;
-  padding-bottom: 30px;
+  // padding-bottom: 30px;
   margin-top: 10px;
   border-radius: 3px;
-  background-color: #212121;
-  opacity: 0.9;
+  // background-color: #212121;
+  // opacity: 0.9;
+  background: transparent;
   h3 {
     font-family:Archivo Black;
-    color: #2a7bf7;
+    // color: #2a7bf7;
+    color: #ff3D00;
     margin-top: 60px;
     // margin-bottom: 60px;
     text-align: center;
@@ -44,8 +46,8 @@
   left: 28px;
   }
   img {
-    width: 80px;
-    height: 80px;
+    width: 70px;
+    height: 70px;
     display: center;
   }
   h3 {
@@ -54,18 +56,20 @@
     margin-top: 60px;
     // margin-bottom: 60px;
     font-family:Archivo Black;
-    color: #2a7bf7;
+    color: #ff3D00;
+    // color: #2a7bf7;
   }
   h4 {
     font-family: Archivo Black;
-    color: #2a7bf7;
+    color: #ff3D00;
+    // color: #2a7bf7;
     font-size: 18px;
   }
 
   p {
     // font-family: Spinnaker;
     margin-bottom: 60px;
-    font-family: Tenor Sans;
+    font-family: Spinnaker;
     color: white;
   }
 }
@@ -89,14 +93,16 @@
     margin-top: 60px;
     margin-bottom: 40px;
     font-family:Archivo Black;
-    color: #2a7bf7;
+    color: #ff3D00;
+    // color: #2a7bf7;
 
   }
   h4 {
-    font-family: Tenor Sans;
+    font-family: Spinnaker;
     font-size: 18px;
     font-weight: bold;
-    color: #2a7bf7;
+    color: #ff3D00;
+    // color: #2a7bf7;
     margin-top: 20px;
 
 
@@ -106,7 +112,7 @@
     font-size: 15px;
     margin-top: 10px;
     margin-bottom: 60px;
-    font-family: Tenor Sans;
+    font-family: Spinnaker;
     color: white;
   }
 }
