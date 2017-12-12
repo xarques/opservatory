@@ -3,6 +3,7 @@ class ChallengesController < ApplicationController
 
   def new
     @challenge = Challenge.new
+    @hint = Hint.new
     authorize @challenge
   end
 
@@ -17,9 +18,15 @@ class ChallengesController < ApplicationController
   end
 
   def create
+    raise
     @challenge = Challenge.new(challenge_params)
     authorize @challenge
+
+    @hint = Hint.new(description: params[:challenge][:hint_description])
+    @hint.challenge = @hint
+
     if @challenge.save
+       @hint.save
       redirect_to challenge_path(@challenge)
     else
       render :new
@@ -33,6 +40,6 @@ class ChallengesController < ApplicationController
   end
 
   def challenge_params
-    params.require(:challenge).permit(:name, :description, :instructions, :level, :duration, :photo)
+    params.require(:challenge).permit(:name, :description, :instructions, :level, :duration, :photo, :hint_description)
   end
 end

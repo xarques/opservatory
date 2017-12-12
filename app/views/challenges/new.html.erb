@@ -27,7 +27,8 @@
   <%= javascript_pack_tag 'editor' %>
 
   <script>
-    // methods aceEditor and validateExerciseCallback are defined in app/javascript/packs/editor.js
+
+      // methods aceEditor and validateExerciseCallback are defined in app/javascript/packs/editor.js
     const javascriptEditor = aceEditor("javascript-editor", "");
     // validateExerciseCallback('<%#=j raw(@exercise.challenge.schema) %>', javascriptEditor, "validate", "result");
   </script>

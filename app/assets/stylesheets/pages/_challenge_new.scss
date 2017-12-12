@@ -1,3 +1,7 @@
+label {
+  color: black;
+}
+
 .challenge {
   display: grid;
   grid-template-columns: 50% 50%;
@@ -67,4 +71,8 @@
   border-radius: 10px;
   opacity: 0.9;
   border-color: none;
+}
+
+.hints-box {
+  color: black;
 }
