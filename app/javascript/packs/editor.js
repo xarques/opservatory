@@ -3,6 +3,7 @@ import 'brace/mode/javascript';
 import 'brace/theme/monokai';
 import 'brace/theme/twilight';
 import 'brace/theme/chrome';
+import 'brace/theme/vibrant_ink'
 import * as Ajv from 'ajv/dist/ajv.min.js';
 import 'aws-sdk';
 import swal from 'sweetalert2';
@@ -37,7 +38,7 @@ const aceEditor = ((tagId, content) => {
   const aceEditor = ace.edit(tagId);
   aceEditor.getSession().setMode('ace/mode/javascript');
   // aceEditor.setTheme('ace/theme/monokai');
-  aceEditor.setTheme('ace/theme/chrome');
+  aceEditor.setTheme('ace/theme/vibrant_ink');
   if (content) {
     aceEditor.setValue(content);
   }
