@@ -45,6 +45,7 @@ const configureAceEditor = ((tagId, content, mode) => {
   if (content && content !== "") {
     aceEditor.setValue(content);
   }
+  aceEditor.clearSelection();
   return aceEditor;
 });
 
