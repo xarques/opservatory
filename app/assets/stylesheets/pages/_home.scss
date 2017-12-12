@@ -5,15 +5,15 @@
 .popchallenges-container {
   color: black;
   padding-bottom: 30px;
-  margin-top: 100px;
+  margin-top: 10px;
   border-radius: 3px;
-  background-color: white;
+  background-color: #212121;
+  opacity: 0.9;
   h3 {
     font-family:Archivo Black;
     color: #2a7bf7;
     margin-top: 60px;
-    margin-bottom: 60px;
-
+    // margin-bottom: 60px;
     text-align: center;
     font-weight: bold;
 
@@ -30,8 +30,9 @@
 .aboutus-container {
   color: black;
   border-radius: 3px;
-  margin-top: 200px;
-  background-color: white;
+  // margin-top: 50px;
+  background-color: #212121;
+  opacity: 0.9;
 
 
   .practice {
@@ -51,27 +52,31 @@
     font-weight: bold;
 
     margin-top: 60px;
-    margin-bottom: 60px;
+    // margin-bottom: 60px;
     font-family:Archivo Black;
     color: #2a7bf7;
   }
   h4 {
     font-family: Archivo Black;
     color: #2a7bf7;
+    font-size: 18px;
   }
 
   p {
     // font-family: Spinnaker;
     margin-bottom: 60px;
-    font-family: Tenor Sans,
+    font-family: Tenor Sans;
+    color: white;
   }
 }
 
 .team-container {
   color: black;
   border-radius: 3px;
-  background-color: white;
-  margin-top: 200px;
+  background-color: #212121;
+  margin-top: 100px;
+  margin-bottom: 100px;
+  opacity: 0.9;
 
   img {
   width: 110px;
@@ -82,25 +87,27 @@
   h3 {
     font-weight: bold;
     margin-top: 60px;
-    margin-bottom: 60px;
+    margin-bottom: 40px;
     font-family:Archivo Black;
     color: #2a7bf7;
 
   }
   h4 {
-    font-family: Archivo Black;
+    font-family: Tenor Sans;
     font-size: 18px;
     font-weight: bold;
     color: #2a7bf7;
+    margin-top: 20px;
 
 
   }
   p {
     // font-family: Spinnaker;
     font-size: 15px;
-    margin-top: 20px;
+    margin-top: 10px;
     margin-bottom: 60px;
     font-family: Tenor Sans;
+    color: white;
   }
 }
 * {
