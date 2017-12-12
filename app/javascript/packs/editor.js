@@ -110,7 +110,7 @@ const validateExercise = ((schema, code, targetTagId) => {
     // Set the status to unvalid
     document.getElementById("exercise_status").value = 2;
     if (deployButton) {
-      deployButton.classList.add("disabled");
+      deployButton.setAttribute("disabled","");
     }
     targetDiv.innerHTML = "Code is not valid";
     return true;
@@ -120,7 +120,7 @@ const validateExercise = ((schema, code, targetTagId) => {
     // Set the status to valid
     document.getElementById("exercise_status").value = 1;
     if (deployButton) {
-      deployButton.classList.remove("disabled");
+      deployButton.removeAttribute("disabled");
     }
     console.log('Code is Valid!');
   }
@@ -128,7 +128,7 @@ const validateExercise = ((schema, code, targetTagId) => {
     // Set the status to unvalid
     document.getElementById("exercise_status").value = 2;
     if (deployButton) {
-      deployButton.classList.add("disabled");
+      deployButton.setAttribute("disabled","");
     }
     targetDiv.innerHTML = "";
     validate.errors.forEach((error) => {
