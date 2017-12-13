@@ -8,9 +8,8 @@
               <div class="col-md-4">
                 <div class="card carousel_card" style="background-image: url('<%= cl_image_path challenge.photo, height: 200, width: 300, crop: :pad %>')">
                   <div class="card-category"></div>
-                  <div class="card-description">
+                  <div class="card-description-carousel">
                     <h2> <%= challenge.name %></h2>
-                    <p> <%= challenge.description %></p>
                   </div>
                   <%= link_to '', challenge_path(challenge), class: 'card-link' %>
                 </div>

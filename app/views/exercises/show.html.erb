@@ -1,8 +1,37 @@
-<div class="container title-container">
+<div class="container-fluid title-container">
   <div>
     <h4><%= @exercise.challenge.name.upcase %> <span id="clock-status"><%= render 'exercise_status', exercise: @exercise %></span></h4>
     </div>
   <div class="exercise">
+
+      <div class="editor-buttons text-center">
+        <div class="editor-buttons-flex">
+          <button type="button" id="retry-button" class="btn btn-primary btn-exercise">
+            Retry
+          </button>
+          <%= link_to "Retry", retry_exercise_path(@exercise), method: "patch", :class =>"btn btn-primary btn-exercise", :id =>"retry", :type =>"button", :class =>"hidden", remote: true %>
+          <%= simple_form_for(@exercise, remote: true, :html => { :onsubmit => 'validate()' }, :method => 'patch' ) do |form| %>
+            <%= form.hidden_field :code %>
+            <%= form.hidden_field :status %>
+            <%= form.button :submit, "Validate", class: "btn btn-primary btn-exercise btn-validate" %>
+          <% end %>
+          <% if @exercise.challenge.deployable %>
+            <% if @exercise.status == 1 || @exercise.status == 3 %>
+              <% disabled = "" %>
+            <% else %>
+              <% disabled = "disabled" %>
+            <% end %>
+            <button type="button" id="deploy" class="btn btn-primary btn-exercise" <%= disabled %> onclick="deploy()">
+              Deploy
+            </button>
+          <% end %>
+          <button type="button" id="skip" class="btn btn-primary btn-exercise">
+            Skip >>
+          </button>
+        </div>
+      <%#= link_to 'Back', exercises_path %>
+      </div>
+
     <div class="description">
       <% if @exercise.challenge.deployable %>
         <div id="exercise-app" class="exercise-app"> </div>
@@ -29,42 +58,17 @@
       <%= link_to "Solution" , reveal_solution_exercise_path(@exercise.id), method: "patch", :class => disabled_class_solution, :id => "button-solution", remote: true %>
       <div class="hints-details" id="hints">
         <ul id="list_hints" class="list-unstyled">
-         <% @given_hints.each do |hint|%>
-         <li><%= hint.description %></li>
-         <% end %>
+        <% @given_hints.each do |hint|%>
+          <% if hint.description %>
+            <li><%= hint.description.html_safe %></li>
+          <% end %>
+        <% end %>
         </ul>
       </div>
     </div>
 
     <div class="editor text-center">
       <div id="javascript-editor"></div>
-      <div class="editor-buttons text-center">
-        <div class="editor-buttons-flex">
-          <button type="button" id="retry-button" class="btn btn-primary btn-exercise">
-            Retry
-          </button>
-          <%= link_to "Retry", retry_exercise_path(@exercise), method: "patch", :class =>"btn btn-primary btn-exercise", :id =>"retry", :type =>"button", :class =>"hidden", remote: true %>
-          <%= simple_form_for(@exercise, remote: true, :html => { :onsubmit => 'validate()' }, :method => 'patch' ) do |form| %>
-            <%= form.hidden_field :code %>
-            <%= form.hidden_field :status %>
-            <%= form.button :submit, "Validate", class: "btn btn-primary btn-exercise" %>
-          <% end %>
-          <% if @exercise.challenge.deployable %>
-            <% if @exercise.status == 1 || @exercise.status == 3 %>
-              <% disabled = "" %>
-            <% else %>
-              <% disabled = "disabled" %>
-            <% end %>
-            <button type="button" id="deploy" class="btn btn-primary btn-exercise" <%= disabled %> onclick="deploy()">
-              Deploy
-            </button>
-          <% end %>
-          <button type="button" id="skip" class="btn btn-primary btn-exercise">
-            Skip >>
-          </button>
-        </div>
-      <%#= link_to 'Back', exercises_path %>
-      </div>
     </div>
 
     <div class="result" >

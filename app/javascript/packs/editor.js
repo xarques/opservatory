@@ -105,6 +105,53 @@ const validateExerciseCallback = ((schema, editor, sourceTagId, targetTagId) => 
   });
 });
 
+const formatJsonSchemaErrors = ((errors) => {
+  // - Missign attribute:
+  // {"keyword":"required",
+  //  "dataPath":".Resources['publicS3']",
+  //  "schemaPath":"#/properties/Resources/patternProperties/%5E%5Ba-zA-Z0-9%5D%2B%24/required",
+  //  "params":{"missingProperty":"Type"},
+  //  "message":"should have required property 'Type'"}
+  // - Unhautorize Attribute:
+  // {"keyword":"additionalProperties",
+  //  "dataPath":".Resources['publicS3']",
+  //  "schemaPath":"#/properties/Resources/patternProperties/%5E%5Ba-zA-Z0-9%5D%2B%24/additionalProperties",
+  //  "params":{"additionalProperty":"Type2"},
+  //  "message":"should NOT have additional properties"}
+  // - Incorrect value:
+  // {"keyword":"enum",
+  //  "dataPath":".Resources['publicS3'].Type",
+  //  "schemaPath":"#/properties/Resources/patternProperties/%5E%5Ba-zA-Z0-9%5D%2B%24/properties/Type/enum",
+  //  "params":{"allowedValues":["AWS::S3::Bucket"]},
+  //  "message":"should be equal to one of the allowed values"}
+  // {"keyword":"enum",
+  //  "dataPath":".Resources['publicS3'].Properties.CorsConfiguration.CorsRules[0].AllowedMethods[0]",
+  //  "schemaPath":"#/properties/Resources/patternProperties/%5E%5Ba-zA-Z0-9%5D%2B%24/properties/Properties/properties/CorsConfiguration/properties/CorsRules/items/properties/AllowedMethods/items/enum",
+  //  "params":{"allowedValues":["POST","GET","PUT","DELETE","HEAD"]},
+  //  "message":"should be equal to one of the allowed values"}
+  const messages = [];
+  errors.forEach((error) => {
+    const keyword = error.keyword;
+    const params = error.params;
+    const dataPath = error.dataPath;
+    switch(keyword) {
+    case "required":
+        messages.push(`<p class='invalid-result'>Missing property <em>${params.missingProperty}</em></p>`);
+        break;
+    case "additionalProperties":
+        messages.push(`<p class='invalid-result'>Property <em>${params.additionalProperty}</em> is not allowed</p>`);
+        break;
+    case "enum":
+        const property = dataPath.split('.').pop().replace(/\[.*\]/g,'');
+        messages.push(`<p class='invalid-result'>Value of Property <em>${property}</em> is not correct</p>`);
+        break;
+    default:
+        messages.push(error.message);
+    }
+  });
+  return messages;
+});
+
 const validateExercise = ((schema, code, targetTagId) => {
   document.getElementById("exercise_code").value = code;
   const validate = ajv.compile(JSON.parse(schema));
@@ -124,7 +171,7 @@ const validateExercise = ((schema, code, targetTagId) => {
     return true;
   }
   if (valid) {
-    targetDiv.innerHTML = "Your code is valid";
+    targetDiv.innerHTML = "<p class='valid-result'>Your code is valid</p>";
     // Set the status to valid
     document.getElementById("exercise_status").value = 1;
     if (deployButton) {
@@ -138,14 +185,7 @@ const validateExercise = ((schema, code, targetTagId) => {
     if (deployButton) {
       deployButton.setAttribute("disabled","");
     }
-    targetDiv.innerHTML = "";
-    validate.errors.forEach((error) => {
-      if (error.params.additionalProperty) {
-        targetDiv.innerHTML += `Unknown Property ${error.params.additionalProperty}<br>`;
-      } else {
-        targetDiv.innerHTML += `${error.message}<br>`;
-      }
-    });
+    targetDiv.innerHTML = formatJsonSchemaErrors(validate.errors).join('\n');
   }
   return true;
 });
