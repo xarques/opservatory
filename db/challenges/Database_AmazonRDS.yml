@@ -87,16 +87,11 @@ solution: |
     }
   }
 hints:
-  - description: "Use property \"Type\" to set the type of the resource"
-  - description: "The property \"Type\" must be \"AWS::RDS::DBInstance\""
-  - description: "Use property \"AllocatedStorage\" to set the size of the RDS database"
-  - description: "The property \"AllocatedStorage\" must be \"5\""
-  - description: "Use property \"StorageType\" to set the type of the RDS database"
-  - description: "The property \"StorageType\" must be \"gp2\""
-  - description: "Use property \"DBInstanceClass\" to set the class of the RDS database"
-  - description: "The property \"DBInstanceClass\" must be \"db.t2.micro\""
-  - description: "Use property \"Engine\" to set the database engine of the RDS database"
-  - description: "The property \"Engine\" must be \"MySQL\""
+  - description: "The property <em>Type</em> must be <em>AWS::RDS::DBInstance</em>"
+  - description: "The property <em>AllocatedStorage</em> must be <em>5</em>"
+  - description: "The property <em>StorageType</em> must be <em>gp2</em>"
+  - description: "The property <em>DBInstanceClass</em> must be <em>db.t2.micro</em>"
+  - description: "The property <em>Engine</em> must be <em>MySQL</em>"
 level: 1
 duration: 30
 status: 1
