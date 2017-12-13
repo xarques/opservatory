@@ -176,8 +176,9 @@ const validateExercise = ((schema, code, targetTagId) => {
     document.getElementById("exercise_status").value = 1;
     if (deployButton) {
       deployButton.removeAttribute("disabled");
+      setBucketName(getBucketName(code));
     }
-    console.log('Code is Valid!');
+    // console.log('Code is Valid!');
   }
   else {
     // Set the status to unvalid

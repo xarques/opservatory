@@ -45,9 +45,15 @@ function listAlbums() {
 
         return getHtml([
           '<li>',
-            '<span onclick="deleteAlbum(\'' + albumName + '\')">X</span>',
-            '<span onclick="viewAlbum(\'' + albumName + '\')">',
-              albumName,
+            '<span>',
+              '<a href="#" onclick="viewAlbum(\'' + albumName + '\')">',
+                albumName,
+              '</a>',
+            '</span>',
+            '<span>',
+              '<a href="#" onclick="deleteAlbum(\'' + albumName + '\')">',
+              '<i class="fa fa-trash-o"></i>',
+              '</a>',
             '</span>',
           '</li>'
         ]);
@@ -56,14 +62,19 @@ function listAlbums() {
         '' :
         '<p>Create your first album</p>';
       var htmlTemplate = [
-        '<h5>Albums</h5>',
-        message,
-        '<ul>',
-          getHtml(albums),
-        '</ul>',
-        '<button onclick="createAlbum(prompt(\'Enter Album Name:\'))" class="btn btn-primary btn-exercise">',
-          'Create New Album',
-        '</button>'
+        '<div class="exercise-app-body">',
+          '<h5>Albums</h5>',
+          message,
+          '<ul style="list-style-type:none;">',
+            getHtml(albums),
+          '</ul>',
+        '</div>',
+        '<div class="exercise-app-footer">',
+          '<input type="text" name="albumName" id="albumName" placeholder="Enter Album Name">',
+          '<button onclick="createAlbum(document.getElementById(\'albumName\').value)" class="btn btn-primary btn-exercise">',
+            'Create New Album',
+          '</button>',
+        '</div>'
       ]
     }
     document.getElementById('exercise-app').innerHTML = getHtml(htmlTemplate);
@@ -118,19 +129,21 @@ function viewAlbum(albumName) {
               '<img style="width:128px;height:128px;" src="' + photoUrl + '"/>',
             '</div>',
             '<div>',
-              '<span onclick="deletePhoto(\'' + albumName + "','" + photoKey + '\')">',
-                'X',
+              '<span>',
+                '<a href="#" onclick="deletePhoto(\'' + albumName + "','" + photoKey + '\')">',
+                  '<i class="fa fa-trash-o"></i>',
+                '</a>',
               '</span>',
               '<span>',
                 photoKey.replace(albumPhotosKey, ''),
               '</span>',
             '</div>',
-          '<span>',
+          '</span>',
         ]);
       }
     });
     var message = photos.length > 1?
-      '<p>Click on the X to delete the photo</p>' :
+      '' :
       '<p>Please add photos</p>';
     var htmlTemplate = [
       '<h5>',
@@ -141,12 +154,14 @@ function viewAlbum(albumName) {
         getHtml(photos),
       '</div>',
       '<input id="photoupload" type="file" accept="image/*">',
-      '<button id="addphoto" onclick="addPhoto(\'' + albumName +'\')" class="btn btn-primary btn-exercise">',
-        'Add Photo',
-      '</button>',
-      '<button onclick="listAlbums()" class="btn btn-primary btn-exercise">',
-        'Back To Albums',
-      '</button>',
+      '<div class="exercise-app-footer">',
+        '<button id="addphoto" onclick="addPhoto(\'' + albumName +'\')" class="btn btn-primary btn-exercise">',
+          'Add Photo',
+        '</button>',
+        '<button onclick="listAlbums()" class="btn btn-primary btn-exercise">',
+          'Back To Albums',
+        '</button>',
+      '</div>'
     ]
     document.getElementById('exercise-app').innerHTML = getHtml(htmlTemplate);
   });
@@ -207,7 +222,12 @@ function deleteAlbum(albumName) {
 }
 
 function getHtml(template) {
-  return template.join('\n');
+  var htmlTemplate = [
+    //'<div class="container">',
+    template.join('\n'),
+    //'</div>'
+  ];
+  return htmlTemplate.join('\n');
 }
 
 export {deleteAlbum, deletePhoto, addPhoto, viewAlbum, createAlbum, listAlbums, setBucketName};
