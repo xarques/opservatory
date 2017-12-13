@@ -25,23 +25,23 @@
               Deploy
             </button>
           <% end %>
-          <button type="button" id="skip" class="btn btn-primary btn-exercise">
-            Skip >>
-          </button>
+        <!--   <button type="button" id="skip" class="btn btn-primary btn-exercise">
+            Back
+          </button> -->
+          <%= link_to 'Back', exercises_path, class: "btn btn-primary btn-exercise", id:"back" %>
         </div>
-      <%#= link_to 'Back', exercises_path %>
       </div>
 
     <div class="description">
       <% if @exercise.challenge.deployable %>
-        <div id="exercise-app" class="exercise-app"> </div>
+        <div id="exercise-app" class="exercise-app container"> </div>
       <% end %>
       <div class="">
-        <h5>THE GOAL</h5>
+        <h5>GOAL</h5>
         <p><%= @exercise.challenge.description %></p>
       </div>
       <div>
-        <h5><strong>THE RULES</strong></h5>
+        <h5><strong>RULES</strong></h5>
         <p><%= @exercise.challenge.instructions.html_safe if @exercise.challenge.instructions %></p>
       </div>
     </div>
@@ -72,7 +72,7 @@
     </div>
 
     <div class="result" >
-      <h5>THE RESULT</h5>
+      <h5>RESULT</h5>
       <div class="result-details" id="result">
 
       </div>
