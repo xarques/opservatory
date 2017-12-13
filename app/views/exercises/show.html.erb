@@ -25,11 +25,11 @@
               Deploy
             </button>
           <% end %>
-          <button type="button" id="skip" class="btn btn-primary btn-exercise">
-            Skip >>
-          </button>
+        <!--   <button type="button" id="skip" class="btn btn-primary btn-exercise">
+            Back
+          </button> -->
+          <%= link_to 'Back', exercises_path, class: "btn btn-primary btn-exercise", id:"back" %>
         </div>
-      <%#= link_to 'Back', exercises_path %>
       </div>
 
     <div class="description">
@@ -72,7 +72,7 @@
     </div>
 
     <div class="result" >
-      <h5>THE RESULT</h5>
+      <h5>YOUR RESULT</h5>
       <div class="result-details" id="result">
 
       </div>
