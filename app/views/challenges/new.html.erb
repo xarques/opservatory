@@ -25,6 +25,9 @@
         <input type="text" name="hint" id="input-hint-description" style="background: white; color: black; width:500px">
         <button type="button" id="btn-add_hint" remote="true">Add an Hint</button>
       </form>
+      <br>
+      <ul id="hints-list">
+      </ul>
 
     </div>
 <!--     <div class="text-center">
@@ -73,11 +76,12 @@
 
 <script>
 
-  btn = document.getElementById("btn-add_hint")
+  const btn = document.getElementById("btn-add_hint");
   btn.addEventListener('click', (event) => {
-   const ul = document.querySelector(".description-challenge-new")
-   const description = document.getElementById("input-hint-description").value
-   ul.insertAdjacentHTML("beforeend", `${description}`)
+   const ul = document.getElementById("hints-list");
+   const description = document.getElementById("input-hint-description").value;
+   ul.insertAdjacentHTML("beforeend", `<li class="hint-desc">${description}</li>`);
+   document.getElementById("input-hint-description").value = "";
   });
 
 </script>

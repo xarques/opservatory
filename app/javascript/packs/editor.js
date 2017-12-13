@@ -72,6 +72,13 @@ const saveChallenge = (() => {
   document.getElementById("challenge_start_point").value = aceEditorStartPoint.getValue();
   document.getElementById("challenge_solution").value = aceEditorSolution.getValue();
   document.getElementById("challenge_schema").value = aceEditorSchema.getValue();
+  var hint_desc = document.querySelectorAll("#hints-list li");
+  var hints_concat = '';
+  for (var i = 0; i < hint_desc.length; ++i) {
+     var hint = hint_desc[i].innerText;;
+     hints_concat = hints_concat + '|' + hint;
+    };
+  document.getElementById("challenge_hints_list").value = hints_concat;
   document.getElementById("new_challenge").submit();
 });
 

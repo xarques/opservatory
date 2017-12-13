@@ -19,15 +19,20 @@ class ChallengesController < ApplicationController
   end
 
   def create
-    raise
+
     @challenge = Challenge.new(challenge_params)
     authorize @challenge
 
-    @hint = Hint.new(description: params[:challenge][:hint_description])
-    @hint.challenge = @hint
-
     if @challenge.save
-       @hint.save
+      hints_list = params[:challenge][:hints_list]
+      hints_array = hints_list.split("|")
+      hints_instances_array = []
+      hints_array.each do |hint|
+        @hint = Hint.new(description: hint)
+        authorize @hint
+        @hint.challenge = @challenge
+        @hint.save
+      end
       redirect_to challenge_path(@challenge)
     else
       render :new
