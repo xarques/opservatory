@@ -58,12 +58,9 @@ solution: |
     }
   }
 hints:
-  - description: "Use property \"Type\" to set the type of the resource"
-  - description: "The property \"Type\" must be \"AWS::EC2::Instance\""
-  - description: "Use property \"ImageId\" to set the image Id of the EC2 instance"
-  - description: "The property \"ImageId\" must be \"ami-c481fad3\""
-  - description: "Use property \"InstanceType\" to set the type of the EC2 instance"
-  - description: "The property \"InstanceType\" must be \"t2.micro\""
+  - description: "The property <em>Type</em> must be <em>AWS::EC2::Instance</em>"
+  - description: "The property <em>ImageId</em> must be <em>ami-c481fad3</em>"
+  - description: "The property <em>InstanceType</em> must be <em>t2.micro</em>"
 level: 1
 duration: 30
 status: 1

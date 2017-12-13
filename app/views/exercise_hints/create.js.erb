@@ -13,7 +13,7 @@ btn.classList.remove("disabled")
 };
 
 var counter = <%= @next_hint.count %>;
-addHint(`<li><%= j @next_hint_first.description %></li>`);
+addHint(`<li><%= j @next_hint_first.description.html_safe %></li>`);
 
 if (counter === 1) {
  updateHintBtn();
