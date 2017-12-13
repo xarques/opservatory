@@ -1,7 +1,7 @@
 
 
 .footer {
-  background: #0d151c;
+  background: black;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -29,7 +29,6 @@
 }
 .footer-info {
   color: white;
-  background-color: #0d151c;
   opacity: 0.8;
   text-align: center;
   font-size: 16px;
@@ -39,6 +38,4 @@
   color: white;
   opacity: 0.6;
   font-size: 16px;
-
-
 }

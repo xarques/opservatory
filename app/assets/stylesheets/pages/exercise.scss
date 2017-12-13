@@ -1,6 +1,7 @@
 .title-container {
   h4 {
-    color: #ff3D00;
+    // color: #ff3D00;
+    color: #2a7bf7;
     margin-top: 50px;
     font-family: Archivo Black;
   }
@@ -12,12 +13,14 @@
   grid-template-rows: 70% 5% 20% 5%;
   height: calc(100vh - 70px);
   padding: 20px;
-  background-color: #0d151c;
-  box-shadow: 0px 0px 1px 0px rgba(247,247,247,1);
-  opacity: 0.7;
+  // background-color: #212121;
+  background-color: #363333;
+  box-shadow: 0px 10px 40px -10px rgba(0,64,128,0.6);
+  // opacity: 0.7;
   h5 {
     font-family: Archivo Black;
-    color: #ff3D00;
+    // color: #ff3D00;
+    color: #2a7bf7;
     margin-top: 20px;
     margin-bottom: 20px;
   }
@@ -94,17 +97,17 @@
 .btn-exercise {
   margin-top: 5px;
   color: white;
-  padding: 5px 20px;
+  padding: 5px 40px;
   border-radius: 2px;
   border: none;
   font-weight: bold;
   font-size: 14px;
-  background: #2a7bf7;
+  background: #ff3D00;
   transition: background 0.3s ease;
 }
 .editor-buttons-flex{
   .btn-exercise{
-    padding: 5px 20px;
+    padding: 5px 75px;
     margin: 8px;
   }
   input {
