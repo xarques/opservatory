@@ -36,12 +36,23 @@ body {
 }
 
 .exercise-app {
+  position: relative;
   background: #242E39;
   padding: 10px;
   border: 0.7px solid #3b454e;
   border-radius: 3px;
   min-height: 300px;
 }
+
+.exercise-app-body {
+
+}
+
+.exercise-app-footer {
+  position: absolute;
+  bottom: 5px;
+}
+
 .description {
   background: #242E39;
   padding: 10px;

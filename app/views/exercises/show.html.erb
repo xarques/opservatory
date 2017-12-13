@@ -34,7 +34,8 @@
 
     <div class="description">
       <% if @exercise.challenge.deployable %>
-        <div id="exercise-app" class="exercise-app container"> </div>
+        <div id="exercise-app" class="exercise-app">
+        </div>
       <% end %>
       <div class="">
         <h5>GOAL</h5>
@@ -92,8 +93,12 @@
       // methods aceEditor and validateExerciseCallback are defined in app/javascript/packs/editor.js
       const javascriptEditor = aceEditor("javascript-editor", "<%=j raw(@exercise.code) %>");
       // validateExerciseCallback('<%#=j raw(@exercise.challenge.schema) %>', javascriptEditor, "validate", "result");
-      <% if @exercise.challenge.deployable && (@exercise.status == 3 || @exercise.status == 1 )%>
-        setBucketName(getBucketName(javascriptEditor.getValue()));
+      <% if @exercise.challenge.deployable %>
+        <% if (@exercise.status == 3 || @exercise.status == 1 ) %>
+          setBucketName(getBucketName(javascriptEditor.getValue()));
+        <% else %>
+          document.getElementById("exercise-app").innerHTML = "<p>When your code will be successfully validated and deployed, this window will allow you to upload photo albums in an your Amazon S3 bucket</p>";
+        <% end %>
       <% end %>
     </script>
   </div>
