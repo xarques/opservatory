@@ -6,6 +6,7 @@ btn.classList.remove("disabled");
 document.getElementById("exercise_status").value = <%= @exercise.status %>
 document.getElementById("exercise_code").value = '<%= j @exercise.code %>'
 javascriptEditor.setValue('<%= j raw(@exercise.code) %>');
+javascriptEditor.clearSelection();
 
 function deleteClockStatus() {
 clock = document.getElementById("clock-status");

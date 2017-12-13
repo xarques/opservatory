@@ -14,10 +14,18 @@
         <%= f.hidden_field :schema %>
         <%= f.input :photo %>
         <%= f.input :photo_cache, as: :hidden %>
+        <%= f.hidden_field :hints_list %>
         <%#= f.button :submit, "Validate", class: "btn btn-primary btn-exercise" %>
         <%#= f.submit  %>
         <!-- [...] -->
       <% end %>
+
+      <form action="#">
+        <label for="">Hint</label>
+        <input type="text" name="hint" id="input-hint-description" style="background: white; color: black; width:500px">
+        <button type="button" id="btn-add_hint" remote="true">Add an Hint</button>
+      </form>
+
     </div>
 <!--     <div class="text-center">
       <%#= image_tag "create.jpg", height: 400, width: 350, :crop=>"fit", class:'brice' %>
@@ -62,3 +70,14 @@
     <!-- method aceEditor is defined in app/javascript/packs/editor.js -->
     <%= javascript_pack_tag 'editor' %>
 </div>
+
+<script>
+
+  btn = document.getElementById("btn-add_hint")
+  btn.addEventListener('click', (event) => {
+   const ul = document.querySelector(".description-challenge-new")
+   const description = document.getElementById("input-hint-description").value
+   ul.insertAdjacentHTML("beforeend", `${description}`)
+  });
+
+</script>
