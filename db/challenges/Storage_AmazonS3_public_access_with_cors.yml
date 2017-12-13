@@ -116,7 +116,7 @@ solution: |
 hints:
   - description: "<em>Type</em> must be equal to <em>AWS::S3::Bucket</em>"
   - description: "<em>BucketName</em> must start with <em>opservatory-s3-public-</em> and be unique"
-  - description: "T<em>AccessControl</em> must be equal to <em>PublicReadWrite</em>"
+  - description: "<em>AccessControl</em> must be equal to <em>PublicReadWrite</em>"
   - description: "<em>CorsConfiguration</em> must contain an object <em>CorsRules</em>"
   - description: "<em>CorsRules</em> must contain an array of objects"
   - description: "<em>AllowedHeaders</em> must be equal to <em>*</em>"
