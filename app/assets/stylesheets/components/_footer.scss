@@ -1,0 +1,43 @@
+
+
+.footer {
+  background: #0e1c27;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100px;
+  padding: 0px 50px;
+  color: gray;
+  font-family: Tenor Sans;
+}
+
+.footer-links {
+  display: flex;
+  align-items: center;
+  color: white;
+}
+.footer-links a {
+  color: white;
+  opacity: 0.6;
+  text-decoration: none;
+  font-size: 17px;
+  padding: 0px 4px;
+}
+.footer-links a:hover {
+  opacity: 1;
+}
+.footer-info {
+  color: white;
+  background-color: #0e1c27;
+  opacity: 0.8;
+  text-align: center;
+  font-size: 16px;
+}
+
+.footer-copyright {
+  color: white;
+  opacity: 0.6;
+  font-size: 16px;
+
+
+}

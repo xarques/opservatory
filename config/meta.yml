@@ -1,5 +1,5 @@
 meta_product_name: "OPServatory"
 meta_title: "Learn Infrastructure As Code on OPServatory - Enhance your DevOps skills and technique on the Cloud"
 meta_description: "Practice and test your own Infrastructure As Code through challenges"
-meta_image: "ops-logo.png"                      # should exist in `app/assets/images/`
+meta_image: "ops-landing-page.png"                      # should exist in `app/assets/images/`
 twitter_account: "@xavarques"   # required for Twitter Cards

@@ -1,8 +1,10 @@
 import * as ace from 'brace';
 import 'brace/mode/javascript';
+import 'brace/mode/html';
 import 'brace/theme/monokai';
 import 'brace/theme/twilight';
 import 'brace/theme/chrome';
+import 'brace/theme/vibrant_ink'
 import * as Ajv from 'ajv/dist/ajv.min.js';
 import 'aws-sdk';
 import swal from 'sweetalert2';
@@ -32,16 +34,45 @@ const swalConfirmButtonColor = '#3085d6';
 const swalCancelButtonColor = '#d33';
 
 // const cloudformation = new AWS.CloudFormation();
-
-const aceEditor = ((tagId, content) => {
+const configureAceEditor = ((tagId, content, mode) => {
   const aceEditor = ace.edit(tagId);
-  aceEditor.getSession().setMode('ace/mode/javascript');
-  // aceEditor.setTheme('ace/theme/monokai');
-  aceEditor.setTheme('ace/theme/chrome');
-  if (content) {
+  if (mode) {
+    aceEditor.getSession().setMode(`ace/mode/${mode}`);
+  } else {
+    aceEditor.getSession().setMode('ace/mode/javascript');
+  }
+  aceEditor.setTheme('ace/theme/vibrant_ink');
+  if (content && content !== "") {
     aceEditor.setValue(content);
   }
+  aceEditor.clearSelection();
   return aceEditor;
+});
+
+const aceEditor = ((tagId, content) => {
+  return configureAceEditor(tagId, content);
+});
+
+let aceEditorInstructions;
+let aceEditorStartPoint;
+let aceEditorSolution;
+let aceEditorSchema;
+
+const aceEditorChallenge = (() => {
+  if (document.getElementById("javascript-editor-start-point")) {
+    aceEditorInstructions = configureAceEditor("javascript-editor-instructions", "", "html");
+    aceEditorStartPoint = configureAceEditor("javascript-editor-start-point");
+    aceEditorSolution = configureAceEditor("javascript-editor-solution");
+    aceEditorSchema = configureAceEditor("javascript-editor-schema");
+  }
+});
+
+const saveChallenge = (() => {
+  document.getElementById("challenge_instructions").value = aceEditorInstructions.getValue();
+  document.getElementById("challenge_start_point").value = aceEditorStartPoint.getValue();
+  document.getElementById("challenge_solution").value = aceEditorSolution.getValue();
+  document.getElementById("challenge_schema").value = aceEditorSchema.getValue();
+  document.getElementById("new_challenge").submit();
 });
 
 const retryExercise = (() => {
@@ -67,6 +98,53 @@ const validateExerciseCallback = ((schema, editor, sourceTagId, targetTagId) => 
   });
 });
 
+const formatJsonSchemaErrors = ((errors) => {
+  // - Missign attribute:
+  // {"keyword":"required",
+  //  "dataPath":".Resources['publicS3']",
+  //  "schemaPath":"#/properties/Resources/patternProperties/%5E%5Ba-zA-Z0-9%5D%2B%24/required",
+  //  "params":{"missingProperty":"Type"},
+  //  "message":"should have required property 'Type'"}
+  // - Unhautorize Attribute:
+  // {"keyword":"additionalProperties",
+  //  "dataPath":".Resources['publicS3']",
+  //  "schemaPath":"#/properties/Resources/patternProperties/%5E%5Ba-zA-Z0-9%5D%2B%24/additionalProperties",
+  //  "params":{"additionalProperty":"Type2"},
+  //  "message":"should NOT have additional properties"}
+  // - Incorrect value:
+  // {"keyword":"enum",
+  //  "dataPath":".Resources['publicS3'].Type",
+  //  "schemaPath":"#/properties/Resources/patternProperties/%5E%5Ba-zA-Z0-9%5D%2B%24/properties/Type/enum",
+  //  "params":{"allowedValues":["AWS::S3::Bucket"]},
+  //  "message":"should be equal to one of the allowed values"}
+  // {"keyword":"enum",
+  //  "dataPath":".Resources['publicS3'].Properties.CorsConfiguration.CorsRules[0].AllowedMethods[0]",
+  //  "schemaPath":"#/properties/Resources/patternProperties/%5E%5Ba-zA-Z0-9%5D%2B%24/properties/Properties/properties/CorsConfiguration/properties/CorsRules/items/properties/AllowedMethods/items/enum",
+  //  "params":{"allowedValues":["POST","GET","PUT","DELETE","HEAD"]},
+  //  "message":"should be equal to one of the allowed values"}
+  const messages = [];
+  errors.forEach((error) => {
+    const keyword = error.keyword;
+    const params = error.params;
+    const dataPath = error.dataPath;
+    switch(keyword) {
+    case "required":
+        messages.push(`Missing property <em>${params.missingProperty}</em>`);
+        break;
+    case "additionalProperties":
+        messages.push(`Property <em>${params.additionalProperty}</em> is not allowed`);
+        break;
+    case "enum":
+        const property = dataPath.split('.').pop().replace(/\[.*\]/g,'');
+        messages.push(`Value of Property <em>${property}</em> is not correct`);
+        break;
+    default:
+        messages.push(error.message);
+    }
+  });
+  return messages;
+});
+
 const validateExercise = ((schema, code, targetTagId) => {
   document.getElementById("exercise_code").value = code;
   const validate = ajv.compile(JSON.parse(schema));
@@ -80,7 +158,7 @@ const validateExercise = ((schema, code, targetTagId) => {
     // Set the status to unvalid
     document.getElementById("exercise_status").value = 2;
     if (deployButton) {
-      deployButton.classList.add("disabled");
+      deployButton.setAttribute("disabled","");
     }
     targetDiv.innerHTML = "Code is not valid";
     return true;
@@ -90,7 +168,7 @@ const validateExercise = ((schema, code, targetTagId) => {
     // Set the status to valid
     document.getElementById("exercise_status").value = 1;
     if (deployButton) {
-      deployButton.classList.remove("disabled");
+      deployButton.removeAttribute("disabled");
     }
     console.log('Code is Valid!');
   }
@@ -98,16 +176,9 @@ const validateExercise = ((schema, code, targetTagId) => {
     // Set the status to unvalid
     document.getElementById("exercise_status").value = 2;
     if (deployButton) {
-      deployButton.classList.add("disabled");
+      deployButton.setAttribute("disabled","");
     }
-    targetDiv.innerHTML = "";
-    validate.errors.forEach((error) => {
-      if (error.params.additionalProperty) {
-        targetDiv.innerHTML += `Unknown Property ${error.params.additionalProperty}<br>`;
-      } else {
-        targetDiv.innerHTML += `${error.message}<br>`;
-      }
-    });
+    targetDiv.innerHTML = formatJsonSchemaErrors(validate.errors).join('\n');
   }
   return true;
 });
@@ -244,9 +315,31 @@ const deployExercise = ((schema, code, targetTagId) => {
 
 // swal is asynchron
 // it returns a promise so the following callback ends before exiting the sweet alert
-document.getElementById("retry-button").addEventListener('click', () => {
-  retryExercise();
+
+const addListener = ((tagId, event, callbackFunction) => {
+  const element = document.getElementById(tagId);
+  if (element) {
+    element.addEventListener(event, callbackFunction);
+  }
 });
+
+// const retryButtonElement = document.getElementById("retry-button");
+// if (retryButtonElement) {
+//   retryButtonElement.addEventListener('click', () => {
+//     retryExercise();
+//   });
+// }
+addListener("retry-button", "click", retryExercise);
+addListener("save-challenge-button", "click", saveChallenge);
+
+// const challengeFormElement = document.getElementById("save-challenge-button");
+// if (challengeFormElement) {
+//   challengeFormElement.addEventListener('click', () => {
+//     return saveChallenge();
+//   });
+// }
+
+aceEditorChallenge();
 
 window.aceEditor = aceEditor;
 window.validateExerciseCallback = validateExerciseCallback;
@@ -261,3 +354,4 @@ window.createAlbum = createAlbum;
 window.listAlbums = listAlbums;
 window.getBucketName =getBucketName;
 window.setBucketName =setBucketName;
+//window.beforeChallengeSave = beforeChallengeSave;

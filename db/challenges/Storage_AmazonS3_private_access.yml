@@ -24,7 +24,7 @@ schema: |
                 "properties": {
                   "AccessControl": {
                     "type": "string",
-                    "enum": ["Private]
+                    "enum": ["Private"]
                   }
                 },
                 "additionalProperties": false
@@ -52,10 +52,8 @@ solution: |
     }
   }
 hints:
-  - description: "Use property \"Type\" to set the type of the resource"
-  - description: "The property \"Type\" must be \"AWS::S3::Bucket\""
-  - description: "Use property \"AccessControl\" to define the access control of the bucket"
-  - description: "The property \"AccessControl\" must be \"PublicReadWrite\""
+  - description: "The property <em>Type</em> must be equal to <em>AWS::S3::Bucket</em>"
+  - description: "The property <em>AccessControl</em> must be equal to <em>PublicReadWrite</em>"
 level: 0
 duration: 15
 status: 1

@@ -3,14 +3,15 @@
       <div class="challenge-name">
         <%= cl_image_tag @challenge.photo, height: 100, width: 350, :crop=>"fit", class:'brice' %>
         <h3><%= @challenge.name %></h3>
+      </div>
+      <div class="challenge-description">
+        <h5>THE GOAL</h5>
+        <p><%= @challenge.description %></p>
+        <h5><strong>THE RULES</strong></h5>
+        <%= @challenge.instructions.html_safe if @challenge.instructions %>
         <%= link_to challenge_exercises_path(@challenge, Exercise.new), method: :post do %>
           <button type="button" id="validate" class="btn btn-primary btn-exercise">Start exercise</button>
         <% end %>
-      </div>
-      <div class="challenge-description">
-        <h2><%= @challenge.description %></h2>
-        <h4>Instructions:</h4>
-        <%= @challenge.instructions.html_safe? if @challenge.instructions %>
       </div>
   </div>
 </div>
