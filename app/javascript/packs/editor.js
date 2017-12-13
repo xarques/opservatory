@@ -30,8 +30,8 @@ AWS.config.apiVersions = {
 
 const lambda = new AWS.Lambda();
 
-const swalConfirmButtonColor = '#3085d6';
-const swalCancelButtonColor = '#d33';
+const swalConfirmButtonColor = '#f9be00';
+const swalCancelButtonColor = '#222c36';
 
 // const cloudformation = new AWS.CloudFormation();
 const configureAceEditor = ((tagId, content, mode) => {
@@ -240,10 +240,12 @@ const deployExercise = ((schema, code, targetTagId) => {
           } else {
             targetDiv.innerHTML = `Stack ${stackName} can't been deployed. Error: ${err}`;
           }
-          swal(
-            'Oops...',
-            targetDiv.innerHTML,
-            'error'
+          swal({
+            title: 'Oops...',
+            text: targetDiv.innerHTML,
+            type: 'error',
+            confirmButtonColor: swalConfirmButtonColor
+            }
           );
         } else {
           const p = JSON.parse(data.Payload);
@@ -262,10 +264,12 @@ const deployExercise = ((schema, code, targetTagId) => {
               if (result.dismiss === 'timer') {
                 setBucketName(bucketName);
                 targetDiv.innerHTML = `Stack ${stackName} has been deployed`;
-                swal(
-                  'Deployed!',
-                  `Stack ${stackName} has been deployed`,
-                  'success'
+                swal({
+                  title: 'Deployed!',
+                  text: `Stack ${stackName} has been deployed`,
+                  type: 'success',
+                  confirmButtonColor: swalConfirmButtonColor
+                  }
                 );
               }
             });
@@ -276,10 +280,12 @@ const deployExercise = ((schema, code, targetTagId) => {
             // }, 15000);
           } else {
             targetDiv.innerHTML = p.body;
-            swal(
-              'Oops...',
-              targetDiv.innerHTML,
-              'error'
+            swal({
+              title: 'Oops...',
+              text: targetDiv.innerHTML,
+              type: 'error',
+              confirmButtonColor: swalConfirmButtonColor
+              }
             );
           }
           console.log(data);           // successful response

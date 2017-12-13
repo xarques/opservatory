@@ -37,11 +37,11 @@
         <div id="exercise-app" class="exercise-app container"> </div>
       <% end %>
       <div class="">
-        <h5>THE GOAL</h5>
+        <h5>GOAL</h5>
         <p><%= @exercise.challenge.description %></p>
       </div>
       <div>
-        <h5><strong>THE RULES</strong></h5>
+        <h5><strong>RULES</strong></h5>
         <p><%= @exercise.challenge.instructions.html_safe if @exercise.challenge.instructions %></p>
       </div>
     </div>
@@ -72,7 +72,7 @@
     </div>
 
     <div class="result" >
-      <h5>YOUR RESULT</h5>
+      <h5>RESULT</h5>
       <div class="result-details" id="result">
 
       </div>
