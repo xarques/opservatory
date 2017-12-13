@@ -129,14 +129,14 @@ const formatJsonSchemaErrors = ((errors) => {
     const dataPath = error.dataPath;
     switch(keyword) {
     case "required":
-        messages.push(`Missing property <em>${params.missingProperty}</em>`);
+        messages.push(`<p class='invalid-result'>Missing property <em>${params.missingProperty}</em></p>`);
         break;
     case "additionalProperties":
-        messages.push(`Property <em>${params.additionalProperty}</em> is not allowed`);
+        messages.push(`<p class='invalid-result'>Property <em>${params.additionalProperty}</em> is not allowed</p>`);
         break;
     case "enum":
         const property = dataPath.split('.').pop().replace(/\[.*\]/g,'');
-        messages.push(`Value of Property <em>${property}</em> is not correct`);
+        messages.push(`<p class='invalid-result'>Value of Property <em>${property}</em> is not correct</p>`);
         break;
     default:
         messages.push(error.message);
@@ -164,7 +164,7 @@ const validateExercise = ((schema, code, targetTagId) => {
     return true;
   }
   if (valid) {
-    targetDiv.innerHTML = "Your code is valid";
+    targetDiv.innerHTML = "<p class='valid-result'>Your code is valid</p>";
     // Set the status to valid
     document.getElementById("exercise_status").value = 1;
     if (deployButton) {
