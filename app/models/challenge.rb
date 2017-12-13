@@ -7,6 +7,8 @@ class Challenge < ApplicationRecord
   validates :status, inclusion: {in: [0, 1]} # 0 = Draft, 1 = Release
   validates :photo, presence: true
 
+  attr_accessor :hints_list
+
   include PgSearch
   pg_search_scope :search_by_name_and_description,
     against: [ :name, :description ],
