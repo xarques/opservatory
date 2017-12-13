@@ -1,18 +1,19 @@
 body {
-  background-color: #0e1c27;
+  background-color: $dark-blue;
 }
 
 .title-container {
   h4 {
     margin-left: 20px;
     color: #f9be00;
-    margin-top: 30px;
-    font-size: 25px;
+    margin-top: 15px;
+    font-size: 22px;
     font-family: Archivo Black;
+    margin-bottom: 0px;
   }
 }
 .exercise {
-  margin-top: 30px;
+  margin-top: 0px;
   display: grid;
   grid-template-columns: 50% 50%;
   grid-template-rows: 70% 20% 10%;
@@ -35,18 +36,19 @@ body {
 }
 
 .exercise-app {
-  background-color: gray;
+  background: #242E39;
+  padding: 10px;
+  border: 0.7px solid #3b454e;
   border-radius: 3px;
   min-height: 300px;
 }
 .description {
   background: #242E39;
   padding: 10px;
-  border: 1px solid #3b454e;
+  border: 0.7px solid #3b454e;
   grid-row: 1 / span 1;
   grid-column: 1 / span 1;
   overflow-y: auto;
-  box-shadow: 1px 1px 0px 0px rgba(89,88,89,1);
   li {
     font-size: 16px;
   }
@@ -55,15 +57,14 @@ body {
 .hints {
   background: #242E39;
   padding: 10px;
-  border: 1px solid #3b454e;
+  border: 0.7px solid #3b454e;
   grid-row: 2 / span 2;
   grid-column: 1 / span 1;
-  box-shadow: 1px 1px 0px 0px rgba(89,88,89,1);
 }
 
 .hints-details {
   padding: 5px;
-  height: 90%;
+  height: 75%;
   margin: 10px;
   overflow-y: auto;
   border-radius: 3px;
@@ -80,12 +81,11 @@ body {
 .editor {
   background: #242E39;
   // padding: 20px;
-  // border: 1px solid #3b454e;
+  border: 0.7px solid #3b454e;
   grid-row: 1 / span 1;
   grid-column: 2 / span 1;
   display: flex;
   flex-direction: column;
-  box-shadow: 1px 1px 0px 0px rgba(89,88,89,1);
 }
 
 .editor-buttons {
@@ -100,17 +100,19 @@ body {
 
 .result {
   background: #242E39;
-  padding: 20px;
-  border: 1px solid #3b454e;
+  padding: 10px;
+  border: 0.7px solid #3b454e;
   grid-row: 2 / span 1;
   grid-column: 2 / span 1;
-  box-shadow: 1px 1px 0px 0px rgba(89,88,89,1);
+  h5 {
+    margin-top: 5px;
+  }
 }
 
 .result-details {
-  padding: 5px;
+  // padding: 5px;
   height: 90%;
-  margin-top: 20px;
+  // margin-top: 5px;
   font-size: 14px;
 }
 
@@ -145,5 +147,27 @@ body {
   color: white;
   border-color: #f9be00;
   background-color: transparent;
+
 }
+.btn-exercise:active {
+ background-color: #f9be00 !important;
+ border-color: #f9be00 !important;
+}
+
+.btn-exercise:focus {
+ background-color: #f9be00 !important;
+ border-color: #f9be00 !important;
+ outline: 0;
+}
+
+.btn-exercise:active:focus {
+outline: 0;
+}
+
+#deploy {
+  color: white !important;
+ background-color: #f9be00 !important;
+ border-color: #f9be00 !important;
+}
+
 
