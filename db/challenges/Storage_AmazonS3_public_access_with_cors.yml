@@ -143,7 +143,19 @@ start_point: |
   {
     "Resources" : {
       "publicS3" : {
-
+        "Type" : "AWS::S3::Bucket",
+        "Properties" : {
+          "BucketName" : "opservatory-s3-public-bucket",
+          "CorsConfiguration" : {
+            "CorsRules" : [
+              {
+                "AllowedHeaders" : [ "*" ],
+                "AllowedMethods" : [ "POST", "GET", "PUT", "DELETE", "HEAD" ],
+                "AllowedOrigins" : [ "*" ]
+              }
+            ]
+          }
+        }
       }
     }
   }

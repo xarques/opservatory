@@ -1,6 +1,6 @@
 <% @challenges.each do |challenge| %>
   <div class="col-xs-12 col-sm-6 col-md-4">
-    <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= cl_image_path challenge.photo, height: 170, width: 300, crop: :pad %>')">
+    <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0)), url('<%= cl_image_path challenge.photo, height: 170, width: 300, crop: :pad %>')">
       <div class="card-category"></div>
       <div class="card-description card-selection">
         <h2> <%= challenge.name %></h2>

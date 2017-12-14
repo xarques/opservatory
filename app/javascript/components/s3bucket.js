@@ -37,7 +37,11 @@ function listAlbums() {
   s3.listObjects({Delimiter: '/'}, function(err, data) {
     if (err) {
       //return alert('There was an error listing your albums: ' + err.message);
-      var htmlTemplate = [`<p>Bucket ${albumBucketName} doesn't exist. Please deploy your code first</p>`];
+      var htmlTemplate = [
+        '<div class="text-center">',
+          '<img height="300" src="/assets/ChallengeS3.png" alt="Challenges3">',
+        '</div>'
+      ];
     } else {
       var albums = data.CommonPrefixes.map(function(commonPrefix) {
         var prefix = commonPrefix.Prefix;

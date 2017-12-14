@@ -64,16 +64,16 @@ end
 
 puts "#{Challenge.count} challenges have been created"
 
-puts "Creating exercises..."
+# puts "Creating exercises..."
 
-users = User.all
-challenge_ids = Challenge.ids
-challenges = Challenge.where("name in ('Create a public S3 bucket', 'Create a private S3 bucket', 'Create an EC2 instance','Create a RDS Database','Create a S3 bucket')")
-users.each do |user|
-  # sample_challenge = Challenge.find(challenge_ids.sample)
-  sample_challenge = challenges.sample
-  Exercise.create!(status: 0, code: sample_challenge.start_point, user: user, challenge: sample_challenge)
-end
+# users = User.all
+# challenge_ids = Challenge.ids
+# challenges = Challenge.where("name in ('Create a public S3 bucket', 'Create a private S3 bucket', 'Create an EC2 instance','Create a RDS Database','Create a S3 bucket')")
+# users.each do |user|
+#   # sample_challenge = Challenge.find(challenge_ids.sample)
+#   sample_challenge = challenges.sample
+#   Exercise.create!(status: 0, code: sample_challenge.start_point, user: user, challenge: sample_challenge)
+# end
 
 puts "#{users.count} exercise(s) created"
 
