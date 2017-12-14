@@ -67,14 +67,14 @@ function listAlbums() {
         '<p>Create your first album</p>';
       var htmlTemplate = [
         '<div class="exercise-app-body">',
-          '<h5>Albums</h5>',
+          '<h5>ALBUMS</h5>',
           message,
           '<ul style="list-style-type:none;">',
             getHtml(albums),
           '</ul>',
         '</div>',
         '<div class="exercise-app-footer">',
-          '<input type="text" name="albumName" id="albumName" placeholder="Enter Album Name">',
+          '<input type="text" name="albumName" id="albumName" placeholder="Enter Album Name" class="form-control search-bar">',
           '<button onclick="createAlbum(document.getElementById(\'albumName\').value)" class="btn btn-primary btn-exercise">',
             'Create New Album',
           '</button>',

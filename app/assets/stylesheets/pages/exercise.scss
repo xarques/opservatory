@@ -44,9 +44,18 @@ body {
   min-height: 300px;
 }
 
+.exercise-app-body h5 {
+  margin-top: 5px;
+}
 .exercise-app-footer {
+  display: flex;
   position: absolute;
   bottom: 5px;
+  justify-content: space-between;
+  button {
+    margin-left: 10px;
+    margin-bottom: 5px;
+  }
 }
 
 .description {
