@@ -246,7 +246,7 @@ const deployExercise = ((schema, code, targetTagId) => {
           if (data.Payload.body) {
             targetDiv.innerHTML = data.Payload.body;
           } else {
-            targetDiv.innerHTML = `Stack ${stackName} can't been deployed. Error: ${err}`;
+            targetDiv.innerHTML = `<p class='invalid-result>Stack ${stackName} can't been deployed. Error: ${err}</p>`;
           }
           swal({
             title: 'Oops...',
@@ -271,7 +271,7 @@ const deployExercise = ((schema, code, targetTagId) => {
             }).then((result) => {
               if (result.dismiss === 'timer') {
                 setBucketName(bucketName);
-                targetDiv.innerHTML = `Stack ${stackName} has been deployed`;
+                targetDiv.innerHTML = `<p class='valid-result>Stack ${stackName} has been deployed</p>`;
                 swal({
                   title: 'Deployed!',
                   text: `Stack ${stackName} has been deployed`,
