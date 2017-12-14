@@ -4,8 +4,7 @@
         <h3 class="notcard">Your courses</h3>
       <ul class="list-inline list_ex">
         <% @exercises.each do |exercise| %>
-              <li><p><strong><%= link_to exercise.challenge.name, exercise_path(exercise)%></strong></p></li>
-              <li> <%= render 'exercise_status', exercise: exercise %> </li>
+              <li><p><strong><%= link_to exercise.challenge.name, exercise_path(exercise)%></strong><%= render 'exercise_status', exercise: exercise %></p></li>
         <% end %>
       </ul>
     </div>
