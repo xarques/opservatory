@@ -1,13 +1,13 @@
 <div class="container-fluid title-container">
   <div>
-    <h4><%= @exercise.challenge.name.upcase %> <span id="clock-status"><%= render 'exercise_status', exercise: @exercise %></span></h4>
+    <h4><%= @exercise.challenge.name.upcase %><span><%= link_to 'Back to dashboard', exercises_path, id:"back" %></span></h4>
     </div>
   <div class="exercise">
 
       <div class="editor-buttons text-center">
         <div class="editor-buttons-flex">
           <button type="button" id="retry-button" class="btn btn-primary btn-exercise">
-            Retry
+            Reset
           </button>
           <%= link_to "Retry", retry_exercise_path(@exercise), method: "patch", :class =>"btn btn-primary btn-exercise", :id =>"retry", :type =>"button", :class =>"hidden", remote: true %>
           <%= simple_form_for(@exercise, remote: true, :html => { :onsubmit => 'validate()' }, :method => 'patch' ) do |form| %>
@@ -28,7 +28,7 @@
         <!--   <button type="button" id="skip" class="btn btn-primary btn-exercise">
             Back
           </button> -->
-          <%= link_to 'Back', exercises_path, class: "btn btn-primary btn-exercise", id:"back" %>
+
         </div>
       </div>
 
