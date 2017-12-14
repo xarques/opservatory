@@ -158,6 +158,7 @@ const validateExercise = ((schema, code, targetTagId) => {
   let valid = false;
   const deployButton = document.getElementById("deploy");
   const targetDiv = document.getElementById(targetTagId);
+  const validateButton = document.getElementById("validate-button");
   try {
    valid = validate(JSON.parse(code));
   }
@@ -177,8 +178,11 @@ const validateExercise = ((schema, code, targetTagId) => {
     if (deployButton) {
       deployButton.removeAttribute("disabled");
       setBucketName(getBucketName(code));
-      targetDiv.classList.add("valid-result");
-      targetDiv.classList.remove("invalid-result");
+      document.querySelector(".result").classList.add("result-valid");
+      document.querySelector(".result").classList.remove("result-invalid");
+      validateButton.classList.remove("btn-exercise-important");
+      deployButton.classList.add("btn-exercise-important");
+
     }
     // console.log('Code is Valid!');
   }
@@ -187,9 +191,11 @@ const validateExercise = ((schema, code, targetTagId) => {
     document.getElementById("exercise_status").value = 2;
     if (deployButton) {
       deployButton.setAttribute("disabled","");
+      validateButton.classList.add("btn-exercise-important");
+      deployButton.classList.remove("btn-exercise-important");
     }
-    targetDiv.classList.remove("valid-result");
-    targetDiv.classList.add("invalid-result");
+    document.querySelector(".result").classList.remove("result-valid");
+    document.querySelector(".result").classList.add("result-invalid");
     targetDiv.innerHTML = formatJsonSchemaErrors(validate.errors).join('\n');
   }
   return true;

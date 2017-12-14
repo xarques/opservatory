@@ -2,10 +2,16 @@ body {
   background-color: $dark-blue;
 }
 
-#back {
-  font-family: Tenor Sans;
-  padding-left: 705px;
+.titlepage {
+  display: flex;
+  justify-content: space-between;
+  span {
+    margin-top: 15px;
+    margin-right: 10px;
+
+  }
 }
+
 .title-container {
   h4 {
     margin-left: 20px;
@@ -136,19 +142,19 @@ background: #dcdcdc;
 .editor-buttons {
   grid-row: 3 / span 1;
   grid-column: 2 / span 1;
+  align-self: flex-end;
 }
 
 .editor-buttons-flex{
   display: flex;
   justify-content: space-between;
-  margin-bottom: -40px;
   .btn-exercise{
     padding: 8px 50px;
   }
   input {
     // padding: 8px 60px !important;
     // background-color: #f9be00;
-    color: white;
+    // color: $light-blue;
     border-radius: 5px;
     font-weight: bold;
     font-size: 14px;
@@ -157,6 +163,7 @@ background: #dcdcdc;
 
 .result {
   background: #242E39;
+  height: 125%;
   padding: 10px;
   border: 0.7px solid #3b454e;
   grid-row: 2 / span 1;
@@ -166,9 +173,19 @@ background: #dcdcdc;
   }
 }
 
+.result-valid {
+  border: 2px solid #006344;
+  background-color: #00634440;
+  //box-shadow: 0px 0px 2px 0px rgba(210,245,219,1);
+}
+
+.result-invalid {
+  border: 2px solid #872C2E;
+  background-color: #d00f0f1f;
+}
+
 .result-details {
-  // padding: 5px;
-  height: 100%;
+  height: 60%;
   // margin-top: 5px;
   font-size: 14px;
 }
@@ -189,30 +206,42 @@ background: #dcdcdc;
 .btn-exercise:hover {
   opacity: 0.7;
   text-decoration: none;
-  color: white;
+  color: $light-blue;
   border-color: #f9be00;
-  background-color: transparent;
-
+  background-color: #f9be00;
 }
+
 .btn-exercise:active {
- background-color: #f9be00 !important;
- border-color: #f9be00 !important;
+  background-color: #f9be00 !important;
+  border-color: #f9be00 !important;
+  color: $light-blue;
 }
 
 .btn-exercise:focus {
- background-color: #f9be00 !important;
- border-color: #f9be00 !important;
- outline: 0;
+  background-color: #242E39;
+  //background-color: #f9be00 !important;
+  border: 1px solid #f9be00;
+  //border-color: #f9be00 !important;
+  outline: 0;
+  color: #f9be00;
+  // color: $light-blue;
 }
 
 .btn-exercise:active:focus {
-outline: 0;
+  outline: 0;
+  color: $light-blue;
 }
 
 .btn-exercise-important {
   background-color: #f9be00;
   color: $dark-blue;
 }
+
+// #deploy {
+//   color: $light-blue !important;
+//   background-color: #f9be00 !important;
+//   border-color: #f9be00 !important;
+// }
 
 // #deploy {
 //   color: white !important;

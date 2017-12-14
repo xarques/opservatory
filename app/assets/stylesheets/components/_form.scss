@@ -1,14 +1,15 @@
 body {
-  background-color: #ECECEC;
+  background-color: $dark-blue;
 }
 label {
   display: block;
  }
 
  .sign-up {
-  background-color: #0d151c;
+  background-color: $light-blue;
   border-radius: 5px;
   margin-top: 70px;
+  border: 0.7px solid #3b454e;
   box-shadow: 0px 0px 3px 0px rgba(199,199,199,1);
   padding: 10px;
   color: white;
@@ -21,10 +22,13 @@ label {
   }
 }
  .sign-in {
-  background-color:  #0d151c;
+  background-color:  $light-blue;
+  padding: 50px;
   border-radius: 3px;
   margin-top: 70px;
-  box-shadow: 0px 0px 2px 0px rgba(199,199,199,1);
+  border: 0.7px solid #3b454e;
+  box-shadow: 2px 1px 5px 0px rgba(0,4,15,1);
+  // box-shadow: 0px 0px 2px 0px rgba(199,199,199,1);
   padding: 10px;
   h2 {
     color: white;
@@ -35,9 +39,7 @@ label {
     padding-bottom: 30px;
     padding-top: 10px;
     text-decoration: none;
-
   }
-
 }
 
 .linksdetails {
@@ -59,4 +61,25 @@ a:hover {
 
 #user_photo {
   padding-top: 70px;
+}
+
+.btn-sign-in {
+  margin-top: 5px;
+  background-color: #f9be00;
+  color: $light-blue;
+  padding: 10px 145px;
+  border-radius: 5px;
+  font-weight: bold;
+  font-size: 14px;
+  border: 1px solid #f9be00;
+  transition: background 0.3s ease;
+}
+
+.btn-sign-in:hover {
+  opacity: 0.7;
+  text-decoration: none;
+  color: white;
+  border-color: #f9be00;
+  background-color: transparent;
+
 }
