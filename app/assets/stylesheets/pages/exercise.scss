@@ -2,10 +2,19 @@ body {
   background-color: $dark-blue;
 }
 
-#back {
-  font-family: Tenor Sans;
-  padding-left: 705px;
+.titlepage {
+  display: flex;
+  justify-content: space-between;
+span {
+  margin-top: 15px;
+  margin-right: 10px;
+
 }
+}
+// #back {
+//   font-family: Tenor Sans;
+//   padding-left: 705px;
+// }
 .title-container {
   h4 {
     margin-left: 20px;

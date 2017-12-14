@@ -1,6 +1,7 @@
 <div class="container-fluid title-container">
-  <div>
-    <h4><%= @exercise.challenge.name.upcase %><span><%= link_to 'Back to dashboard', exercises_path, id:"back" %></span></h4>
+  <div class="titlepage">
+    <h4><%= @exercise.challenge.name.upcase %></h4>
+    <span><%= link_to 'Back to dashboard', exercises_path, id:"back" %></span>
     </div>
   <div class="exercise">
 
