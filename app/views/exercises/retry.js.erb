@@ -3,7 +3,7 @@ list.innerHTML = '';
 var btn = document.getElementById("button-hint")
 btn.classList.remove("disabled");
 
-document.getElementById("exercise-app").innerHTML = "<p>When your code will be successfully validated and deployed, this window will allow you to upload photo albums in your Amazon S3 bucket</p>";
+document.getElementById("exercise-app").innerHTML = '<div class="text-center"><%= image_tag 'ChallengeS3.png', height: '300' %></div>';
 document.getElementById("exercise_status").value = <%= @exercise.status %>
 document.getElementById("exercise_code").value = '<%= j @exercise.code %>'
 javascriptEditor.setValue('<%= j raw(@exercise.code) %>');
