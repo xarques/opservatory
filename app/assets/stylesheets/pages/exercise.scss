@@ -147,7 +147,7 @@ background: #dcdcdc;
   }
   input {
     // padding: 8px 60px !important;
-    background-color: #f9be00;
+    // background-color: #f9be00;
     color: white;
     border-radius: 5px;
     font-weight: bold;
@@ -209,10 +209,15 @@ background: #dcdcdc;
 outline: 0;
 }
 
-#deploy {
-  color: white !important;
- background-color: #f9be00 !important;
- border-color: #f9be00 !important;
+.btn-exercise-important {
+  background-color: #f9be00;
+  color: $dark-blue;
 }
+
+// #deploy {
+//   color: white !important;
+//  background-color: #f9be00 !important;
+//  border-color: #f9be00 !important;
+//}
 
 
