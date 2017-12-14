@@ -2,7 +2,7 @@
   <div class="titlepage">
     <h4><%= @exercise.challenge.name.upcase %></h4>
     <span><%= link_to 'Back to dashboard', exercises_path, id:"back" %></span>
-    </div>
+  </div>
   <div class="exercise">
 
       <div class="editor-buttons text-center">
@@ -14,7 +14,7 @@
           <%= simple_form_for(@exercise, remote: true, :html => { :onsubmit => 'validate()' }, :method => 'patch' ) do |form| %>
             <%= form.hidden_field :code %>
             <%= form.hidden_field :status %>
-            <%= form.button :submit, "Validate", class: "btn btn-primary btn-exercise btn-validate" %>
+            <%= form.button :submit, "Validate", id: "validate-button", class: "btn btn-primary btn-exercise btn-exercise-important" %>
           <% end %>
           <% if @exercise.challenge.deployable %>
             <% if @exercise.status == 1 || @exercise.status == 3 %>
@@ -73,7 +73,7 @@
       <div id="javascript-editor"></div>
     </div>
 
-    <div class="result" >
+    <div class="result">
       <h5>RESULT</h5>
       <div class="result-details" id="result">
 

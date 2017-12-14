@@ -136,14 +136,14 @@ const formatJsonSchemaErrors = ((errors) => {
     const dataPath = error.dataPath;
     switch(keyword) {
     case "required":
-        messages.push(`<p class='invalid-result'>Missing property <em>${params.missingProperty}</em></p>`);
+        messages.push(`<p class='invalid-result-text'>Missing property <em>${params.missingProperty}</em></p>`);
         break;
     case "additionalProperties":
-        messages.push(`<p class='invalid-result'>Property <em>${params.additionalProperty}</em> is not allowed</p>`);
+        messages.push(`<p class='invalid-result-text'>Property <em>${params.additionalProperty}</em> is not allowed</p>`);
         break;
     case "enum":
         const property = dataPath.split('.').pop().replace(/\[.*\]/g,'');
-        messages.push(`<p class='invalid-result'>Value of Property <em>${property}</em> is not correct</p>`);
+        messages.push(`<p class='invalid-result-text'>Value of Property <em>${property}</em> is not correct</p>`);
         break;
     default:
         messages.push(error.message);
@@ -158,6 +158,7 @@ const validateExercise = ((schema, code, targetTagId) => {
   let valid = false;
   const deployButton = document.getElementById("deploy");
   const targetDiv = document.getElementById(targetTagId);
+  const validateButton = document.getElementById("validate-button");
   try {
    valid = validate(JSON.parse(code));
   }
@@ -171,12 +172,17 @@ const validateExercise = ((schema, code, targetTagId) => {
     return true;
   }
   if (valid) {
-    targetDiv.innerHTML = "<p class='valid-result'>Your code is valid</p>";
+    targetDiv.innerHTML = "<p class='valid-result-text'>Your code is valid</p>";
     // Set the status to valid
     document.getElementById("exercise_status").value = 1;
     if (deployButton) {
       deployButton.removeAttribute("disabled");
       setBucketName(getBucketName(code));
+      document.querySelector(".result").classList.add("result-valid");
+      document.querySelector(".result").classList.remove("result-invalid");
+      validateButton.classList.remove("btn-exercise-important");
+      deployButton.classList.add("btn-exercise-important");
+
     }
     // console.log('Code is Valid!');
   }
@@ -185,7 +191,11 @@ const validateExercise = ((schema, code, targetTagId) => {
     document.getElementById("exercise_status").value = 2;
     if (deployButton) {
       deployButton.setAttribute("disabled","");
+      validateButton.classList.add("btn-exercise-important");
+      deployButton.classList.remove("btn-exercise-important");
     }
+    document.querySelector(".result").classList.remove("result-valid");
+    document.querySelector(".result").classList.add("result-invalid");
     targetDiv.innerHTML = formatJsonSchemaErrors(validate.errors).join('\n');
   }
   return true;
@@ -246,7 +256,7 @@ const deployExercise = ((schema, code, targetTagId) => {
           if (data.Payload.body) {
             targetDiv.innerHTML = data.Payload.body;
           } else {
-            targetDiv.innerHTML = `<p class='invalid-result>Stack ${stackName} can't been deployed. Error: ${err}</p>`;
+            targetDiv.innerHTML = `<p class='invalid-result-text>Stack ${stackName} can't been deployed. Error: ${err}</p>`;
           }
           swal({
             title: 'Oops...',
@@ -271,7 +281,7 @@ const deployExercise = ((schema, code, targetTagId) => {
             }).then((result) => {
               if (result.dismiss === 'timer') {
                 setBucketName(bucketName);
-                targetDiv.innerHTML = `<p class='valid-result>Stack ${stackName} has been deployed</p>`;
+                targetDiv.innerHTML = `<p class='valid-result-text>Stack ${stackName} has been deployed</p>`;
                 swal({
                   title: 'Deployed!',
                   text: `Stack ${stackName} has been deployed`,
