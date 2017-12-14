@@ -37,15 +37,11 @@ body {
 
 .exercise-app {
   position: relative;
-  background: #242E39;
+  background: $light-blue;
   padding: 10px;
   border: 0.7px solid #3b454e;
   border-radius: 3px;
   min-height: 300px;
-}
-
-.exercise-app-body {
-
 }
 
 .exercise-app-footer {
@@ -54,19 +50,30 @@ body {
 }
 
 .description {
-  background: #242E39;
+  background: $light-blue;
   padding: 10px;
   border: 0.7px solid #3b454e;
+  overflow-y: auto;
   grid-row: 1 / span 1;
   grid-column: 1 / span 1;
-  overflow-y: auto;
   li {
     font-size: 16px;
   }
 }
 
+.description::-webkit-scrollbar {
+width: 5px;
+height: 8px;
+background-color: $light-blue;
+border: 0.7px solid #3b454e;
+}
+
+.description::-webkit-scrollbar-thumb {
+background: #dcdcdc;
+}
+
 .hints {
-  background: #242E39;
+  background: $light-blue;
   padding: 10px;
   border: 0.7px solid #3b454e;
   grid-row: 2 / span 2;
@@ -74,10 +81,13 @@ body {
 }
 
 .hints-details {
+  margin-top: 10px;
   padding: 5px;
   height: 75%;
-  margin: 10px;
+  border: 0.7px solid #3b454e;
+  // margin-right: -11.5px;
   overflow-y: auto;
+  overflow-x: hidden;
   border-radius: 3px;
   margin-left: -2px;
   li {
@@ -85,12 +95,23 @@ body {
   }
 }
 
+.hints-details::-webkit-scrollbar {
+width: 5px;
+height: 8px;
+background-color: $light-blue;
+border: 0.7px solid #3b454e;
+}
+
+.hints-details::-webkit-scrollbar-thumb {
+background: #dcdcdc;
+}
+
 #list_hints li {
   padding-bottom: 11px;
 }
 
 .editor {
-  background: #242E39;
+  background: $light-blue;
   // padding: 20px;
   border: 0.7px solid #3b454e;
   grid-row: 1 / span 1;
@@ -104,9 +125,21 @@ body {
   grid-column: 2 / span 1;
 }
 
-.editor-buttons-flex {
+.editor-buttons-flex{
   display: flex;
   justify-content: space-between;
+  margin-bottom: -40px;
+  .btn-exercise{
+    padding: 8px 50px;
+  }
+  input {
+    // padding: 8px 60px !important;
+    background-color: #f9be00;
+    color: white;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 14px;
+  }
 }
 
 .result {
@@ -122,7 +155,7 @@ body {
 
 .result-details {
   // padding: 5px;
-  height: 90%;
+  height: 100%;
   // margin-top: 5px;
   font-size: 14px;
 }
@@ -138,19 +171,7 @@ body {
   border: 1px solid #f9be00;
   transition: background 0.3s ease;
 }
-.editor-buttons-flex{
-  .btn-exercise{
-    padding: 8px 50px;
-  }
-  input {
-    // padding: 8px 60px !important;
-    background-color: #f9be00;
-    color: white;
-    border-radius: 5px;
-    font-weight: bold;
-    font-size: 14px;
-  }
-}
+
 
 .btn-exercise:hover {
   opacity: 0.7;

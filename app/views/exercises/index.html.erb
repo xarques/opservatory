@@ -1,7 +1,7 @@
 <div class="container">
   <div class="grid-dashboard">
     <div class="d-exercise">
-        <h2 class="notcard">Your courses</h2>
+        <h3 class="notcard">Your courses</h3>
       <ul class="list-inline list_ex">
         <% @exercises.each do |exercise| %>
               <li><p><strong><%= link_to exercise.challenge.name, exercise_path(exercise)%></strong></p></li>
@@ -11,15 +11,17 @@
     </div>
 
     <div class="challenges_choices">
-      <h2 class="notcard">More challenges</h2>
+      <h3 class="notcard">More challenges</h3>
       <div class="more_challenges">
-        <%= form_tag exercises_path, method: :get, remote: true do %>
+        <%= form_tag exercises_path, method: :get, remote: true, class: "search-form" do %>
           <%= text_field_tag :query,
             params[:query],
-            class: "form-control",
-            placeholder: "Find a challenge"
+            class: "form-control search-bar",
+            placeholder: "search a challenge"
           %>
-          <%= button_tag "hello", id:'button_search', class:'hidden' %>
+          <%= button_tag "", {id: 'button_search'} do %>
+            <i class='fa fa-search' ></i>
+          <% end %>
         <% end %>
       </div>
 
@@ -29,9 +31,9 @@
     </div>
 
     <div class="next_challenge">
-      <h2 class="notcard">Next challenge</h2>
+      <h3 class="notcard">Next challenge</h3>
       <% if @next_exercise %>
-        <div class="card next_exercise_card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= cl_image_path @next_exercise.challenge.photo, height: 200, width: 300, crop: :pad %>')">
+        <div class="card next_exercise_card" style="background-image: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0)), url('<%= cl_image_path @next_exercise.challenge.photo, height: 200, width: 300, crop: :pad %>')">
           <div class="card-category"></div>
           <div class="card-description">
             <h2> <%= @next_exercise.challenge.name %></h2>
@@ -40,7 +42,7 @@
           <%= link_to '', exercise_path(@next_exercise), class: 'card-link' %>
         </div>
       <% elsif @next_challenge  %>
-        <div class="card next_exercise_card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= cl_image_path @next_challenge.photo, height: 200, width: 300, crop: :pad %>')">
+        <div class="card next_exercise_card" style="background-image: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0)), url('<%= cl_image_path @next_challenge.photo, height: 200, width: 300, crop: :pad %>')">
                 <div class="card-category"></div>
                 <div class="card-description">
                   <h2> <%= @next_challenge.name %></h2>
