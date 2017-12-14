@@ -44,45 +44,58 @@ schema: |
                     "properties": {
                       "CorsRules": {
                         "type": "array",
+                        "minItems": 1,
+                        "maxItems": 1,
                         "items": {
                           "type": "object",
                           "properties": {
                             "AllowedHeaders" : {
                               "type": "array",
+                              "minItems": 1,
+                              "maxItems": 1,
                               "items": {
                                 "type": "string",
                                 "enum": ["*"]
-                              }
+                              },
+                              "additionalItems": false
                             },
                             "AllowedMethods" : {
                               "type": "array",
+                              "minItems": 5,
+                              "maxItems": 5,
+                              "uniqueItems": true,
                               "items": {
                                 "type": "string",
                                 "enum": ["POST", "GET", "PUT", "DELETE", "HEAD"]
-                              }
+                              },
+                              "additionalItems": false
                             },
                             "AllowedOrigins" : {
                               "type": "array",
+                              "minItems": 1,
+                              "maxItems": 1,
                               "items": {
                                 "type": "string",
                                 "enum": ["*"]
-                              }
+                              },
+                              "additionalItems": false
                             }
                           },
                           "required": ["AllowedHeaders", "AllowedMethods", "AllowedOrigins"],
                           "additionalProperties": false
-                        }
+                        },
+                        "additionalItems": false
                       }
                     },
                     "required": ["CorsRules"],
                     "additionalProperties": false
                   }
                 },
-                "required": ["AccessControl", "CorsConfiguration"],
+                "required": ["BucketName","AccessControl", "CorsConfiguration"],
                 "additionalProperties": false
               }
             },
-            "required": ["Type"],
+            "required": ["Type", "Properties"],
             "additionalProperties": false
           }
         },

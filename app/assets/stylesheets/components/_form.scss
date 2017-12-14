@@ -32,10 +32,21 @@ label {
   }
   .form-actions {
     text-align: center;
-    padding-bottom: 20px;
+    padding-bottom: 30px;
     padding-top: 10px;
+    text-decoration: none;
+
   }
 
+}
+
+.linksdetails {
+  padding-bottom: 15px;
+  padding-left: 15px;
+}
+
+a:hover {
+    text-decoration: none;
 }
 
 .sign-up-inside {
