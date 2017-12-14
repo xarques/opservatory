@@ -178,12 +178,11 @@ const validateExercise = ((schema, code, targetTagId) => {
     if (deployButton) {
       deployButton.removeAttribute("disabled");
       setBucketName(getBucketName(code));
-      document.querySelector(".result").classList.add("result-valid");
-      document.querySelector(".result").classList.remove("result-invalid");
-      validateButton.classList.remove("btn-exercise-important");
       deployButton.classList.add("btn-exercise-important");
-
     }
+    document.querySelector(".result").classList.add("result-valid");
+    document.querySelector(".result").classList.remove("result-invalid");
+    validateButton.classList.remove("btn-exercise-important");
     // console.log('Code is Valid!');
   }
   else {
@@ -191,9 +190,9 @@ const validateExercise = ((schema, code, targetTagId) => {
     document.getElementById("exercise_status").value = 2;
     if (deployButton) {
       deployButton.setAttribute("disabled","");
-      validateButton.classList.add("btn-exercise-important");
       deployButton.classList.remove("btn-exercise-important");
     }
+    validateButton.classList.add("btn-exercise-important");
     document.querySelector(".result").classList.remove("result-valid");
     document.querySelector(".result").classList.add("result-invalid");
     targetDiv.innerHTML = formatJsonSchemaErrors(validate.errors).join('\n');
