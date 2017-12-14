@@ -123,20 +123,19 @@ background: #dcdcdc;
 .editor-buttons {
   grid-row: 3 / span 1;
   grid-column: 2 / span 1;
+  align-self: flex-end;
 }
 
 .editor-buttons-flex{
-  margin-top: 2.5vh;
   display: flex;
   justify-content: space-between;
-  margin-bottom: -40px;
   .btn-exercise{
     padding: 8px 50px;
   }
   input {
     // padding: 8px 60px !important;
     background-color: #f9be00;
-    color: white;
+    color: $light-blue;
     border-radius: 5px;
     font-weight: bold;
     font-size: 14px;
@@ -145,19 +144,18 @@ background: #dcdcdc;
 
 .result {
   background: #242E39;
+  height: 125%;
   padding: 10px;
   border: 0.7px solid #3b454e;
   grid-row: 2 / span 1;
   grid-column: 2 / span 1;
-  height: 144px;
   h5 {
     margin-top: 5px;
   }
 }
 
 .result-details {
-  // padding: 5px;
-  height: 100%;
+  height: 60%;
   // margin-top: 5px;
   font-size: 14px;
 }
@@ -181,17 +179,17 @@ background: #dcdcdc;
   color: white;
   border-color: #f9be00;
   background-color: transparent;
-
 }
+
 .btn-exercise:active {
- background-color: #f9be00 !important;
- border-color: #f9be00 !important;
+  background-color: #f9be00 !important;
+  border-color: #f9be00 !important;
 }
 
 .btn-exercise:focus {
- background-color: #f9be00 !important;
- border-color: #f9be00 !important;
- outline: 0;
+  background-color: #f9be00 !important;
+  border-color: #f9be00 !important;
+  outline: 0;
 }
 
 .btn-exercise:active:focus {
@@ -199,9 +197,9 @@ outline: 0;
 }
 
 #deploy {
-  color: white !important;
- background-color: #f9be00 !important;
- border-color: #f9be00 !important;
+  color: $light-blue !important;
+  background-color: #f9be00 !important;
+  border-color: #f9be00 !important;
 }
 
 
