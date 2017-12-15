@@ -126,11 +126,19 @@ border: 0.7px solid #3b454e;
 }
 
 .hints-details::-webkit-scrollbar-thumb {
-background: #dcdcdc;
+  background: #dcdcdc;
+}
+
+.hints-details ul {
+  margin-top: 10px !important;
 }
 
 #list_hints li {
-  padding-bottom: 11px;
+  padding-bottom: 5px;
+  i {
+    color: #f9be00;
+    margin-right: 5px;
+  }
 }
 
 .editor {

@@ -64,9 +64,9 @@
       <%= link_to "Solution" , reveal_solution_exercise_path(@exercise.id), method: "patch", :class => disabled_class_solution, :id => "button-solution", remote: true %>
       <div class="hints-details" id="hints">
         <ul id="list_hints" class="list-unstyled">
-        <% @given_hints.each do |hint|%>
+        <% @given_hints.reverse_each do |hint|%>
           <% if hint.description %>
-            <li><%= hint.description.html_safe %></li>
+            <li><i class="fa fa-hand-o-right" aria-hidden="true"></i><%= hint.description.html_safe %></li>
           <% end %>
         <% end %>
         </ul>
