@@ -126,7 +126,11 @@ background: #dcdcdc;
 }
 
 #list_hints li {
-  padding-bottom: 11px;
+  padding-bottom: 5px;
+  i {
+    color: #f9be00;
+    margin-right: 5px;
+  }
 }
 
 .editor {
