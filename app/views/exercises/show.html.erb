@@ -1,7 +1,11 @@
 <div class="container-fluid title-container">
   <div class="titlepage">
     <h4><%= @exercise.challenge.name.upcase %></h4>
-    <span><%= link_to 'Back to dashboard', exercises_path, id:"back" %></span>
+    <span><%= link_to exercises_path, id:"back" do %>
+        <i class="fa fa-angle-double-left" aria-hidden="true"></i>
+        Back to dashboard
+      <% end %>
+    </span>
   </div>
   <div class="exercise">
 

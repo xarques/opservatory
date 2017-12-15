@@ -128,14 +128,13 @@
 }
 
 .footer {
-  background: black;
+  background: $dark-blue;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 100px;
+  height: 90px;
   padding: 0px 50px;
   color: gray;
-  opacity: 0.8;
   font-family: Tenor Sans;
 }
 
