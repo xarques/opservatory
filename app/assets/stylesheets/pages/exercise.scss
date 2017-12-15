@@ -126,7 +126,11 @@ border: 0.7px solid #3b454e;
 }
 
 .hints-details::-webkit-scrollbar-thumb {
-background: #dcdcdc;
+  background: #dcdcdc;
+}
+
+.hints-details ul {
+  margin-top: 10px !important;
 }
 
 #list_hints li {
