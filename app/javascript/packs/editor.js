@@ -9,6 +9,8 @@ import * as Ajv from 'ajv/dist/ajv.min.js';
 import 'aws-sdk';
 import swal from 'sweetalert2';
 import {deleteAlbum, deletePhoto, addPhoto, viewAlbum, createAlbum, listAlbums, setBucketName} from '../components/s3bucket';
+import Sortable from 'sortablejs/Sortable.js';
+
 
 const ajv = Ajv();
 // const bucketRegion = 'eu-west-1';
@@ -72,7 +74,7 @@ const saveChallenge = (() => {
   document.getElementById("challenge_start_point").value = aceEditorStartPoint.getValue();
   document.getElementById("challenge_solution").value = aceEditorSolution.getValue();
   document.getElementById("challenge_schema").value = aceEditorSchema.getValue();
-  var hint_desc = document.querySelectorAll("#hints-list li");
+  var hint_desc = document.querySelectorAll("#hints-list p");
   var hints_concat = '';
   for (var i = 0; i < hint_desc.length; ++i) {
      var hint = hint_desc[i].innerText;;
@@ -176,6 +178,7 @@ const validateExercise = ((schema, code, targetTagId) => {
     document.getElementById("exercise_status").value = 1;
     if (deployButton) {
       deployButton.removeAttribute("disabled");
+
     }
     console.log('Code is Valid!');
   }
@@ -368,3 +371,16 @@ window.listAlbums = listAlbums;
 window.getBucketName =getBucketName;
 window.setBucketName =setBucketName;
 //window.beforeChallengeSave = beforeChallengeSave;
+
+
+// var el = document.getElementById('hints-list');
+// var sortable = Sortable.create(el);
+
+const editable = document.getElementById('hints-list');
+var editableList = Sortable.create(editable, {
+  filter: '.hint-desc',
+  onFilter: function (evt) {
+    var el = editableList.closest(evt.item); // get dragged item
+    el && el.parentNode.removeChild(el);
+  }
+});
