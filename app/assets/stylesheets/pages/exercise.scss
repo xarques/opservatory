@@ -2,6 +2,10 @@ body {
   background-color: $dark-blue;
 }
 
+#back {
+  color: #698caa;
+  }
+
 .titlepage {
   display: flex;
   justify-content: space-between;
@@ -27,7 +31,7 @@ body {
   display: grid;
   grid-template-columns: 50% 50%;
   grid-template-rows: 70% 20% 10%;
-  height: calc(100vh - 70px);
+  height: calc(100vh - 100px);
   padding: 20px;
   background-color: #0e1c27;
   opacity: 0.9;
