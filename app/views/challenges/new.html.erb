@@ -26,8 +26,8 @@
         <button type="button" id="btn-add_hint" remote="true">Add an Hint</button>
       </form>
       <br>
-      <ul id="hints-list">
-      </ul>
+      <div id="hints-list">
+      </div>
 
     </div>
 <!--     <div class="text-center">
@@ -80,8 +80,9 @@
   btn.addEventListener('click', (event) => {
    const ul = document.getElementById("hints-list");
    const description = document.getElementById("input-hint-description").value;
-   ul.insertAdjacentHTML("beforeend", `<li class="hint-desc">${description}</li>`);
+   ul.insertAdjacentHTML("beforeend", `<p class="hint-desc">${description}</p>`);
    document.getElementById("input-hint-description").value = "";
   });
+
 
 </script>
