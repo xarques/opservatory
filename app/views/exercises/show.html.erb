@@ -1,19 +1,24 @@
 <div class="container-fluid title-container">
-  <div>
-    <h4><%= @exercise.challenge.name.upcase %> <span id="clock-status"><%= render 'exercise_status', exercise: @exercise %></span></h4>
-    </div>
+  <div class="titlepage">
+    <h4><%= @exercise.challenge.name.upcase %></h4>
+    <span><%= link_to exercises_path, id:"back" do %>
+        <i class="fa fa-angle-double-left" aria-hidden="true"></i>
+        Back to dashboard
+      <% end %>
+    </span>
+  </div>
   <div class="exercise">
 
       <div class="editor-buttons text-center">
         <div class="editor-buttons-flex">
           <button type="button" id="retry-button" class="btn btn-primary btn-exercise">
-            Retry
+            Reset
           </button>
           <%= link_to "Retry", retry_exercise_path(@exercise), method: "patch", :class =>"btn btn-primary btn-exercise", :id =>"retry", :type =>"button", :class =>"hidden", remote: true %>
           <%= simple_form_for(@exercise, remote: true, :html => { :onsubmit => 'validate()' }, :method => 'patch' ) do |form| %>
             <%= form.hidden_field :code %>
             <%= form.hidden_field :status %>
-            <%= form.button :submit, "Validate", class: "btn btn-primary btn-exercise btn-validate" %>
+            <%= form.button :submit, "Validate", id: "validate-button", class: "btn btn-primary btn-exercise btn-exercise-important" %>
           <% end %>
           <% if @exercise.challenge.deployable %>
             <% if @exercise.status == 1 || @exercise.status == 3 %>
@@ -28,13 +33,14 @@
         <!--   <button type="button" id="skip" class="btn btn-primary btn-exercise">
             Back
           </button> -->
-          <%= link_to 'Back', exercises_path, class: "btn btn-primary btn-exercise", id:"back" %>
+
         </div>
       </div>
 
     <div class="description">
       <% if @exercise.challenge.deployable %>
-        <div id="exercise-app" class="exercise-app container"> </div>
+        <div id="exercise-app" class="exercise-app">
+        </div>
       <% end %>
       <div class="">
         <h5>GOAL</h5>
@@ -58,9 +64,9 @@
       <%= link_to "Solution" , reveal_solution_exercise_path(@exercise.id), method: "patch", :class => disabled_class_solution, :id => "button-solution", remote: true %>
       <div class="hints-details" id="hints">
         <ul id="list_hints" class="list-unstyled">
-        <% @given_hints.each do |hint|%>
+        <% @given_hints.reverse_each do |hint|%>
           <% if hint.description %>
-            <li><%= hint.description.html_safe %></li>
+            <li><i class="fa fa-hand-o-right" aria-hidden="true"></i><%= hint.description.html_safe %></li>
           <% end %>
         <% end %>
         </ul>
@@ -71,7 +77,7 @@
       <div id="javascript-editor"></div>
     </div>
 
-    <div class="result" >
+    <div class="result">
       <h5>RESULT</h5>
       <div class="result-details" id="result">
 
@@ -92,9 +98,14 @@
       // methods aceEditor and validateExerciseCallback are defined in app/javascript/packs/editor.js
       const javascriptEditor = aceEditor("javascript-editor", "<%=j raw(@exercise.code) %>");
       // validateExerciseCallback('<%#=j raw(@exercise.challenge.schema) %>', javascriptEditor, "validate", "result");
-      <% if @exercise.challenge.deployable && (@exercise.status == 3 || @exercise.status == 1 )%>
-        setBucketName(getBucketName(javascriptEditor.getValue()));
+      <% if @exercise.challenge.deployable %>
+        <% if (@exercise.status == 3 || @exercise.status == 1 ) %>
+          setBucketName(getBucketName(javascriptEditor.getValue()));
+        <% else %>
+          document.getElementById("exercise-app").innerHTML = '<div class="text-center"><%= image_tag 'ChallengeS3.png', height: '300' %></div>';
+        <% end %>
       <% end %>
+      validate();
     </script>
   </div>
 </div>

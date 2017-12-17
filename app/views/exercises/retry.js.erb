@@ -3,31 +3,32 @@ list.innerHTML = '';
 var btn = document.getElementById("button-hint")
 btn.classList.remove("disabled");
 
+if (document.getElementById("exercise-app")) {
+  document.getElementById("exercise-app").innerHTML = '<div class="text-center"><%= image_tag 'ChallengeS3.png', height: '300' %></div>';
+}
 document.getElementById("exercise_status").value = <%= @exercise.status %>
 document.getElementById("exercise_code").value = '<%= j @exercise.code %>'
 javascriptEditor.setValue('<%= j raw(@exercise.code) %>');
 javascriptEditor.clearSelection();
 
-function deleteClockStatus() {
-clock = document.getElementById("clock-status");
-clock.innerText = '';
-};
+validateExercise('<%=j raw(@exercise.challenge.schema) %>', javascriptEditor.getValue(), "result");
 
-function updateClockStatus(item) {
-clock = document.getElementById("clock-status");
-clock.insertAdjacentHTML('beforeend', item)
-};
+// document.getElementById("validate-button").classList.add("btn-exercise-important");
+// if (document.getElementById("deploy")) {
+//   document.getElementById("deploy").classList.remove("btn-exercise-important");
+// }
+// document.querySelector(".result").classList.remove("result-valid");
+// document.querySelector(".result").classList.remove("result-invalid");
 
 function updateHintBtn() {
   var btn = document.getElementById("button-hint")
-  btn.classList.remove("disabled")};
+  btn.classList.remove("disabled")
+};
 
 function updateSolutionBtn() {
 var btn = document.getElementById("button-solution")
 btn.classList.add("disabled")
 };
 
-deleteClockStatus();
-updateClockStatus(`<%= j render "exercise_status", exercise: @exercise %>`);
 updateHintBtn();
 updateSolutionBtn();
