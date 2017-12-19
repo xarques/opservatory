@@ -9,6 +9,23 @@ class Challenge < ApplicationRecord
 
   attr_accessor :hints_list
 
+  def instructions
+    if !self[:instructions]
+<<EOF
+  <div class="result-invalid">
+    <p>This challenge is under construction. Please test one of the following instead</p>
+    <ol>
+      <li>Create an EC2 instance</li>
+      <li>Create a RDS Database</li>
+      <li>Create a private S3 bucket</li>
+      <li>Create a public S3 bucket</li>
+    </ol>
+  </div>
+EOF
+    else
+      super
+    end
+  end
   include PgSearch
   pg_search_scope :search_by_name_and_description,
     against: [ :name, :description ],
