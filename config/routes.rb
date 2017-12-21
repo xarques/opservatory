@@ -19,4 +19,8 @@ Rails.application.routes.draw do
   end
 
   root to: "pages#home"
+
+  get 'contact', to: 'messages#new', as: 'contact'
+  get 'contact_confirmation', to: 'messages#confirmation'
+  post 'contact', to: 'messages#create'
 end

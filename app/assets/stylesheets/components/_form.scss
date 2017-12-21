@@ -23,7 +23,7 @@ label {
 }
  .sign-in {
   background-color:  $light-blue;
-  padding: 50px;
+  padding: 10px;
   border-radius: 3px;
   margin-top: 70px;
   border: 0.7px solid #3b454e;
@@ -67,10 +67,10 @@ a:hover {
   margin-top: 5px;
   background-color: #f9be00;
   color: $light-blue;
-  padding: 10px 145px;
+  padding: 10px 40px;
   border-radius: 5px;
   font-weight: bold;
-  font-size: 14px;
+  font-size: 16px;
   border: 1px solid #f9be00;
   transition: background 0.3s ease;
 }
