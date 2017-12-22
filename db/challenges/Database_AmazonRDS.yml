@@ -104,4 +104,4 @@ start_point: |
         }
     }
   }
-
+deployable: true
