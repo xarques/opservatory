@@ -8,4 +8,9 @@ class User < ApplicationRecord
   has_many :exercises, dependent: :destroy
   has_many :challenges, through: :exercises
   mount_uploader :photo, PhotoUploader
+
+  # The API should make a call on behalf of a given user.
+  # In the browser, there is a session stored in a cookie.
+  # For an API, we'll use a token.
+  acts_as_token_authenticatable
 end

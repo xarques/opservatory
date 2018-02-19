@@ -12,4 +12,12 @@ class ChallengePolicy < ApplicationPolicy
       true
     end
   end
+
+  def update?
+    create?
+  end
+
+  def destroy?
+    create?
+  end
 end

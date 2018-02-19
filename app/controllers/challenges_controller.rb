@@ -11,7 +11,7 @@ class ChallengesController < ApplicationController
     @challenges = policy_scope(Challenge)
   end
 
-  def delete
+  def destroy
   end
 
   def update
@@ -19,7 +19,6 @@ class ChallengesController < ApplicationController
   end
 
   def create
-
     @challenge = Challenge.new(challenge_params)
     authorize @challenge
 

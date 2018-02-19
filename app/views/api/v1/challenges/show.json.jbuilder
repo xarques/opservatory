@@ -1,0 +1,1 @@
+json.extract! @challenge, :id, :name, :description, :instructions, :schema, :solution, :level, :duration, :status, :start_point, :deployable

@@ -20,6 +20,7 @@ gem 'pundit'
 gem 'cloudinary'
 gem 'carrierwave', '~> 1.2'
 gem 'react-rails'
+gem "simple_token_authentication"
 
 gem 'pg_search'
 gem 'searchkick', '~> 2.3'

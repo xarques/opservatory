@@ -23,4 +23,11 @@ Rails.application.routes.draw do
   get 'contact', to: 'messages#new', as: 'contact'
   get 'contact_confirmation', to: 'messages#confirmation'
   post 'contact', to: 'messages#create'
+
+  # API Routes
+  namespace :api, defaults: { format: :json } do
+    namespace :v1 do
+      resources :challenges, only: [ :index, :show, :update, :create, :destroy ]
+    end
+  end
 end
