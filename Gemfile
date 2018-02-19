@@ -1,12 +1,12 @@
 source 'https://rubygems.org'
-ruby '2.3.5'
+ruby '2.4.3'
 
 gem 'devise'
 gem 'figaro'
 gem 'jbuilder', '~> 2.0'
 gem 'pg'
 gem 'puma'
-gem 'rails', '5.1.4'
+gem 'rails', '5.1.5'
 gem 'redis'
 
 gem 'autoprefixer-rails'
@@ -19,6 +19,7 @@ gem 'webpacker'
 gem 'pundit'
 gem 'cloudinary'
 gem 'carrierwave', '~> 1.2'
+gem 'react-rails'
 
 gem 'pg_search'
 gem 'searchkick', '~> 2.3'
