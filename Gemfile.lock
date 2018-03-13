@@ -96,9 +96,6 @@ GEM
       domain_name (~> 0.5)
     i18n (0.9.5)
       concurrent-ruby (~> 1.0)
-    jbuilder (2.7.0)
-      activesupport (>= 4.2.0)
-      multi_json (>= 1.2)
     listen (3.0.8)
       rb-fsevent (~> 0.9, >= 0.9.4)
       rb-inotify (~> 0.9, >= 0.9.7)
@@ -120,6 +117,7 @@ GEM
     nio4r (2.2.0)
     nokogiri (1.8.2)
       mini_portile2 (~> 2.3.0)
+    oj (3.4.0)
     orm_adapter (0.5.0)
     pg (1.0.0)
     pg_search (2.1.2)
@@ -137,6 +135,8 @@ GEM
     puma (3.11.2)
     pundit (1.1.0)
       activesupport (>= 3.0.0)
+    rabl (0.13.1)
+      activesupport (>= 2.3.14)
     rack (2.0.4)
     rack-proxy (0.6.3)
       rack
@@ -253,14 +253,15 @@ DEPENDENCIES
   devise
   figaro
   font-awesome-sass
-  jbuilder (~> 2.0)
   listen (~> 3.0.5)
+  oj
   pg
   pg_search
   pry-byebug
   pry-rails
   puma
   pundit
+  rabl
   rails (= 5.1.5)
   react-rails
   redis

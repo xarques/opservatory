@@ -3,7 +3,7 @@ ruby '2.4.3'
 
 gem 'devise'
 gem 'figaro'
-gem 'jbuilder', '~> 2.0'
+# gem 'jbuilder', '~> 2.0'
 gem 'pg'
 gem 'puma'
 gem 'rails', '5.1.5'
@@ -21,9 +21,13 @@ gem 'cloudinary'
 gem 'carrierwave', '~> 1.2'
 gem 'react-rails'
 gem "simple_token_authentication"
-
 gem 'pg_search'
 gem 'searchkick', '~> 2.3'
+
+# Ruby API Builder Language
+gem 'rabl'
+# Also add either `oj` or `yajl-ruby` as the JSON parser
+gem 'oj'
 
 group :development, :test do
   gem 'pry-byebug'

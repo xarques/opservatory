@@ -6,16 +6,24 @@
     .active{
       &.left{
         left:-33%;
+        // Change to 25% when using organizeCarouselByFour() method in carousel.js
+        // left:-25%;
       }
       &.right{
         left:33%;
+        // Change to 25% when using organizeCarouselByFour() method in carousel.js
+        // left:25%;
       }
     }
     .next{
-      left: 33%;
+      left: 25%;
+      // Change to 25% when using organizeCarouselByFour() method in carousel.js
+      // left: 33%;
     }
     .prev{
       left: -33%;
+      // Change to 25% when using organizeCarouselByFour() method in carousel.js
+      // left: -25%;
     }
     @media all and (transform-3d), (-webkit-transform-3d) {
       > .item{

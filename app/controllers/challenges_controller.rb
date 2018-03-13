@@ -11,6 +11,9 @@ class ChallengesController < ApplicationController
     @challenges = policy_scope(Challenge)
   end
 
+  def show
+  end
+  
   def destroy
   end
 
