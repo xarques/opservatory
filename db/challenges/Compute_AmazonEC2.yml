@@ -51,7 +51,7 @@ solution: |
       "EC2" : {
         "Type" : "AWS::EC2::Instance",
         "Properties" : {
-          "ImageId" : "ami-c481fad3",
+          "ImageId" : "ami-ac442ac3",
           "InstanceType" : "t2.micro"
         }
       }
@@ -59,7 +59,7 @@ solution: |
   }
 hints:
   - description: "The property <em>Type</em> must be <em>AWS::EC2::Instance</em>"
-  - description: "The property <em>ImageId</em> must be <em>ami-c481fad3</em>"
+  - description: "The property <em>ImageId</em> must be <em>ami-ac442ac3</em>"
   - description: "The property <em>InstanceType</em> must be <em>t2.micro</em>"
 level: 1
 duration: 30

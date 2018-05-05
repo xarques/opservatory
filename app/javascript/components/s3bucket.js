@@ -56,7 +56,7 @@ function listAlbums() {
             '</span>',
             '<span>',
               '<a href="#" onclick="deleteAlbum(\'' + albumName + '\')">',
-              '<i class="fa fa-trash-o"></i>',
+              '<i class="far fa-trash-alt"></i>',
               '</a>',
             '</span>',
           '</li>'
@@ -135,7 +135,7 @@ function viewAlbum(albumName) {
             '<div>',
               '<span>',
                 '<a href="#" onclick="deletePhoto(\'' + albumName + "','" + photoKey + '\')">',
-                  '<i class="fa fa-trash-o"></i>',
+                  '<i class="far fa-trash-alt"></i>',
                 '</a>',
               '</span>',
               '<span>',
